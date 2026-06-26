@@ -45,6 +45,15 @@ export function useVideoPolicy() {
 
   onMounted(installGestureUnlockListeners);
 
+  function clearPlaybackBlock() {
+    playbackBlocked.value = false;
+    playbackReasonText.value = undefined;
+  }
+
+  function hasNativePlaybackStarted(video: HTMLVideoElement) {
+    return !video.paused && video.readyState >= 2;
+  }
+
   function applyInlineAttributes(video: HTMLVideoElement) {
     video.setAttribute('playsinline', 'true');
     video.setAttribute('webkit-playsinline', 'true');
@@ -58,6 +67,10 @@ export function useVideoPolicy() {
     video.muted = muted || policy.value.mutedRequired;
 
     if (!policy.value.autoplay && policy.value.gestureRequired && !gestureUnlocked.value) {
+      if (hasNativePlaybackStarted(video)) {
+        clearPlaybackBlock();
+        return { ok: true };
+      }
       playbackBlocked.value = true;
       playbackReasonText.value = 'gesture-required';
       return { ok: false, reason: 'gesture-required' };
@@ -65,10 +78,13 @@ export function useVideoPolicy() {
 
     try {
       await weChatBridge.playInlineVideo(video);
-      playbackBlocked.value = false;
-      playbackReasonText.value = undefined;
+      clearPlaybackBlock();
       return { ok: true };
     } catch (error) {
+      if (hasNativePlaybackStarted(video)) {
+        clearPlaybackBlock();
+        return { ok: true };
+      }
       playbackBlocked.value = true;
       playbackReasonText.value = playbackReason(error);
       return { ok: false, reason: playbackReasonText.value };
@@ -88,5 +104,6 @@ export function useVideoPolicy() {
     applyInlineAttributes,
     attemptPlayback,
     requestPlayback,
+    clearPlaybackBlock,
   };
 }

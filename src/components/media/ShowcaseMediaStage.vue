@@ -16,7 +16,7 @@ const props = defineProps<{
 }>();
 
 const { language } = useLanguage();
-const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback } = useVideoPolicy();
+const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback, clearPlaybackBlock } = useVideoPolicy();
 const videoRef = ref<HTMLVideoElement>();
 const isMuted = ref(true);
 const mediaItems = computed(() => getShowcaseMedia(props.group));
@@ -112,6 +112,7 @@ onMounted(() => {
       :preload="policy.preload"
       class="media-stage__video"
       @loadedmetadata="syncVideoPlayback"
+      @playing="clearPlaybackBlock"
       @ended="pickRandomMedia"
     />
     <div v-else class="media-stage__placeholder" aria-hidden="true">

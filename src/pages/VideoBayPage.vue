@@ -5,7 +5,7 @@ import { useVideoPolicy } from '../composables/useVideoPolicy';
 import { resolveReleaseMediaSource, videoBayReleaseMedia } from '../data/releaseMedia';
 
 const { language } = useLanguage();
-const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback } = useVideoPolicy();
+const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback, clearPlaybackBlock } = useVideoPolicy();
 const videoRef = ref<HTMLVideoElement>();
 const isMuted = ref(true);
 const videoSrc = resolveReleaseMediaSource(videoBayReleaseMedia) ?? '';
@@ -55,6 +55,7 @@ onMounted(syncVideoPlayback);
           :preload="policy.preload"
           aria-label="FPV background video"
           @loadedmetadata="syncVideoPlayback"
+          @playing="clearPlaybackBlock"
         />
         <div v-if="!videoSrc" class="video-bay__placeholder" aria-hidden="true">
           <span>VIDEO SOURCE PENDING</span>

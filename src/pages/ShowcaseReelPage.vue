@@ -13,7 +13,7 @@ import {
 
 const route = useRoute();
 const { language } = useLanguage();
-const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback } = useVideoPolicy();
+const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback, clearPlaybackBlock } = useVideoPolicy();
 const selectedMedia = ref<ShowcaseMediaItem>();
 const isMuted = ref(true);
 const lightboxVideoRef = ref<HTMLVideoElement>();
@@ -146,6 +146,7 @@ watch(selectedMedia, syncLightboxPlayback);
             x5-video-orientation="portrait"
             :preload="policy.preload"
             @loadedmetadata="syncLightboxPlayback"
+            @playing="clearPlaybackBlock"
           />
           <div v-else class="media-lightbox__placeholder" aria-hidden="true">
             <span>{{ isOutcome ? 'OUTCOME MEDIA SOURCE PENDING' : 'FPV MEDIA SOURCE PENDING' }}</span>
