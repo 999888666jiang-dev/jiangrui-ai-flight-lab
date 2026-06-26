@@ -98,12 +98,25 @@ if ($assets.Count -eq 0) {
   throw "No media files found to upload."
 }
 
-gh release view $Tag --repo $fullRepo *> $null
-if ($LASTEXITCODE -ne 0) {
+$releaseExists = $true
+try {
+  gh release view $Tag --repo $fullRepo *> $null
+  if ($LASTEXITCODE -ne 0) {
+    $releaseExists = $false
+  }
+} catch {
+  $releaseExists = $false
+}
+
+if (-not $releaseExists) {
   gh release create $Tag --repo $fullRepo --title "Media current" --notes "Rolling media assets for AI Flight Lab."
 }
 
-gh release upload $Tag --repo $fullRepo --clobber @assets
+foreach ($asset in $assets) {
+  $assetName = Split-Path -Leaf $asset
+  Write-Host "Uploading $assetName ..."
+  gh release upload $Tag $asset --repo $fullRepo --clobber
+}
 
 Write-Host "Uploaded $($assets.Count) media assets to $fullRepo release $Tag."
 Write-Host "GitHub Pages builds will use VITE_GITHUB_OWNER=$Owner."
