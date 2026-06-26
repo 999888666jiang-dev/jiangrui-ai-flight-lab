@@ -321,3 +321,9 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - 开发环境可以默认读取 `public/media` 和 `public/videos`，但生产环境必须通过 `VITE_ENABLE_LOCAL_MEDIA` 或 `streamUrl` 显式开启，否则展示高级占位并避免请求缺失资源。
 - Service Worker 只缓存站点壳、JS/CSS、轻量图像和 PDF 元数据；永不缓存 MP4/MOV/WEBM 和 `/media/`、`/videos/`。
 - GitHub Pages 项目站点优先使用相对 `base: './'` 与统一 public asset helper，避免 `/repo/` 子路径下资源失效。
+## Pattern: GitHub Pages + Releases 大视频展示
+
+- 对个人作品站，大视频不要进入普通 Git 仓库；GitHub Pages 发布源码，GitHub Releases 发布视频资产。
+- 生产播放源通过 `VITE_GITHUB_OWNER`、仓库名、release tag 和 asset name 静态生成，开发环境继续使用本地 `public/media`。
+- Release URL 必须带版本 query，版本可用文件 size + mtime 生成，避免替换同名资产后浏览器继续用旧缓存。
+- Service Worker 必须跳过 `/releases/download/` 和所有视频格式，避免 CacheStorage 爆配额。

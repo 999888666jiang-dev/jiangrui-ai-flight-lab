@@ -4,6 +4,6 @@ Large MP4 files in this folder are kept for local development but are ignored by
 
 For GitHub Pages or any public deployment, use one of these options:
 
-1. Upload videos to CDN/object storage and add `streamUrl` in `src/data/showcaseMedia.ts`.
-2. Build with `VITE_ENABLE_LOCAL_MEDIA=true` only if the deployment target can serve the files.
-3. Keep media disabled in production; the site will show designed placeholders without requesting missing files.
+1. Run `scripts/upload-release-media.ps1` to upload videos to the `media-current` GitHub Release.
+2. Keep `VITE_ENABLE_LOCAL_MEDIA=false` in GitHub Pages builds.
+3. The app will use GitHub Releases URLs in production and local `public/media` files in development.

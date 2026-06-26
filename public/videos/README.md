@@ -1,5 +1,9 @@
 # Video Assets
 
+GitHub Pages production builds play this video from GitHub Releases after `scripts/upload-release-media.ps1` uploads it as `video-bay__fpv-lab-background.mp4`.
+
+Local development keeps using `public/videos/fpv-lab-background.mp4`.
+
 Place the real Video Bay background at:
 
 `public/videos/fpv-lab-background.mp4`

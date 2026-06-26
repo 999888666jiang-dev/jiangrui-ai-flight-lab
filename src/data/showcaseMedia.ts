@@ -1,4 +1,5 @@
-﻿import { localMediaEnabled, publicAsset } from '../utils/publicAsset';
+﻿import { resolveReleaseMediaSource, showcaseReleaseAssetName } from './releaseMedia';
+import { publicAsset } from '../utils/publicAsset';
 
 export type ShowcaseMediaGroup = 'fpv-flight-video' | 'deal-results-showcase';
 
@@ -290,9 +291,10 @@ export function getFeaturedShowcaseMedia(group: ShowcaseMediaGroup) {
 export function resolveShowcaseMediaSrc(item?: ShowcaseMediaItem) {
   if (!item) return undefined;
 
-  if (item.streamUrl) return item.streamUrl;
-  if (localMediaEnabled) return item.src;
-
-  return item.fallbackSrc;
+  return resolveReleaseMediaSource({
+    localSrc: item.src,
+    assetName: showcaseReleaseAssetName(item.group, item.id),
+    fallbackSrc: item.streamUrl ?? item.fallbackSrc,
+  });
 }
 

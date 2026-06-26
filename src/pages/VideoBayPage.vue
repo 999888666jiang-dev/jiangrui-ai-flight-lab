@@ -2,18 +2,13 @@
 import { onMounted, ref } from 'vue';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { useVideoPolicy } from '../composables/useVideoPolicy';
-import { localMediaEnabled, publicAsset } from '../utils/publicAsset';
+import { resolveReleaseMediaSource, videoBayReleaseMedia } from '../data/releaseMedia';
 
 const { language } = useLanguage();
 const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback } = useVideoPolicy();
 const videoRef = ref<HTMLVideoElement>();
 const isMuted = ref(true);
-const configuredVideoSrc = import.meta.env.VITE_VIDEO_BAY_SRC;
-const videoSrc = configuredVideoSrc
-  ? publicAsset(configuredVideoSrc)
-  : localMediaEnabled
-    ? publicAsset('videos/fpv-lab-background.mp4')
-    : '';
+const videoSrc = resolveReleaseMediaSource(videoBayReleaseMedia) ?? '';
 const futureVideoPath = 'public/videos/fpv-lab-background.mp4';
 
 function toggleSound() {

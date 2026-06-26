@@ -1,4 +1,4 @@
-const VERSION = 'ai-flight-lab-p2-v1';
+const VERSION = 'ai-flight-lab-release-media-v1';
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const MAX_RUNTIME_ENTRIES = 80;
@@ -12,6 +12,7 @@ function isMediaRequest(url) {
   return (
     url.pathname.includes('/media/') ||
     url.pathname.includes('/videos/') ||
+    url.pathname.includes('/releases/download/') ||
     /\.(mp4|m4v|mov|webm|avi|mkv)$/i.test(url.pathname)
   );
 }

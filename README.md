@@ -23,11 +23,16 @@ npm run preview
 仓库首次连接：
 
 ```powershell
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
+.\scripts\setup-github-repo.ps1
 ```
 
-后续同步：
+上传或覆盖 GitHub Releases 视频：
+
+```powershell
+.\scripts\upload-release-media.ps1 -Tag media-current
+```
+
+后续同步源码：
 
 ```powershell
 .\scripts\sync-github.ps1 -Message "update site"
@@ -37,13 +42,16 @@ git push -u origin main
 
 `public/media/**/*.mp4` 和 `public/videos/**/*.mp4` 默认不进入 Git。当前视频文件有多个超过 GitHub 普通仓库单文件限制，直接提交会导致 push 失败。
 
-发布站点默认不请求未发布的本地大视频，避免 GitHub Pages 产生 404。开发环境会继续使用本地视频；生产环境需要视频时，优先使用 CDN/HLS，并在媒体 manifest 中补充 `streamUrl`，或设置：
+发布站点通过 GitHub Releases 显示真实视频。`scripts/generate-release-media-manifest.ps1` 会生成每个 release asset 的版本号，GitHub Actions 会自动注入 `VITE_GITHUB_OWNER` 并把播放地址解析为：
 
-```env
-VITE_ENABLE_LOCAL_MEDIA=true
-VITE_VIDEO_BAY_SRC=https://example.com/video.mp4
+```text
+https://github.com/<owner>/jiangrui-ai-flight-lab/releases/download/media-current/<assetName>?v=<fileVersion>
 ```
+
+开发环境会继续优先使用本地视频；生产环境如果 Release asset 尚未上传，会显示设计占位，不请求缺失 MP4。
 
 ## PWA 策略
 
 站点已包含 manifest、安装提示、离线壳和手写 Service Worker。Service Worker 只缓存站点壳与轻量资源，显式跳过 `/media/`、`/videos/` 和视频格式文件。
+
+Service Worker 同样跳过 GitHub Releases `/releases/download/` 视频 URL，避免 MP4 进入 CacheStorage。

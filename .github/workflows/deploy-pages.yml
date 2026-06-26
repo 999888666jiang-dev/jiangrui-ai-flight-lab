@@ -1,5 +1,11 @@
 name: Deploy AI Flight Lab to GitHub Pages
 
+env:
+  VITE_ENABLE_LOCAL_MEDIA: "false"
+  VITE_GITHUB_OWNER: ${{ github.repository_owner }}
+  VITE_GITHUB_REPOSITORY_NAME: jiangrui-ai-flight-lab
+  VITE_GITHUB_MEDIA_TAG: media-current
+
 on:
   push:
     branches:
