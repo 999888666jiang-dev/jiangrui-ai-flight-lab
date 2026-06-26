@@ -19,7 +19,10 @@ if ($branch -ne "main") {
   git branch -M main
 }
 
-$origin = git remote get-url origin 2>$null
+$origin = & git remote get-url origin 2>$null
+if ($LASTEXITCODE -ne 0) {
+  $origin = $null
+}
 if ($origin) {
   git push -u origin main
   Write-Host "Existing origin pushed: $origin"
