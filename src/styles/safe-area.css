@@ -1,0 +1,149 @@
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --touch-target: 44px;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-bg);
+}
+
+body {
+  min-height: 100vh;
+  min-height: calc(var(--app-vh, 1vh) * 100);
+  overflow-x: clip;
+}
+
+.nav-shell {
+  top: calc(20px + var(--safe-top));
+  width: min(1180px, calc(100% - max(32px, calc(var(--safe-left) + var(--safe-right) + 32px))));
+}
+
+.mission-rail {
+  left: calc(18px + var(--safe-left));
+}
+
+.hero-section {
+  padding-top: calc(130px + var(--safe-top));
+  padding-right: max(clamp(20px, 5vw, 72px), var(--safe-right));
+  padding-bottom: calc(72px + var(--safe-bottom));
+  padding-left: max(clamp(20px, 5vw, 72px), var(--safe-left));
+}
+
+.section {
+  padding-right: max(clamp(20px, 5vw, 72px), var(--safe-right));
+  padding-left: max(clamp(20px, 5vw, 72px), var(--safe-left));
+}
+
+.evidence-route-page {
+  padding-top: calc(150px + var(--safe-top));
+}
+
+.showcase-detail {
+  padding-top: calc(150px + var(--safe-top));
+  padding-right: max(clamp(20px, 5vw, 72px), var(--safe-right));
+  padding-bottom: calc(76px + var(--safe-bottom));
+  padding-left: max(clamp(20px, 5vw, 72px), var(--safe-left));
+}
+
+.media-reel-page {
+  padding-top: calc(150px + var(--safe-top));
+  padding-right: max(clamp(20px, 5vw, 72px), var(--safe-right));
+  padding-bottom: calc(76px + var(--safe-bottom));
+  padding-left: max(clamp(20px, 5vw, 72px), var(--safe-left));
+}
+
+.footer {
+  padding-right: max(clamp(20px, 5vw, 72px), var(--safe-right));
+  padding-bottom: calc(30px + var(--safe-bottom));
+  padding-left: max(clamp(20px, 5vw, 72px), var(--safe-left));
+}
+
+.video-bay {
+  min-height: calc(var(--app-vh, 1vh) * 100);
+}
+
+.video-bay__media,
+.video-bay__copy {
+  min-height: calc(var(--app-vh, 1vh) * 100);
+}
+
+.video-bay__hud {
+  inset: calc(24px + var(--safe-top)) calc(24px + var(--safe-right)) calc(24px + var(--safe-bottom)) calc(24px + var(--safe-left));
+}
+
+.video-bay__copy {
+  padding:
+    calc(clamp(34px, 6vw, 72px) + var(--safe-top))
+    calc(clamp(34px, 6vw, 72px) + var(--safe-right))
+    calc(clamp(34px, 6vw, 72px) + var(--safe-bottom))
+    calc(clamp(34px, 6vw, 72px) + var(--safe-left));
+}
+
+.media-stage__controls {
+  right: calc(clamp(16px, 3vw, 34px) + var(--safe-right));
+  bottom: calc(clamp(16px, 3vw, 34px) + var(--safe-bottom));
+}
+
+.media-lightbox {
+  padding:
+    calc(clamp(18px, 4vw, 54px) + var(--safe-top))
+    calc(clamp(18px, 4vw, 54px) + var(--safe-right))
+    calc(clamp(18px, 4vw, 54px) + var(--safe-bottom))
+    calc(clamp(18px, 4vw, 54px) + var(--safe-left));
+}
+
+.media-lightbox__close {
+  top: calc(24px + var(--safe-top));
+  right: calc(24px + var(--safe-right));
+}
+
+.button,
+.language-toggle,
+.nav-links a,
+.mission-rail a,
+.vault-slot,
+.media-reel-card,
+.media-stage__controls button,
+.media-stage__controls a,
+.media-lightbox__meta button,
+.media-lightbox__close,
+.video-bay__playback-gate,
+.media-stage__playback-gate,
+.media-lightbox__playback-gate {
+  min-height: var(--touch-target);
+  touch-action: manipulation;
+}
+
+@media (max-width: 680px) {
+  .nav-shell {
+    top: calc(12px + var(--safe-top));
+    width: calc(100% - max(24px, calc(var(--safe-left) + var(--safe-right) + 24px)));
+  }
+
+  .evidence-route-page,
+  .showcase-detail,
+  .media-reel-page {
+    padding-top: calc(190px + var(--safe-top));
+  }
+
+  .media-lightbox {
+    padding:
+      calc(74px + var(--safe-top))
+      calc(14px + var(--safe-right))
+      calc(18px + var(--safe-bottom))
+      calc(14px + var(--safe-left));
+  }
+
+  .media-lightbox__close {
+    top: calc(18px + var(--safe-top));
+    right: calc(14px + var(--safe-right));
+  }
+
+  .video-bay__hud {
+    inset: calc(150px + var(--safe-top)) calc(24px + var(--safe-right)) auto calc(24px + var(--safe-left));
+  }
+}

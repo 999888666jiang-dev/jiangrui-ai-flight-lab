@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#020507" />
+    <title>AI Flight Lab Offline</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, "Microsoft YaHei", system-ui, sans-serif;
+        background: #020507;
+        color: #e9fffb;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 30% 20%, rgba(83, 255, 234, 0.18), transparent 34rem),
+          linear-gradient(135deg, #020507, #081210 70%, #020507);
+      }
+
+      main {
+        width: min(90vw, 34rem);
+        padding: 2rem;
+        border: 1px solid rgba(83, 255, 234, 0.24);
+        border-radius: 1.25rem;
+        background: rgba(5, 13, 14, 0.82);
+        box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.45);
+      }
+
+      small {
+        color: #55f2e4;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+      }
+
+      h1 {
+        margin: 0.8rem 0;
+        font-size: clamp(2rem, 8vw, 4.2rem);
+        line-height: 0.95;
+      }
+
+      p {
+        margin: 0;
+        color: rgba(233, 255, 251, 0.72);
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <small>OFFLINE / AI FLIGHT LAB</small>
+      <h1>当前离线</h1>
+      <p>站点壳可以离线显示，但视频素材不会进入离线缓存。请恢复网络后刷新页面。</p>
+    </main>
+  </body>
+</html>

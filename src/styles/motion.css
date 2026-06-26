@@ -1,0 +1,200 @@
+.route-loading {
+  display: grid;
+  min-height: calc(var(--app-vh, 1vh) * 100);
+  place-items: center;
+  gap: 16px;
+  padding: calc(150px + var(--safe-top)) 24px calc(72px + var(--safe-bottom));
+  color: var(--color-accent);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(85, 247, 231, 0.16), transparent 24rem),
+    #020507;
+}
+
+.route-loading span {
+  width: 84px;
+  height: 84px;
+  border: 1px solid rgba(85, 247, 231, 0.34);
+  border-radius: 50%;
+  box-shadow: 0 0 44px rgba(85, 247, 231, 0.16);
+  animation: route-loading-pulse 1.2s ease-in-out infinite;
+}
+
+.route-loading strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.video-bay__playback-gate,
+.media-stage__playback-gate,
+.media-lightbox__playback-gate {
+  position: absolute;
+  z-index: 7;
+  display: grid;
+  gap: 6px;
+  align-content: center;
+  justify-items: center;
+  border: 1px solid rgba(85, 247, 231, 0.34);
+  border-radius: 999px;
+  padding: 12px 18px;
+  color: var(--color-text);
+  background: rgba(2, 5, 7, 0.72);
+  box-shadow: 0 0 42px rgba(85, 247, 231, 0.16);
+  backdrop-filter: blur(18px);
+  cursor: pointer;
+}
+
+.video-bay__playback-gate {
+  right: calc(28px + var(--safe-right));
+  bottom: calc(28px + var(--safe-bottom));
+}
+
+.media-stage__playback-gate {
+  left: 50%;
+  bottom: calc(24px + var(--safe-bottom));
+  transform: translateX(-50%);
+}
+
+.media-lightbox__player {
+  position: relative;
+}
+
+.media-lightbox__playback-gate {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-bay__playback-gate span,
+.media-stage__playback-gate span,
+.media-lightbox__playback-gate span {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.video-bay__playback-gate small,
+.media-stage__playback-gate small,
+.media-lightbox__playback-gate small {
+  max-width: 260px;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+@keyframes route-loading-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.86);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (hover: none) {
+  .button:hover,
+  .video-card:hover,
+  .showcase-panel:hover,
+  .media-reel-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .route-scan-enter-active,
+  .route-scan-leave-active {
+    clip-path: none;
+    transition: opacity 1ms linear;
+  }
+
+  .media-reel-card,
+  .media-reel-grid--film .media-reel-card:nth-child(2n),
+  .media-reel-grid--film .media-reel-card:nth-child(3n),
+  .mission-tab--active,
+  .button:hover {
+    transform: none !important;
+  }
+}
+
+.install-prompt {
+  position: fixed;
+  right: max(1rem, var(--safe-right));
+  bottom: max(1rem, var(--safe-bottom));
+  z-index: 55;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: min(92vw, 29rem);
+  padding: 0.85rem;
+  border: 1px solid rgb(83 255 234 / 0.24);
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, rgb(83 255 234 / 0.13), transparent 55%),
+    rgb(5 13 14 / 0.88);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.42), 0 0 2.25rem rgb(83 255 234 / 0.12);
+  color: var(--text-strong);
+  pointer-events: auto;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.install-prompt small {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--accent);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.install-prompt strong {
+  display: block;
+  color: var(--text-strong);
+  font-size: 0.86rem;
+}
+
+.install-prompt button {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  border: 1px solid rgb(83 255 234 / 0.26);
+  border-radius: 999px;
+  background: rgb(83 255 234 / 0.1);
+  color: var(--text-strong);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.install-prompt button:hover {
+  background: rgb(83 255 234 / 0.2);
+}
+
+@media (max-width: 680px) {
+  .install-prompt {
+    left: max(0.75rem, var(--safe-left));
+    right: max(0.75rem, var(--safe-right));
+    bottom: max(0.75rem, var(--safe-bottom));
+  }
+}
+
+html[data-device-tier='minimal'] .ambient-interface::before,
+html[data-device-tier='minimal'] .ambient-interface::after {
+  animation: none;
+  opacity: 0.28;
+}

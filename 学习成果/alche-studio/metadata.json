@@ -1,0 +1,616 @@
+{
+  "site": {
+    "slug": "alche-studio",
+    "url": "https://alche.studio/"
+  },
+  "title": "Alche, Inc",
+  "finalUrl": "https://alche.studio/",
+  "capturedAt": "2026-06-24T16:36:54.544Z",
+  "screenshotCount": 40,
+  "dismissedCookie": null,
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "a",
+      "text": "",
+      "href": "/",
+      "role": "",
+      "top": 47,
+      "left": 50,
+      "width": 120,
+      "height": 25
+    },
+    {
+      "id": 1,
+      "tag": "a",
+      "text": "News",
+      "href": "/news",
+      "role": "",
+      "top": 50,
+      "left": 512,
+      "width": 39,
+      "height": 18
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "Works",
+      "href": "/works",
+      "role": "",
+      "top": 50,
+      "left": 591,
+      "width": 49,
+      "height": 18
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "role": "",
+      "top": 50,
+      "left": 680,
+      "width": 49,
+      "height": 18
+    },
+    {
+      "id": 4,
+      "tag": "a",
+      "text": "stellla",
+      "href": "/stellla",
+      "role": "",
+      "top": 50,
+      "left": 769,
+      "width": 69,
+      "height": 18
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "Contact / Recruit Contact / Recruit",
+      "href": "/contact",
+      "role": "",
+      "top": 40,
+      "left": 1180,
+      "width": 154,
+      "height": 40
+    },
+    {
+      "id": 6,
+      "tag": "button",
+      "text": "サウンドをONにする",
+      "href": "",
+      "role": "",
+      "top": 40,
+      "left": 1350,
+      "width": 40,
+      "height": 40
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "Top",
+      "href": "/",
+      "role": "",
+      "top": 317,
+      "left": 41,
+      "width": 1369,
+      "height": 61
+    },
+    {
+      "id": 8,
+      "tag": "a",
+      "text": "News",
+      "href": "/news",
+      "role": "",
+      "top": 378,
+      "left": 31,
+      "width": 1379,
+      "height": 61
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "Works",
+      "href": "/works",
+      "role": "",
+      "top": 439,
+      "left": 31,
+      "width": 1379,
+      "height": 61
+    },
+    {
+      "id": 10,
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "role": "",
+      "top": 500,
+      "left": 31,
+      "width": 1379,
+      "height": 61
+    },
+    {
+      "id": 11,
+      "tag": "a",
+      "text": "stellla",
+      "href": "/stellla",
+      "role": "",
+      "top": 561,
+      "left": 31,
+      "width": 1379,
+      "height": 61
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "Contact / Recruit",
+      "href": "/contact",
+      "role": "",
+      "top": 622,
+      "left": 31,
+      "width": 1379,
+      "height": 61
+    },
+    {
+      "id": 13,
+      "tag": "a",
+      "text": "TECHBLOG",
+      "href": "https://blog.alche.studio/",
+      "role": "",
+      "top": 942,
+      "left": 31,
+      "width": 80,
+      "height": 18
+    }
+  ],
+  "consoleWarningsAndErrors": [
+    {
+      "type": "error",
+      "text": "Error: <svg> attribute height: Expected length, \"auto\"."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x57dc00133200] GL_INVALID_FRAMEBUFFER_OPERATION: glDrawElements: Framebuffer is incomplete: Attachment has zero size."
+    },
+    {
+      "type": "warning",
+      "text": "ServiceTitleController: Service title element not found - this may be expected on some pages"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceIndicatorController: Elements not found"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLProgram: Program Info Log: (72,7-53): warning X3557: loop only executes for 1 iteration(s), consider removing [loop]\n\n\n\u0000"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceTitleController: Service title element not found - this may be expected on some pages"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceIndicatorController: Elements not found"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceTitleController: Service title element not found - this may be expected on some pages"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceIndicatorController: Elements not found"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceTitleController: Service title element not found - this may be expected on some pages"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceIndicatorController: Elements not found"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "[swup] No elements found matching animationSelector `[class*=\"transition-\"]`"
+    },
+    {
+      "type": "error",
+      "text": "Error in hook 'animation:out:await': undefined"
+    },
+    {
+      "type": "warning",
+      "text": "動画の再生に失敗しました: AbortError: The play() request was interrupted because the media was removed from the document. https://goo.gl/LdLk22"
+    },
+    {
+      "type": "warning",
+      "text": "SwupA11yPlugin: No main heading (h1) found on new page"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceTitleController: Service title element not found - this may be expected on some pages"
+    },
+    {
+      "type": "warning",
+      "text": "ServiceIndicatorController: Elements not found"
+    }
+  ],
+  "pageErrors": [
+    "The play() request was interrupted because the media was removed from the document. https://goo.gl/LdLk22"
+  ],
+  "failedResponses": [],
+  "captures": [
+    {
+      "index": 1,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\001-desktop-initial-viewport.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:01.320Z"
+    },
+    {
+      "index": 2,
+      "label": "scroll 0 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\002-scroll-0-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:01.911Z"
+    },
+    {
+      "index": 3,
+      "label": "scroll 5 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\003-scroll-5-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:02.501Z"
+    },
+    {
+      "index": 4,
+      "label": "scroll 10 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\004-scroll-10-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:03.151Z"
+    },
+    {
+      "index": 5,
+      "label": "scroll 14 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\005-scroll-14-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:03.791Z"
+    },
+    {
+      "index": 6,
+      "label": "scroll 19 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\006-scroll-19-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:04.524Z"
+    },
+    {
+      "index": 7,
+      "label": "scroll 24 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\007-scroll-24-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:05.385Z"
+    },
+    {
+      "index": 8,
+      "label": "scroll 29 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\008-scroll-29-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:06.235Z"
+    },
+    {
+      "index": 9,
+      "label": "scroll 33 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\009-scroll-33-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:06.976Z"
+    },
+    {
+      "index": 10,
+      "label": "scroll 38 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\010-scroll-38-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:07.670Z"
+    },
+    {
+      "index": 11,
+      "label": "scroll 43 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\011-scroll-43-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:08.303Z"
+    },
+    {
+      "index": 12,
+      "label": "scroll 48 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\012-scroll-48-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:08.956Z"
+    },
+    {
+      "index": 13,
+      "label": "scroll 52 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\013-scroll-52-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:09.598Z"
+    },
+    {
+      "index": 14,
+      "label": "scroll 57 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\014-scroll-57-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:10.332Z"
+    },
+    {
+      "index": 15,
+      "label": "scroll 62 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\015-scroll-62-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:11.083Z"
+    },
+    {
+      "index": 16,
+      "label": "scroll 67 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\016-scroll-67-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:11.754Z"
+    },
+    {
+      "index": 17,
+      "label": "scroll 71 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\017-scroll-71-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:12.387Z"
+    },
+    {
+      "index": 18,
+      "label": "scroll 76 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\018-scroll-76-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:13.079Z"
+    },
+    {
+      "index": 19,
+      "label": "scroll 81 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\019-scroll-81-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:13.795Z"
+    },
+    {
+      "index": 20,
+      "label": "scroll 86 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\020-scroll-86-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:14.584Z"
+    },
+    {
+      "index": 21,
+      "label": "scroll 90 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\021-scroll-90-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:15.325Z"
+    },
+    {
+      "index": 22,
+      "label": "scroll 95 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\022-scroll-95-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:15.933Z"
+    },
+    {
+      "index": 23,
+      "label": "scroll 100 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\023-scroll-100-percent.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:16.541Z"
+    },
+    {
+      "index": 24,
+      "label": "click 0 /",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\024-click-0.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:18.887Z"
+    },
+    {
+      "index": 25,
+      "label": "click 1 News",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\025-click-1-news.png",
+      "url": "https://alche.studio/news/",
+      "timestamp": "2026-06-24T16:36:20.997Z"
+    },
+    {
+      "index": 26,
+      "label": "click 2 Works",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\026-click-2-works.png",
+      "url": "https://alche.studio/works/",
+      "timestamp": "2026-06-24T16:36:23.710Z"
+    },
+    {
+      "index": 27,
+      "label": "click 3 About",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\027-click-3-about.png",
+      "url": "https://alche.studio/about/",
+      "timestamp": "2026-06-24T16:36:26.425Z"
+    },
+    {
+      "index": 28,
+      "label": "click 4 stellla",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\028-click-4-stellla.png",
+      "url": "https://alche.studio/stellla/",
+      "timestamp": "2026-06-24T16:36:29.141Z"
+    },
+    {
+      "index": 29,
+      "label": "click 5 Contact / Recruit Contact / Recruit",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\029-click-5-contact-recruit-contact-recruit.png",
+      "url": "https://alche.studio/contact",
+      "timestamp": "2026-06-24T16:36:31.879Z"
+    },
+    {
+      "index": 30,
+      "label": "click 6 サウンドをONにする",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\030-click-6-on.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:34.443Z"
+    },
+    {
+      "index": 31,
+      "label": "click 7 Top",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\031-click-7-top.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:36.408Z"
+    },
+    {
+      "index": 32,
+      "label": "click 8 News",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\032-click-8-news.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:38.354Z"
+    },
+    {
+      "index": 33,
+      "label": "click 9 Works",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\033-click-9-works.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:40.329Z"
+    },
+    {
+      "index": 34,
+      "label": "click 10 About",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\034-click-10-about.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:42.352Z"
+    },
+    {
+      "index": 35,
+      "label": "click 11 stellla",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\035-click-11-stellla.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:44.297Z"
+    },
+    {
+      "index": 36,
+      "label": "click 12 Contact / Recruit",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\036-click-12-contact-recruit.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:46.258Z"
+    },
+    {
+      "index": 37,
+      "label": "click 13 TECHBLOG",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\037-click-13-techblog.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:48.281Z"
+    },
+    {
+      "index": 38,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\038-mobile-initial-viewport.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:52.891Z"
+    },
+    {
+      "index": 39,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\039-mobile-mid-scroll.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:53.643Z"
+    },
+    {
+      "index": 40,
+      "label": "mobile click 0 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\alche-studio\\screenshots\\040-mobile-click-0.png",
+      "url": "https://alche.studio/",
+      "timestamp": "2026-06-24T16:36:54.512Z"
+    }
+  ]
+}

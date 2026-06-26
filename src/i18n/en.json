@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "about": "Mission",
+    "skills": "Systems",
+    "experience": "Flight Path",
+    "videoBay": "Video Bay",
+    "videos": "Evidence",
+    "contact": "Contact"
+  },
+  "cta": {
+    "viewExperience": "View Flight Path",
+    "contact": "Contact",
+    "downloadResume": "Download Resume PDF",
+    "resumePending": "Resource pending",
+    "wechat": "WeChat"
+  },
+  "labels": {
+    "language": "中文",
+    "resourcePending": "Resource pending",
+    "wechatHint": "Static fallback is active in WeChat browser",
+    "redacted": "Sensitive license ID is hidden in the public preview"
+  }
+}

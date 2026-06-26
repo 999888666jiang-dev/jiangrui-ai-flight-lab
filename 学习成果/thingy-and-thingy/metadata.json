@@ -1,0 +1,585 @@
+{
+  "site": {
+    "slug": "thingy-and-thingy",
+    "url": "https://www.thingyandthingy.com/"
+  },
+  "title": "Thingy & Thingy® - The anti-advertising agency, advertising agency",
+  "finalUrl": "https://www.thingyandthingy.com/",
+  "capturedAt": "2026-06-24T16:44:31.321Z",
+  "screenshotCount": 38,
+  "dismissedCookie": null,
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "div",
+      "text": "Next slide",
+      "href": "",
+      "role": "button",
+      "top": 0,
+      "left": 0,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": 1,
+      "tag": "a",
+      "text": "",
+      "href": "#we-are-anti",
+      "role": "",
+      "top": 1053,
+      "left": 11785,
+      "width": 331,
+      "height": 181
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/converse-campaign",
+      "role": "",
+      "top": 16456,
+      "left": 0,
+      "width": 480,
+      "height": 480
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/bud-light-campaign",
+      "role": "",
+      "top": 16936,
+      "left": 0,
+      "width": 480,
+      "height": 720
+    },
+    {
+      "id": 4,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/f1-global-rebrand",
+      "role": "",
+      "top": 17656,
+      "left": 0,
+      "width": 480,
+      "height": 480
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/nike-campaign",
+      "role": "",
+      "top": 16456,
+      "left": 480,
+      "width": 480,
+      "height": 720
+    },
+    {
+      "id": 6,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/sainsburys-rebrand",
+      "role": "",
+      "top": 17176,
+      "left": 480,
+      "width": 480,
+      "height": 720
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/vue-brand-world",
+      "role": "",
+      "top": 17896,
+      "left": 480,
+      "width": 480,
+      "height": 240
+    },
+    {
+      "id": 8,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/vue-family-campaign",
+      "role": "",
+      "top": 16456,
+      "left": 960,
+      "width": 480,
+      "height": 240
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/spoon-cereal-campaign",
+      "role": "",
+      "top": 16696,
+      "left": 960,
+      "width": 480,
+      "height": 720
+    },
+    {
+      "id": 10,
+      "tag": "a",
+      "text": "",
+      "href": "/projects/mcdonalds-campaign",
+      "role": "",
+      "top": 17416,
+      "left": 960,
+      "width": 480,
+      "height": 720
+    },
+    {
+      "id": 11,
+      "tag": "div",
+      "text": "Star sign",
+      "href": "",
+      "role": "button",
+      "top": 27694,
+      "left": 657,
+      "width": 312,
+      "height": 25
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "",
+      "href": "#top",
+      "role": "",
+      "top": 29879,
+      "left": 33,
+      "width": 199,
+      "height": 170
+    }
+  ],
+  "consoleWarningsAndErrors": [
+    {
+      "type": "warning",
+      "text": "GSAP target .loader_progress not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "Element not found: .section-what"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "matter-js: 🔅 deprecated 🔅 Engine.run ➤ use Matter.Runner.run(engine) instead"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target .close-projects not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target .project-logo, .project-desc, .cs-img-wrap not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target .loader_progress not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target [object Object] not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "Element not found: .section-what"
+    },
+    {
+      "type": "warning",
+      "text": "GSAP target  not found. https://gsap.com"
+    },
+    {
+      "type": "warning",
+      "text": "matter-js: 🔅 deprecated 🔅 Engine.run ➤ use Matter.Runner.run(engine) instead"
+    }
+  ],
+  "pageErrors": [],
+  "failedResponses": [],
+  "captures": [
+    {
+      "index": 1,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\001-desktop-initial-viewport.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:42:58.737Z"
+    },
+    {
+      "index": 2,
+      "label": "scroll 0 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\002-scroll-0-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:42:59.585Z"
+    },
+    {
+      "index": 3,
+      "label": "scroll 5 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\003-scroll-5-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:00.181Z"
+    },
+    {
+      "index": 4,
+      "label": "scroll 10 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\004-scroll-10-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:00.780Z"
+    },
+    {
+      "index": 5,
+      "label": "scroll 14 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\005-scroll-14-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:01.373Z"
+    },
+    {
+      "index": 6,
+      "label": "scroll 19 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\006-scroll-19-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:01.967Z"
+    },
+    {
+      "index": 7,
+      "label": "scroll 24 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\007-scroll-24-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:02.568Z"
+    },
+    {
+      "index": 8,
+      "label": "scroll 29 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\008-scroll-29-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:03.173Z"
+    },
+    {
+      "index": 9,
+      "label": "scroll 33 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\009-scroll-33-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:03.762Z"
+    },
+    {
+      "index": 10,
+      "label": "scroll 38 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\010-scroll-38-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:04.352Z"
+    },
+    {
+      "index": 11,
+      "label": "scroll 43 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\011-scroll-43-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:04.942Z"
+    },
+    {
+      "index": 12,
+      "label": "scroll 48 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\012-scroll-48-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:05.578Z"
+    },
+    {
+      "index": 13,
+      "label": "scroll 52 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\013-scroll-52-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:06.185Z"
+    },
+    {
+      "index": 14,
+      "label": "scroll 57 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\014-scroll-57-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:06.968Z"
+    },
+    {
+      "index": 15,
+      "label": "scroll 62 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\015-scroll-62-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:07.598Z"
+    },
+    {
+      "index": 16,
+      "label": "scroll 67 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\016-scroll-67-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:08.198Z"
+    },
+    {
+      "index": 17,
+      "label": "scroll 71 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\017-scroll-71-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:08.826Z"
+    },
+    {
+      "index": 18,
+      "label": "scroll 76 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\018-scroll-76-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:09.458Z"
+    },
+    {
+      "index": 19,
+      "label": "scroll 81 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\019-scroll-81-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:10.095Z"
+    },
+    {
+      "index": 20,
+      "label": "scroll 86 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\020-scroll-86-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:10.736Z"
+    },
+    {
+      "index": 21,
+      "label": "scroll 90 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\021-scroll-90-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:11.440Z"
+    },
+    {
+      "index": 22,
+      "label": "scroll 95 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\022-scroll-95-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:12.118Z"
+    },
+    {
+      "index": 23,
+      "label": "scroll 100 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\023-scroll-100-percent.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:12.734Z"
+    },
+    {
+      "index": 24,
+      "label": "click 0 Next slide",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\024-click-0-next-slide.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:15.099Z"
+    },
+    {
+      "index": 25,
+      "label": "click failed 1",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\025-click-failed-1.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:15.815Z"
+    },
+    {
+      "index": 26,
+      "label": "click 2 /projects/converse-campaign",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\026-click-2-projects-converse-campaign.png",
+      "url": "https://www.thingyandthingy.com/projects/converse-campaign",
+      "timestamp": "2026-06-24T16:43:17.329Z"
+    },
+    {
+      "index": 27,
+      "label": "click failed 3",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\027-click-failed-3.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:27.631Z"
+    },
+    {
+      "index": 28,
+      "label": "click failed 4",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\028-click-failed-4.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:34.093Z"
+    },
+    {
+      "index": 29,
+      "label": "click failed 5",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\029-click-failed-5.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:40.578Z"
+    },
+    {
+      "index": 30,
+      "label": "click failed 6",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\030-click-failed-6.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:47.069Z"
+    },
+    {
+      "index": 31,
+      "label": "click failed 7",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\031-click-failed-7.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:43:53.587Z"
+    },
+    {
+      "index": 32,
+      "label": "click failed 8",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\032-click-failed-8.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:00.110Z"
+    },
+    {
+      "index": 33,
+      "label": "click failed 9",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\033-click-failed-9.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:06.684Z"
+    },
+    {
+      "index": 34,
+      "label": "click failed 10",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\034-click-failed-10.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:13.244Z"
+    },
+    {
+      "index": 35,
+      "label": "click failed 11",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\035-click-failed-11.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:19.786Z"
+    },
+    {
+      "index": 36,
+      "label": "click failed 12",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\036-click-failed-12.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:26.286Z"
+    },
+    {
+      "index": 37,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\037-mobile-initial-viewport.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:30.516Z"
+    },
+    {
+      "index": 38,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\thingy-and-thingy\\screenshots\\038-mobile-mid-scroll.png",
+      "url": "https://www.thingyandthingy.com/",
+      "timestamp": "2026-06-24T16:44:31.281Z"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "createdAt": "2026-06-24T16:44:31.611Z",
+  "siteResults": [
+    {
+      "slug": "alche-studio",
+      "url": "https://alche.studio/",
+      "title": "Alche, Inc",
+      "screenshotCount": 40,
+      "gotoError": null,
+      "failedResponses": 0,
+      "pageErrors": 1
+    },
+    {
+      "slug": "bychudy",
+      "url": "https://www.bychudy.com/",
+      "title": "bychudy",
+      "screenshotCount": 41,
+      "gotoError": null,
+      "failedResponses": 0,
+      "pageErrors": 0
+    },
+    {
+      "slug": "twice-jype",
+      "url": "https://twice.jype.com/Default",
+      "title": "TWICE",
+      "screenshotCount": 42,
+      "gotoError": null,
+      "failedResponses": 0,
+      "pageErrors": 0
+    },
+    {
+      "slug": "joseph-fashion",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "title": "JOSEPH Official | 女性のラグジュアリーファッション | JOSEPH JP",
+      "screenshotCount": 39,
+      "gotoError": null,
+      "failedResponses": 3,
+      "pageErrors": 2
+    },
+    {
+      "slug": "cappen",
+      "url": "https://www.cappen.com/en_/",
+      "title": "Cappen",
+      "screenshotCount": 39,
+      "gotoError": null,
+      "failedResponses": 0,
+      "pageErrors": 0
+    },
+    {
+      "slug": "lisovskiy-work",
+      "url": "https://lisovskiy.work/",
+      "title": "OKO by the studio of Sergey Lisovskiy",
+      "screenshotCount": 44,
+      "gotoError": null,
+      "failedResponses": 42,
+      "pageErrors": 0
+    },
+    {
+      "slug": "thingy-and-thingy",
+      "url": "https://www.thingyandthingy.com/",
+      "title": "Thingy & Thingy® - The anti-advertising agency, advertising agency",
+      "screenshotCount": 38,
+      "gotoError": null,
+      "failedResponses": 0,
+      "pageErrors": 0
+    }
+  ]
+}

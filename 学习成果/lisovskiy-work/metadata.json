@@ -1,0 +1,851 @@
+{
+  "site": {
+    "slug": "lisovskiy-work",
+    "url": "https://lisovskiy.work/"
+  },
+  "title": "OKO by the studio of Sergey Lisovskiy",
+  "finalUrl": "https://lisovskiy.work/works/oko",
+  "capturedAt": "2026-06-24T16:42:52.497Z",
+  "screenshotCount": 44,
+  "dismissedCookie": "OKO\n2017",
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "div",
+      "text": "Menu",
+      "href": "",
+      "role": "button",
+      "top": 9,
+      "left": 1333,
+      "width": 98,
+      "height": 43
+    },
+    {
+      "id": 1,
+      "tag": "span",
+      "text": "+ Info",
+      "href": "",
+      "role": "button",
+      "top": 948,
+      "left": 976,
+      "width": 455,
+      "height": 43
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "Behance ↗",
+      "href": "https://www.behance.net/gallery/62280243/OKO-Skyscraper-Moscow-City",
+      "role": "",
+      "top": 16283,
+      "left": 492,
+      "width": 455,
+      "height": 43
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "Tagline ↗",
+      "href": "https://tagline.ru/creativepeople/cases/website-for-the--oko--skyscrapers/",
+      "role": "",
+      "top": 16326,
+      "left": 492,
+      "width": 455,
+      "height": 43
+    },
+    {
+      "id": 4,
+      "tag": "a",
+      "text": "CSSDA ↗",
+      "href": "https://cssdesignawards.com/sites/oko/31924/",
+      "role": "",
+      "top": 16369,
+      "left": 492,
+      "width": 455,
+      "height": 43
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "Music Videos I Like 2026",
+      "href": "/works/music-videos",
+      "role": "",
+      "top": 16667,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 6,
+      "tag": "a",
+      "text": "Wendy Andrade 2025",
+      "href": "/works/wendy-andrade",
+      "role": "",
+      "top": 16710,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "Manychat careers 2025",
+      "href": "/works/manychat-careers",
+      "role": "",
+      "top": 16753,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 8,
+      "tag": "a",
+      "text": "Polkaswap 2024",
+      "href": "/works/polkaswap",
+      "role": "",
+      "top": 16796,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "Fearless wallet 2024",
+      "href": "/works/fearless",
+      "role": "",
+      "top": 16839,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 10,
+      "tag": "a",
+      "text": "Polecat Agency 2024",
+      "href": "/works/polecat",
+      "role": "",
+      "top": 16883,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 11,
+      "tag": "a",
+      "text": "Elena Borisova 2024",
+      "href": "/works/elenaborisova",
+      "role": "",
+      "top": 16926,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "SORA Card 2024",
+      "href": "/works/soracard",
+      "role": "",
+      "top": 16969,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    },
+    {
+      "id": 13,
+      "tag": "a",
+      "text": "Style Reptile Figma plugin 2023",
+      "href": "/works/style-reptile",
+      "role": "",
+      "top": 17012,
+      "left": 492,
+      "width": 939,
+      "height": 43
+    }
+  ],
+  "consoleWarningsAndErrors": [
+    {
+      "type": "warning",
+      "text": "Allow attribute will take precedence over 'allowfullscreen'."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()"
+    },
+    {
+      "type": "warning",
+      "text": "[Cloudflare Turnstile] Turnstile has already been rendered in this container. The render attempt was rejected."
+    },
+    {
+      "type": "warning",
+      "text": "[Cloudflare Turnstile] Turnstile has already been rendered in this container. The render attempt was rejected."
+    },
+    {
+      "type": "warning",
+      "text": "[Cloudflare Turnstile] Turnstile has already been rendered in this container. The render attempt was rejected."
+    },
+    {
+      "type": "warning",
+      "text": "[Cloudflare Turnstile] Turnstile has already been rendered in this container. The render attempt was rejected."
+    }
+  ],
+  "pageErrors": [],
+  "failedResponses": [
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413162?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413119?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413051?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413077?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413137?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413106?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900413027?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900412857?autoplay=0&loop=1&muted=0&title=0&byline=0&portrait=0&background=0&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://player.vimeo.com/video/900412833?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&background=1&playsinline=1&dnt=1"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b247897/1782319317396/5f9fe808f12df035dc6a09892ddaded1562fe885493389220510b27f95739304/8IWaX7MLgv_4Wxm"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b257897/1782319317531/0d35fe3b7168ea3efe5fb70d85c7d4bbd35f13c1eb372a0511ec3198f231e916/xQSmkiZ6mTeNw4X"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b277897/1782319317569/f40dbea610be49310d2bb451d7d69fc5ecd63f2514193209074479a6d76dd0bf/Vwi8IC2KKujrmt4"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b237897/1782319317778/3e419f85bd7a96b6784849019b7276753a25aeb760efd45298a112ab57dd5890/n0NbaA2bANT8g5J"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b287897/1782319317821/bfc59aa6739aaac4c046994d446c4e9ac52eb0de6a7f77bb51b746eaf7f29b8d/ZEQXE4hWrxZLJ7b"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b2e7897/1782319317822/168ec012617439f1985d00fc234326eb70d6ecc4f917efbac18d8fd066c9ef22/z6HAhxuSx6wIDDW"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b307897/1782319317883/7df42035d1fff80c2be5cc34488e9fc3b716a5bd1c95e727402a5391f860b4d5/W4MmfVFq1zJ5P9Q"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b2c7897/1782319318833/5e28310c5920e9ea411c80bb262e217744945a84792923835d82228c594edeb0/PjEjRuoiYm894cX"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2ed24b2a7897/1782319319028/cdf7791f7845e6d7b7fae087acc6f43d8b99595b642dfbf6a5c3ebb8cd1c67bc/QuuhsGa7_ZIdchQ"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f347e397897/1782319332965/5411c40de8f0534206559da5e0667bb3d7c17098b0ff309f57ea41811a704f39/yi3gceW2h6p5hdo"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3c4fb47897/1782319334319/4f27e9703b2d71641e6895e9df03f4339f4de406bc5aeb90a6d7b6d376857c1e/D_SuoKu-hyxK3lH"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3ce90f7897/1782319334714/e520d194e3d880900650774528738c02cddf98f8b5374945359dc1f7c1635734/L3ROxgWoTsODdW-"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3daadb7897/1782319334865/d270d301d8ff0bfa957f4488e0f9bc0255b04903b98b68258a8cef618d5ff188/BxU0FeXq5HpdTDI"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3ead317897/1782319335028/2be5a3dfca63486c91e35172ea33296efe9935f5a15f6fc4ec22b344afb259d9/yyVvdXlwaq3n9Tu"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3f1e4f7897/1782319335441/42bfe46ca2e06ed057e98fffb9a99dea0d2472355d956a8795f13b8625eb5234/diNQWHCePy40hC9"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3f9f667897/1782319336060/db00534ec721d4a2e4dc52ee769381d307313ab395c5915bcfc7298621fc0c70/G0QoX_tAX2nH7Kj"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3f9f607897/1782319336058/52850c6449d10f378def4eb20513b074518b5adbdc93d7f737d590e8e587dace/rzTPq11fevyFFij"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f3fbfcf7897/1782319336134/184e34b899d0f987d30b9ea6c2448c37b39e48671695082a8a3bdc2a0fef67ee/OltcSqW1DzV-v-U"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2f7fb9417897/1782319345346/c8b40884408faeb7530976a917f8f6f7650cd06e0b2c35ebdaf3037d7bd6e184/LM8Ra1Jm-_uGH8E"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fa89e757897/1782319351667/e017d2422ce99114e0ed258ca31d9f37ba887625c8cb5ee5fe90e667cc485f91/840kND2W5sdiU0p"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fa8eef37897/1782319351862/bac329655b420ab9a0f67a57ad89a0ab39951ffbb4788f55e10423e79f92c1ff/tKX-0vqFVOQkg6E"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2faafa5a7897/1782319351969/4f583807be14561ffca5cca3e1b419eb186158dd6060c478f079612351b2ce37/Z6TCvd1ssF1hORQ"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2facfd3f7897/1782319353002/7f7dc0c65d5897894c9e75d8cbd44fdc945c7739435b8af5ea7bcc30d07df05e/4pB_McRfVi2-rPw"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fb1dc3b7897/1782319353632/1bcbb52aa27fd2b062b90b46b797d5a89bd92468d11104a25a35d0a3282423e6/sACWA3BlhsWJ1D3"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fb23cc37897/1782319353984/c5f8ac8a990f8a47dbe37d83b20eb3953dd6061a0467bc93c64fb4790f9cf4b0/NY1SJXM87dVZ2C-"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fb39ede7897/1782319355073/52b9a90940ac7dd929bef30c99cab0acb108c138606c3c896cc89fa10ddaff16/qhPnKak3ZoOZD9Y"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fb40f7d7897/1782319355182/593b5c6d925fd6bb9761fdfbd683569eaad3f5067dabce8cbfb2aaef652dcd85/tGLN2Bf5eCsQBgI"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d2fda5fce7897/1782319360141/cdf606f2a8b3f036f326fcd6a73026f1fa8c0588cbc60ded56fc59ffe77f35ab/19V5LId6SJmnlT1"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d300d7a777897/1782319367831/3b1c72cce6da22b68f19156f050f6f95425d48614f113be0b62271442373a199/1qTLgYWqDqZVEzG"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d3014edbe7897/1782319369055/e8ba84a2d579347143daa2c2b71dbe8ec426a5ce77e9ef23fc03ae19b2b7996a/uNpHXHUVgybcO0C"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d30184ad77897/1782319369586/78488dead359e9eacb3bf28f84f162bfeffd5d191b7d3d68b0e5d68cbc34d193/nQIyVMlIG19y825"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d301d9a637897/1782319370634/b910f8d52dda4bc0a8cb97bbe53278b858068f26b6490e962bbee1a9b7eeaa48/LJ7_NrXP3EE5L2k"
+    },
+    {
+      "status": 401,
+      "url": "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/a10d302209077897/1782319371121/bf7e5747e30737277549dcd5b7d3d70a3048fc3b39e63dfbba07aa24460b22ec/AQM3cbks5KLhpVL"
+    }
+  ],
+  "captures": [
+    {
+      "index": 1,
+      "label": "cookie dismissed OKO\n2017",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\001-cookie-dismissed-oko-2017.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:55.331Z"
+    },
+    {
+      "index": 2,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\002-desktop-initial-viewport.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:55.358Z"
+    },
+    {
+      "index": 3,
+      "label": "scroll 0 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\003-scroll-0-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:55.946Z"
+    },
+    {
+      "index": 4,
+      "label": "scroll 5 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\004-scroll-5-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:56.534Z"
+    },
+    {
+      "index": 5,
+      "label": "scroll 10 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\005-scroll-10-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:57.521Z"
+    },
+    {
+      "index": 6,
+      "label": "scroll 14 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\006-scroll-14-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:58.849Z"
+    },
+    {
+      "index": 7,
+      "label": "scroll 19 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\007-scroll-19-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:41:59.825Z"
+    },
+    {
+      "index": 8,
+      "label": "scroll 24 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\008-scroll-24-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:00.991Z"
+    },
+    {
+      "index": 9,
+      "label": "scroll 29 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\009-scroll-29-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:01.842Z"
+    },
+    {
+      "index": 10,
+      "label": "scroll 33 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\010-scroll-33-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:03.312Z"
+    },
+    {
+      "index": 11,
+      "label": "scroll 38 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\011-scroll-38-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:03.932Z"
+    },
+    {
+      "index": 12,
+      "label": "scroll 43 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\012-scroll-43-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:04.592Z"
+    },
+    {
+      "index": 13,
+      "label": "scroll 48 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\013-scroll-48-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:05.220Z"
+    },
+    {
+      "index": 14,
+      "label": "scroll 52 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\014-scroll-52-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:05.858Z"
+    },
+    {
+      "index": 15,
+      "label": "scroll 57 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\015-scroll-57-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:06.488Z"
+    },
+    {
+      "index": 16,
+      "label": "scroll 62 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\016-scroll-62-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:07.104Z"
+    },
+    {
+      "index": 17,
+      "label": "scroll 67 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\017-scroll-67-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:07.721Z"
+    },
+    {
+      "index": 18,
+      "label": "scroll 71 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\018-scroll-71-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:08.357Z"
+    },
+    {
+      "index": 19,
+      "label": "scroll 76 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\019-scroll-76-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:09.009Z"
+    },
+    {
+      "index": 20,
+      "label": "scroll 81 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\020-scroll-81-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:09.624Z"
+    },
+    {
+      "index": 21,
+      "label": "scroll 86 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\021-scroll-86-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:10.231Z"
+    },
+    {
+      "index": 22,
+      "label": "scroll 90 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\022-scroll-90-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:10.903Z"
+    },
+    {
+      "index": 23,
+      "label": "scroll 95 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\023-scroll-95-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:11.529Z"
+    },
+    {
+      "index": 24,
+      "label": "scroll 100 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\024-scroll-100-percent.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:12.113Z"
+    },
+    {
+      "index": 25,
+      "label": "click 0 Menu",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\025-click-0-menu.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:14.706Z"
+    },
+    {
+      "index": 26,
+      "label": "click 1 + Info",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\026-click-1-info.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:17.478Z"
+    },
+    {
+      "index": 27,
+      "label": "click 2 Behance ↗",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\027-click-2-behance.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:19.686Z"
+    },
+    {
+      "index": 28,
+      "label": "click 3 Tagline ↗",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\028-click-3-tagline.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:22.196Z"
+    },
+    {
+      "index": 29,
+      "label": "click 4 CSSDA ↗",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\029-click-4-cssda.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:24.042Z"
+    },
+    {
+      "index": 30,
+      "label": "click 5 Music Videos I Like 2026",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\030-click-5-music-videos-i-like-2026.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:26.174Z"
+    },
+    {
+      "index": 31,
+      "label": "click 6 Wendy Andrade 2025",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\031-click-6-wendy-andrade-2025.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:28.578Z"
+    },
+    {
+      "index": 32,
+      "label": "click 7 Manychat careers 2025",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\032-click-7-manychat-careers-2025.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:30.479Z"
+    },
+    {
+      "index": 33,
+      "label": "click 8 Polkaswap 2024",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\033-click-8-polkaswap-2024.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:32.617Z"
+    },
+    {
+      "index": 34,
+      "label": "click 9 Fearless wallet 2024",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\034-click-9-fearless-wallet-2024.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:34.904Z"
+    },
+    {
+      "index": 35,
+      "label": "click 10 Polecat Agency 2024",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\035-click-10-polecat-agency-2024.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:37.838Z"
+    },
+    {
+      "index": 36,
+      "label": "click 11 Elena Borisova 2024",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\036-click-11-elena-borisova-2024.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:40.459Z"
+    },
+    {
+      "index": 37,
+      "label": "click 12 SORA Card 2024",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\037-click-12-sora-card-2024.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:42.341Z"
+    },
+    {
+      "index": 38,
+      "label": "click 13 Style Reptile Figma plugin 2023",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\038-click-13-style-reptile-figma-plugin-2023.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:44.191Z"
+    },
+    {
+      "index": 39,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\039-mobile-initial-viewport.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:47.332Z"
+    },
+    {
+      "index": 40,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\040-mobile-mid-scroll.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:48.463Z"
+    },
+    {
+      "index": 41,
+      "label": "mobile click 0 Menu",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\041-mobile-click-0-menu.png",
+      "url": "https://lisovskiy.work/works/oko",
+      "timestamp": "2026-06-24T16:42:49.931Z"
+    },
+    {
+      "index": 42,
+      "label": "mobile click 1 The studio of Sergey\nLisovskiy",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\042-mobile-click-1-the-studio-of-sergey-lisovskiy.png",
+      "url": "https://lisovskiy.work/",
+      "timestamp": "2026-06-24T16:42:50.778Z"
+    },
+    {
+      "index": 43,
+      "label": "mobile click 2 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\043-mobile-click-2.png",
+      "url": "https://lisovskiy.work/",
+      "timestamp": "2026-06-24T16:42:51.624Z"
+    },
+    {
+      "index": 44,
+      "label": "mobile click 3 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\lisovskiy-work\\screenshots\\044-mobile-click-3.png",
+      "url": "https://lisovskiy.work/",
+      "timestamp": "2026-06-24T16:42:52.481Z"
+    }
+  ]
+}

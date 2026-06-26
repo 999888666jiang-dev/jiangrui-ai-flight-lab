@@ -1,0 +1,446 @@
+{
+  "site": {
+    "slug": "cappen",
+    "url": "https://www.cappen.com/en_/"
+  },
+  "title": "Cappen",
+  "finalUrl": "https://www.cappen.com/en_/",
+  "capturedAt": "2026-06-24T16:41:50.080Z",
+  "screenshotCount": 39,
+  "dismissedCookie": null,
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "a",
+      "text": "START A PROJECT: START A PROJECT: START A PROJECT: START A PROJECT:",
+      "href": "https://www.cappen.com/form/",
+      "role": "",
+      "top": 32,
+      "left": 1328,
+      "width": 80,
+      "height": 936
+    },
+    {
+      "id": 1,
+      "tag": "a",
+      "text": "NEONDOOR [ 01 ]",
+      "href": "./work/neondoor",
+      "role": "",
+      "top": 2790,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "AMANDA BRAGA [ 02 ]",
+      "href": "./work/amanda-braga",
+      "role": "",
+      "top": 2915,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "ARCULUS [ 03 ]",
+      "href": "./work/arculus",
+      "role": "",
+      "top": 3040,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 4,
+      "tag": "a",
+      "text": "MIRRA HEALTH [ 04 ]",
+      "href": "./work/mirra",
+      "role": "",
+      "top": 3164,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "SOURCERERS [ 05 ]",
+      "href": "./work/sourcerers",
+      "role": "",
+      "top": 3289,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 6,
+      "tag": "a",
+      "text": "CORONA PARTNERS [ 06 ]",
+      "href": "./work/corona-partners",
+      "role": "",
+      "top": 3414,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "BLOCKCHAIN C. [ 07 ]",
+      "href": "./work/blockchain-companies",
+      "role": "",
+      "top": 3539,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 8,
+      "tag": "a",
+      "text": "COCAY BRANDING [ 08 ]",
+      "href": "./work/cocay-branding",
+      "role": "",
+      "top": 3663,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "IRON ROOTS [ 09 ]",
+      "href": "./work/iron-roots",
+      "role": "",
+      "top": 3788,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 10,
+      "tag": "a",
+      "text": "OUR TODAY [ 10 ]",
+      "href": "./work/our-today",
+      "role": "",
+      "top": 3913,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 11,
+      "tag": "a",
+      "text": "OMNIUM [ 11 ]",
+      "href": "./work/omnium",
+      "role": "",
+      "top": 4038,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "MERCURY JACKET [ 12 ]",
+      "href": "./work/ministry-of-supply",
+      "role": "",
+      "top": 4163,
+      "left": 0,
+      "width": 1440,
+      "height": 125
+    },
+    {
+      "id": 13,
+      "tag": "a",
+      "text": "APANEXT SUMMIT [ 13 ]",
+      "href": "./work/apanext",
+      "role": "",
+      "top": 4287,
+      "left": 0,
+      "width": 1440,
+      "height": 126
+    }
+  ],
+  "consoleWarningsAndErrors": [],
+  "pageErrors": [],
+  "failedResponses": [],
+  "captures": [
+    {
+      "index": 1,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\001-desktop-initial-viewport.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:05.003Z"
+    },
+    {
+      "index": 2,
+      "label": "static viewport 1",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\002-static-viewport-1.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:05.285Z"
+    },
+    {
+      "index": 3,
+      "label": "static viewport 2",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\003-static-viewport-2.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:05.560Z"
+    },
+    {
+      "index": 4,
+      "label": "static viewport 3",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\004-static-viewport-3.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:05.886Z"
+    },
+    {
+      "index": 5,
+      "label": "static viewport 4",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\005-static-viewport-4.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:06.160Z"
+    },
+    {
+      "index": 6,
+      "label": "static viewport 5",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\006-static-viewport-5.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:06.436Z"
+    },
+    {
+      "index": 7,
+      "label": "static viewport 6",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\007-static-viewport-6.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:06.715Z"
+    },
+    {
+      "index": 8,
+      "label": "static viewport 7",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\008-static-viewport-7.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:07.002Z"
+    },
+    {
+      "index": 9,
+      "label": "static viewport 8",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\009-static-viewport-8.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:07.277Z"
+    },
+    {
+      "index": 10,
+      "label": "static viewport 9",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\010-static-viewport-9.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:07.552Z"
+    },
+    {
+      "index": 11,
+      "label": "static viewport 10",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\011-static-viewport-10.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:07.827Z"
+    },
+    {
+      "index": 12,
+      "label": "static viewport 11",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\012-static-viewport-11.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:08.114Z"
+    },
+    {
+      "index": 13,
+      "label": "static viewport 12",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\013-static-viewport-12.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:08.391Z"
+    },
+    {
+      "index": 14,
+      "label": "static viewport 13",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\014-static-viewport-13.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:08.670Z"
+    },
+    {
+      "index": 15,
+      "label": "static viewport 14",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\015-static-viewport-14.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:08.952Z"
+    },
+    {
+      "index": 16,
+      "label": "static viewport 15",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\016-static-viewport-15.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:09.232Z"
+    },
+    {
+      "index": 17,
+      "label": "static viewport 16",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\017-static-viewport-16.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:09.518Z"
+    },
+    {
+      "index": 18,
+      "label": "static viewport 17",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\018-static-viewport-17.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:09.801Z"
+    },
+    {
+      "index": 19,
+      "label": "static viewport 18",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\019-static-viewport-18.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:10.096Z"
+    },
+    {
+      "index": 20,
+      "label": "static viewport 19",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\020-static-viewport-19.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:10.388Z"
+    },
+    {
+      "index": 21,
+      "label": "static viewport 20",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\021-static-viewport-20.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:10.673Z"
+    },
+    {
+      "index": 22,
+      "label": "static viewport 21",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\022-static-viewport-21.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:10.963Z"
+    },
+    {
+      "index": 23,
+      "label": "static viewport 22",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\023-static-viewport-22.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:11.243Z"
+    },
+    {
+      "index": 24,
+      "label": "click 0 START A PROJECT: START A PROJECT: START A PROJECT: START A PROJECT:",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\024-click-0-start-a-project-start-a-project-start-a-project-start-a-.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:13.378Z"
+    },
+    {
+      "index": 25,
+      "label": "click failed 1",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\025-click-failed-1.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:14.010Z"
+    },
+    {
+      "index": 26,
+      "label": "click failed 2",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\026-click-failed-2.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:14.319Z"
+    },
+    {
+      "index": 27,
+      "label": "click failed 3",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\027-click-failed-3.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:16.354Z"
+    },
+    {
+      "index": 28,
+      "label": "click failed 4",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\028-click-failed-4.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:18.240Z"
+    },
+    {
+      "index": 29,
+      "label": "click failed 5",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\029-click-failed-5.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:21.252Z"
+    },
+    {
+      "index": 30,
+      "label": "click failed 6",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\030-click-failed-6.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:24.277Z"
+    },
+    {
+      "index": 31,
+      "label": "click failed 7",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\031-click-failed-7.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:27.299Z"
+    },
+    {
+      "index": 32,
+      "label": "click failed 8",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\032-click-failed-8.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:30.325Z"
+    },
+    {
+      "index": 33,
+      "label": "click failed 9",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\033-click-failed-9.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:33.359Z"
+    },
+    {
+      "index": 34,
+      "label": "click failed 10",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\034-click-failed-10.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:36.383Z"
+    },
+    {
+      "index": 35,
+      "label": "click failed 11",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\035-click-failed-11.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:39.405Z"
+    },
+    {
+      "index": 36,
+      "label": "click failed 12",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\036-click-failed-12.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:42.428Z"
+    },
+    {
+      "index": 37,
+      "label": "click failed 13",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\037-click-failed-13.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:45.452Z"
+    },
+    {
+      "index": 38,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\038-mobile-initial-viewport.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:49.276Z"
+    },
+    {
+      "index": 39,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\cappen\\screenshots\\039-mobile-mid-scroll.png",
+      "url": "https://www.cappen.com/en_/",
+      "timestamp": "2026-06-24T16:41:50.010Z"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "jiangrui-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "3.15.0",
+    "three": "0.184.0",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.1",
+    "@types/node": "26.0.0",
+    "@types/three": "^0.184.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "playwright-core": "1.61.0",
+    "tailwindcss": "4.3.1",
+    "typescript": "6.0.3",
+    "vite": "8.1.0",
+    "vue-tsc": "^3.1.1"
+  }
+}

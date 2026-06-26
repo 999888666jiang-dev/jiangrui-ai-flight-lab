@@ -1,0 +1,133 @@
+<script setup lang="ts">
+import { onUnmounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import VaultPortalOverlay from '../components/effects/VaultPortalOverlay.vue';
+import { useEnvironment } from '../composables/useEnvironment';
+import { pickText, useLanguage } from '../composables/useLanguage';
+import { certificate, contactItems, evidenceItems, type EvidenceItem } from '../data/siteContent';
+import { publicAsset } from '../utils/publicAsset';
+
+const { language, t } = useLanguage();
+const { profile } = useEnvironment();
+const router = useRouter();
+const resumePdf = publicAsset('documents/jiangrui-uav-tester-resume.pdf');
+const wechatQr = publicAsset('images/wechat-qr.jpg');
+const portal = ref<
+  | {
+      item: EvidenceItem;
+      origin: {
+        left: number;
+        top: number;
+        width: number;
+        height: number;
+      };
+    }
+  | undefined
+>();
+let portalTimer = 0;
+
+function openShowcase(item: EvidenceItem, event: MouseEvent | KeyboardEvent) {
+  if (portal.value) return;
+
+  if (profile.value.reducedMotion) {
+    router.push(`/evidence-vault/${item.slug}`);
+    return;
+  }
+
+  const target = event.currentTarget as HTMLElement;
+  const rect = target.getBoundingClientRect();
+  portal.value = {
+    item,
+    origin: {
+      left: rect.left,
+      top: rect.top,
+      width: rect.width,
+      height: rect.height,
+    },
+  };
+
+  portalTimer = window.setTimeout(() => {
+    router.push(`/evidence-vault/${item.slug}`);
+  }, 820);
+}
+
+onUnmounted(() => {
+  if (portalTimer) {
+    window.clearTimeout(portalTimer);
+  }
+});
+</script>
+
+<template>
+  <section class="section section--evidence evidence-route-page">
+    <div class="section-heading vault-heading" data-reveal>
+      <p class="section-code">05 / EVIDENCE VAULT</p>
+      <h1>{{ language === 'zh' ? '证据库：真实能力档案' : 'Evidence Vault, No Fake Claims' }}</h1>
+      <p>
+        {{
+          language === 'zh'
+            ? '这里集中放置执照、二维码、简历 PDF 和后续真实素材位；能力只用证据点亮，不依赖过期临时链接。'
+            : 'This page stores the license, QR code, resume PDF, and future real assets. Every slot lights up only after real resources arrive.'
+        }}
+      </p>
+    </div>
+
+    <div class="vault-feature-grid">
+      <article class="cert-card vault-card vault-card--license" data-reveal>
+        <div class="cert-card__image">
+          <img :src="certificate.image" :alt="pickText(certificate.title, language)" loading="lazy" />
+        </div>
+        <div class="cert-card__body">
+          <small>LICENSE / REDACTED</small>
+          <h3>{{ pickText(certificate.title, language) }}</h3>
+          <p>{{ pickText(certificate.meta, language) }}</p>
+          <span>{{ pickText(certificate.note, language) }}</span>
+        </div>
+      </article>
+
+      <figure class="qr-card vault-card" data-reveal>
+        <img :src="wechatQr" alt="姜睿微信二维码" />
+        <figcaption>{{ t('cta.wechat') }}</figcaption>
+      </figure>
+
+      <article class="contact-panel vault-card" data-reveal>
+        <div v-for="item in contactItems" :key="item.label.zh">
+          <span>{{ pickText(item.label, language) }}</span>
+          <strong>{{ pickText(item.value, language) }}</strong>
+        </div>
+        <a class="button button--primary" :href="resumePdf" download>
+          {{ t('cta.downloadResume') }}
+        </a>
+      </article>
+    </div>
+
+    <div class="video-grid evidence-grid">
+      <article
+        v-for="(item, index) in evidenceItems"
+        :key="item.slug"
+        class="video-card vault-slot vault-slot--entry"
+        :class="`vault-slot--${item.theme}`"
+        :style="{ '--slot-index': index }"
+        data-reveal
+        role="link"
+        tabindex="0"
+        :aria-label="`${pickText(item.title, language)} - ${language === 'zh' ? '进入展示网页' : 'Open showcase page'}`"
+        @click="openShowcase(item, $event)"
+        @keydown.enter="openShowcase(item, $event)"
+        @keydown.space.prevent="openShowcase(item, $event)"
+      >
+        <div class="video-card__poster" aria-hidden="true">
+          <span />
+        </div>
+        <div class="video-card__body">
+          <small>{{ pickText(item.status, language) }}</small>
+          <h3>{{ pickText(item.title, language) }}</h3>
+          <p>{{ pickText(item.description, language) }}</p>
+          <strong class="vault-slot__cta">{{ language === 'zh' ? '进入展示舱' : 'Enter showcase bay' }}</strong>
+        </div>
+      </article>
+    </div>
+
+    <VaultPortalOverlay v-if="portal" :item="portal.item" :origin="portal.origin" />
+  </section>
+</template>

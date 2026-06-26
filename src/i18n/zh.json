@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "about": "任务",
+    "skills": "系统",
+    "experience": "航迹",
+    "videoBay": "视频舱",
+    "videos": "证据库",
+    "contact": "联系"
+  },
+  "cta": {
+    "viewExperience": "查看航迹",
+    "contact": "联系我",
+    "downloadResume": "下载简历 PDF",
+    "resumePending": "资源待补齐",
+    "wechat": "微信联系"
+  },
+  "labels": {
+    "language": "EN",
+    "resourcePending": "资源待补齐",
+    "wechatHint": "微信内置浏览器已启用静态降级版",
+    "redacted": "公开预览已隐藏敏感编号"
+  }
+}

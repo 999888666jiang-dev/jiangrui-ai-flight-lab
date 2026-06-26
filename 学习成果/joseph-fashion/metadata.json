@@ -1,0 +1,663 @@
+{
+  "site": {
+    "slug": "joseph-fashion",
+    "url": "https://joseph-fashion.com/ja-jp"
+  },
+  "title": "JOSEPH Official | 女性のラグジュアリーファッション | JOSEPH JP",
+  "finalUrl": "https://joseph-fashion.com/ja-jp",
+  "capturedAt": "2026-06-24T16:40:58.115Z",
+  "screenshotCount": 39,
+  "dismissedCookie": null,
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "a",
+      "text": "@media (min-width: 750px) { # { --focal-point: 50.0% 50.0%; } } @media (max-width: 749px) { # { --focal-point: ; } }",
+      "href": "/ja-jp",
+      "role": "",
+      "top": 51,
+      "left": 20,
+      "width": 125,
+      "height": 23
+    },
+    {
+      "id": 1,
+      "tag": "div",
+      "text": "アーカイブ",
+      "href": "",
+      "role": "button",
+      "top": 38,
+      "left": 160,
+      "width": 113,
+      "height": 49
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "アーカイブ",
+      "href": "/ja-jp/collections/%E3%82%BB%E3%83%BC%E3%83%AB",
+      "role": "",
+      "top": 38,
+      "left": 160,
+      "width": 113,
+      "height": 49
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "新作",
+      "href": "/ja-jp/collections/%E6%96%B0%E7%9D%80",
+      "role": "",
+      "top": 38,
+      "left": 273,
+      "width": 63,
+      "height": 49
+    },
+    {
+      "id": 4,
+      "tag": "div",
+      "text": "ウエア",
+      "href": "",
+      "role": "button",
+      "top": 38,
+      "left": 336,
+      "width": 80,
+      "height": 49
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "ウエア",
+      "href": "/ja-jp/collections/%E3%81%99%E3%81%B9%E3%81%A6%E8%A1%A8%E7%A4%BA",
+      "role": "",
+      "top": 38,
+      "left": 336,
+      "width": 80,
+      "height": 49
+    },
+    {
+      "id": 6,
+      "tag": "div",
+      "text": "バッグ＆アクセサリー",
+      "href": "",
+      "role": "button",
+      "top": 38,
+      "left": 415,
+      "width": 195,
+      "height": 49
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "バッグ＆アクセサリー",
+      "href": "/ja-jp/collections/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC",
+      "role": "",
+      "top": 38,
+      "left": 415,
+      "width": 195,
+      "height": 49
+    },
+    {
+      "id": 8,
+      "tag": "div",
+      "text": "ディスカバー",
+      "href": "",
+      "role": "button",
+      "top": 38,
+      "left": 610,
+      "width": 128,
+      "height": 49
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "ディスカバー",
+      "href": "/ja-jp/blogs/joseph-%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
+      "role": "",
+      "top": 38,
+      "left": 610,
+      "width": 128,
+      "height": 49
+    },
+    {
+      "id": 10,
+      "tag": "summary",
+      "text": "検索",
+      "href": "",
+      "role": "",
+      "top": 42,
+      "left": 1280,
+      "width": 54,
+      "height": 42
+    },
+    {
+      "id": 11,
+      "tag": "a",
+      "text": "@media (min-width: 750px) { #Picture-229c62fc6d082c6b7ac14d715c2f5b8b { --focal-point: 50.0% 50.0%; } } @media (max-widt",
+      "href": "/ja-jp/collections/%E3%82%BB%E3%83%BC%E3%83%AB",
+      "role": "",
+      "top": 95,
+      "left": 0,
+      "width": 1425,
+      "height": 750
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "@media (min-width: 750px) { #Picture-9cf5086afb7686424646dc909dcf23d0 { --focal-point: 50.5815% 0.0%; } } @media (max-wi",
+      "href": "/ja-jp/collections/%E6%96%B0%E7%9D%80",
+      "role": "",
+      "top": 845,
+      "left": 0,
+      "width": 713,
+      "height": 935
+    },
+    {
+      "id": 13,
+      "tag": "a",
+      "text": "@media (min-width: 750px) { #Picture-0020095233b80aab2fbfa718c4b28a80 { --focal-point: 54.9049% 0.0%; } } @media (max-wi",
+      "href": "/ja-jp/collections/%E3%83%8F%E3%82%A4%E3%82%B5%E3%83%9E%E3%83%BC",
+      "role": "",
+      "top": 845,
+      "left": 713,
+      "width": 713,
+      "height": 935
+    }
+  ],
+  "consoleWarningsAndErrors": [
+    {
+      "type": "warning",
+      "text": "In a sandboxed environment, addEventListener may not behave as expected."
+    },
+    {
+      "type": "error",
+      "text": "Framing 'https://shop.app/' violates the following Content Security Policy directive: \"frame-ancestors 'self' https://shop.app https://admin.shopify.com\". The request has been blocked.\n"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()"
+    },
+    {
+      "type": "warning",
+      "text": "Klaviyo tracking is disabled. To enable, set the cookie \"__kla_off\" to false. {is_robot: true, __kla_off: }"
+    },
+    {
+      "type": "error",
+      "text": "Access to fetch at 'https://a.klaviyo.com/client/sessions/?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "warning",
+      "text": "Swym Snippet is not part of the theme files. Ignore if Wishlist Plus is disabled on live theme"
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://recommender.scarabresearch.com/merchants/1EECF696DA581E64/?pv=1322612476&xp=1&cp=1&az=en-gb&t=predict_last_session_tag%3Aen' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://a.klaviyo.com/onsite/track-analytics?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://a.klaviyo.com/onsite/track-analytics?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "warning",
+      "text": "The resource https://joseph-fashion.com/cdn/fonts/bricolage_grotesque/bricolagegrotesque_n7.de5675dd7a8e145fdc4cb2cfe67a16cb085528d0.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "type": "warning",
+      "text": "The resource https://joseph-fashion.com/cdn/fonts/dm_sans/dmsans_n4.ec80bd4dd7e1a334c969c265873491ae56018d72.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "type": "warning",
+      "text": "The resource https://joseph-fashion.com/cdn/fonts/karla/karla_n4.40497e07df527e6a50e58fb17ef1950c72f3e32c.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://a.klaviyo.com/onsite/track-analytics?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://a.klaviyo.com/onsite/track-analytics?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Access to XMLHttpRequest at 'https://a.klaviyo.com/onsite/track-analytics?company_id=WWgZBK' from origin 'https://joseph-fashion.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/parc-jacquard-silk-dress-pink-jf0097500682-s.jpg?v=1769621391&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/parc-jacquard-silk-dress-pink-jf0097500682-s.jpg?v=1769621391&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/parc-jacquard-silk-dress-pink-jf0097500682-s.jpg?v=1769621391&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/chenes-silk-blend-pleated-dress-black-jf0097380010-s.jpg?v=1769621417&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/chenes-silk-blend-pleated-dress-black-jf0097380010-s.jpg?v=1769621417&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/chenes-silk-blend-pleated-dress-black-jf0097380010-s.jpg?v=1769621417&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-blue-jf0095960365-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-blue-jf0095960365-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-blue-jf0095960365-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-brown-jf0095960605-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-brown-jf0095960605-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-brown-jf0095960605-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-white-jf0095961299-s.jpg?v=1761837742&width=27\""
+    },
+    {
+      "type": "warning",
+      "text": "Failed parsing 'srcset' attribute value since its 'w' descriptor is invalid."
+    },
+    {
+      "type": "warning",
+      "text": "Dropped srcset candidate \"//joseph-fashion.com/cdn/shop/files/franco-double-face-cashmere-coat-white-jf0095961299-s.jpg?v=1761837742&width=27\""
+    }
+  ],
+  "pageErrors": [
+    "window.globalFunctions.GzipWebWorker is not a function",
+    "Cannot read properties of undefined (reading 'length')"
+  ],
+  "failedResponses": [
+    {
+      "status": 403,
+      "url": "https://shop.app/pay/hop?analytics_trace_id=0699f7e0-6642-4b8a-b114-ae59a2ef3aa8&client_handle=joseph-fashion-stores.myshopify.com&target_origin=https%3A%2F%2Fjoseph-fashion.com"
+    },
+    {
+      "status": 403,
+      "url": "https://dmp.truoptik.com/6d78f32846d8648c/sync.gif?fck=0bafd969-8795-4472-bdf4-960b1fd9ab65"
+    },
+    {
+      "status": 403,
+      "url": "https://dmp.truoptik.com/6d78f32846d8648c/sync.gif?fck=0bafd969-8795-4472-bdf4-960b1fd9ab65"
+    }
+  ],
+  "captures": [
+    {
+      "index": 1,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\001-desktop-initial-viewport.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:46.724Z"
+    },
+    {
+      "index": 2,
+      "label": "scroll 0 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\002-scroll-0-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:47.467Z"
+    },
+    {
+      "index": 3,
+      "label": "scroll 5 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\003-scroll-5-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:48.224Z"
+    },
+    {
+      "index": 4,
+      "label": "scroll 10 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\004-scroll-10-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:48.964Z"
+    },
+    {
+      "index": 5,
+      "label": "scroll 14 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\005-scroll-14-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:49.699Z"
+    },
+    {
+      "index": 6,
+      "label": "scroll 19 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\006-scroll-19-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:50.418Z"
+    },
+    {
+      "index": 7,
+      "label": "scroll 24 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\007-scroll-24-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:51.125Z"
+    },
+    {
+      "index": 8,
+      "label": "scroll 29 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\008-scroll-29-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:51.817Z"
+    },
+    {
+      "index": 9,
+      "label": "scroll 33 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\009-scroll-33-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:52.484Z"
+    },
+    {
+      "index": 10,
+      "label": "scroll 38 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\010-scroll-38-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:53.162Z"
+    },
+    {
+      "index": 11,
+      "label": "scroll 43 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\011-scroll-43-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:53.835Z"
+    },
+    {
+      "index": 12,
+      "label": "scroll 48 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\012-scroll-48-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:54.528Z"
+    },
+    {
+      "index": 13,
+      "label": "scroll 52 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\013-scroll-52-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:55.223Z"
+    },
+    {
+      "index": 14,
+      "label": "scroll 57 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\014-scroll-57-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:55.917Z"
+    },
+    {
+      "index": 15,
+      "label": "scroll 62 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\015-scroll-62-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:56.609Z"
+    },
+    {
+      "index": 16,
+      "label": "scroll 67 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\016-scroll-67-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:57.283Z"
+    },
+    {
+      "index": 17,
+      "label": "scroll 71 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\017-scroll-71-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:57.930Z"
+    },
+    {
+      "index": 18,
+      "label": "scroll 76 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\018-scroll-76-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:58.580Z"
+    },
+    {
+      "index": 19,
+      "label": "scroll 81 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\019-scroll-81-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:59.242Z"
+    },
+    {
+      "index": 20,
+      "label": "scroll 86 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\020-scroll-86-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:39:59.907Z"
+    },
+    {
+      "index": 21,
+      "label": "scroll 90 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\021-scroll-90-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:00.559Z"
+    },
+    {
+      "index": 22,
+      "label": "scroll 95 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\022-scroll-95-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:01.214Z"
+    },
+    {
+      "index": 23,
+      "label": "scroll 100 percent",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\023-scroll-100-percent.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:01.844Z"
+    },
+    {
+      "index": 24,
+      "label": "click 0 @media (min-width: 750px) { # { --focal-point: 50.0% 50.0%; } } @media (max-width: 749px) { # { --focal-point: ; } }",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\024-click-0-media-min-width-750px-focal-point-50-0-50-0-media-max-wi.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:04.157Z"
+    },
+    {
+      "index": 25,
+      "label": "click 1 アーカイブ",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\025-click-1.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%82%BB%E3%83%BC%E3%83%AB",
+      "timestamp": "2026-06-24T16:40:07.590Z"
+    },
+    {
+      "index": 26,
+      "label": "click 2 アーカイブ",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\026-click-2.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%82%BB%E3%83%BC%E3%83%AB",
+      "timestamp": "2026-06-24T16:40:11.162Z"
+    },
+    {
+      "index": 27,
+      "label": "click 3 新作",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\027-click-3.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E6%96%B0%E7%9D%80",
+      "timestamp": "2026-06-24T16:40:15.805Z"
+    },
+    {
+      "index": 28,
+      "label": "click 4 ウエア",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\028-click-4.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%81%99%E3%81%B9%E3%81%A6%E8%A1%A8%E7%A4%BA",
+      "timestamp": "2026-06-24T16:40:20.768Z"
+    },
+    {
+      "index": 29,
+      "label": "click 5 ウエア",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\029-click-5.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%81%99%E3%81%B9%E3%81%A6%E8%A1%A8%E7%A4%BA",
+      "timestamp": "2026-06-24T16:40:23.964Z"
+    },
+    {
+      "index": 30,
+      "label": "click 6 バッグ＆アクセサリー",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\030-click-6.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC",
+      "timestamp": "2026-06-24T16:40:28.239Z"
+    },
+    {
+      "index": 31,
+      "label": "click 7 バッグ＆アクセサリー",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\031-click-7.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC",
+      "timestamp": "2026-06-24T16:40:31.323Z"
+    },
+    {
+      "index": 32,
+      "label": "click 8 ディスカバー",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\032-click-8.png",
+      "url": "https://joseph-fashion.com/ja-jp/blogs/joseph-%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
+      "timestamp": "2026-06-24T16:40:34.809Z"
+    },
+    {
+      "index": 33,
+      "label": "click 9 ディスカバー",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\033-click-9.png",
+      "url": "https://joseph-fashion.com/ja-jp/blogs/joseph-%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC",
+      "timestamp": "2026-06-24T16:40:37.815Z"
+    },
+    {
+      "index": 34,
+      "label": "click 10 検索",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\034-click-10.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:40.663Z"
+    },
+    {
+      "index": 35,
+      "label": "click 11 @media (min-width: 750px) { #Picture-229c62fc6d082c6b7ac14d715c2f5b8b { --focal-point: 50.0% 50.0%; } } @media (max-widt",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\035-click-11-media-min-width-750px-picture-229c62fc6d082c6b7ac14d715.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%82%BB%E3%83%BC%E3%83%AB",
+      "timestamp": "2026-06-24T16:40:43.311Z"
+    },
+    {
+      "index": 36,
+      "label": "click 12 @media (min-width: 750px) { #Picture-9cf5086afb7686424646dc909dcf23d0 { --focal-point: 50.5815% 0.0%; } } @media (max-wi",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\036-click-12-media-min-width-750px-picture-9cf5086afb7686424646dc909.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E6%96%B0%E7%9D%80",
+      "timestamp": "2026-06-24T16:40:46.401Z"
+    },
+    {
+      "index": 37,
+      "label": "click 13 @media (min-width: 750px) { #Picture-0020095233b80aab2fbfa718c4b28a80 { --focal-point: 54.9049% 0.0%; } } @media (max-wi",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\037-click-13-media-min-width-750px-picture-0020095233b80aab2fbfa718c.png",
+      "url": "https://joseph-fashion.com/ja-jp/collections/%E3%83%8F%E3%82%A4%E3%82%B5%E3%83%9E%E3%83%BC",
+      "timestamp": "2026-06-24T16:40:51.189Z"
+    },
+    {
+      "index": 38,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\038-mobile-initial-viewport.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:57.183Z"
+    },
+    {
+      "index": 39,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\joseph-fashion\\screenshots\\039-mobile-mid-scroll.png",
+      "url": "https://joseph-fashion.com/ja-jp",
+      "timestamp": "2026-06-24T16:40:58.062Z"
+    }
+  ]
+}

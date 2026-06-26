@@ -1,0 +1,16 @@
+:root {
+  --color-bg: #020507;
+  --color-bg-soft: #061013;
+  --color-panel: rgba(8, 19, 22, 0.76);
+  --color-text: #f4fffd;
+  --color-text-soft: #c9d9d8;
+  --color-muted: #7f9494;
+  --color-line: rgba(139, 255, 242, 0.16);
+  --color-accent: #55f7e7;
+  --color-accent-2: #79ff8f;
+  --color-warning: #ffb85b;
+  --color-danger: #ff6262;
+  --color-accent-dim: rgba(85, 247, 231, 0.14);
+  --shadow-cyan: 0 0 48px rgba(85, 247, 231, 0.18);
+  --shadow-amber: 0 0 48px rgba(255, 184, 91, 0.16);
+}

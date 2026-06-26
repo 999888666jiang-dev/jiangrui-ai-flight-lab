@@ -1,0 +1,465 @@
+{
+  "site": {
+    "slug": "twice-jype",
+    "url": "https://twice.jype.com/Default"
+  },
+  "title": "TWICE",
+  "finalUrl": "https://twice.jype.com/Default",
+  "capturedAt": "2026-06-24T16:39:29.911Z",
+  "screenshotCount": 42,
+  "dismissedCookie": null,
+  "gotoError": null,
+  "interactionsAttempted": [
+    {
+      "id": 0,
+      "tag": "a",
+      "text": "",
+      "href": "/",
+      "role": "",
+      "top": 53,
+      "left": 43,
+      "width": 258,
+      "height": 43
+    },
+    {
+      "id": 1,
+      "tag": "a",
+      "text": "PROFILE",
+      "href": "/Default/Profile",
+      "role": "",
+      "top": -171,
+      "left": 580,
+      "width": 150,
+      "height": 28
+    },
+    {
+      "id": 2,
+      "tag": "a",
+      "text": "DISCOGRAPHY",
+      "href": "/Default/DiscographyList",
+      "role": "",
+      "top": -108,
+      "left": 580,
+      "width": 256,
+      "height": 28
+    },
+    {
+      "id": 3,
+      "tag": "a",
+      "text": "GALLERY",
+      "href": "/Default/Gallery",
+      "role": "",
+      "top": -45,
+      "left": 580,
+      "width": 158,
+      "height": 28
+    },
+    {
+      "id": 4,
+      "tag": "a",
+      "text": "VIDEO",
+      "href": "/Default/Video",
+      "role": "",
+      "top": 18,
+      "left": 580,
+      "width": 112,
+      "height": 28
+    },
+    {
+      "id": 5,
+      "tag": "a",
+      "text": "NOTICE",
+      "href": "/Default/NoticeList",
+      "role": "",
+      "top": 81,
+      "left": 580,
+      "width": 131,
+      "height": 28
+    },
+    {
+      "id": 6,
+      "tag": "a",
+      "text": "SCHEDULE",
+      "href": "/Default/Schedule",
+      "role": "",
+      "top": 144,
+      "left": 580,
+      "width": 188,
+      "height": 28
+    },
+    {
+      "id": 7,
+      "tag": "a",
+      "text": "",
+      "href": "https://app.fans/community/twice/artist",
+      "role": "",
+      "top": -137,
+      "left": 43,
+      "width": 38,
+      "height": 38
+    },
+    {
+      "id": 8,
+      "tag": "a",
+      "text": "TEN: The Story Goes On",
+      "href": "/Mobile/DiscographyView?AamSeq=153&AmSeq=0&PgIndex=1",
+      "role": "",
+      "top": 230,
+      "left": 932,
+      "width": 450,
+      "height": 270
+    },
+    {
+      "id": 9,
+      "tag": "a",
+      "text": "ME+YOU",
+      "href": "",
+      "role": "",
+      "top": 520,
+      "left": 1247,
+      "width": 131,
+      "height": 36
+    },
+    {
+      "id": 10,
+      "tag": "a",
+      "text": "NOTICE",
+      "href": "/Default/NoticeList",
+      "role": "",
+      "top": 657,
+      "left": 1298,
+      "width": 69,
+      "height": 21
+    },
+    {
+      "id": 11,
+      "tag": "a",
+      "text": "Happy Birthday TZUYU",
+      "href": "/Default/NoticeView?AnSeq=7030",
+      "role": "",
+      "top": 691,
+      "left": 1232,
+      "width": 135,
+      "height": 14
+    },
+    {
+      "id": 12,
+      "tag": "a",
+      "text": "",
+      "href": "https://app.fans/community/twice/artist",
+      "role": "",
+      "top": 863,
+      "left": 43,
+      "width": 38,
+      "height": 38
+    }
+  ],
+  "consoleWarningsAndErrors": [
+    {
+      "type": "warning",
+      "text": "Unrecognized feature: 'mute'."
+    },
+    {
+      "type": "warning",
+      "text": "Unrecognized feature: 'mute'."
+    }
+  ],
+  "pageErrors": [],
+  "failedResponses": [],
+  "captures": [
+    {
+      "index": 1,
+      "label": "desktop initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\001-desktop-initial-viewport.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:45.763Z"
+    },
+    {
+      "index": 2,
+      "label": "static viewport 1",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\002-static-viewport-1.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:46.335Z"
+    },
+    {
+      "index": 3,
+      "label": "static viewport 2",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\003-static-viewport-2.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:46.900Z"
+    },
+    {
+      "index": 4,
+      "label": "static viewport 3",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\004-static-viewport-3.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:47.466Z"
+    },
+    {
+      "index": 5,
+      "label": "static viewport 4",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\005-static-viewport-4.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:47.939Z"
+    },
+    {
+      "index": 6,
+      "label": "static viewport 5",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\006-static-viewport-5.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:48.412Z"
+    },
+    {
+      "index": 7,
+      "label": "static viewport 6",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\007-static-viewport-6.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:48.908Z"
+    },
+    {
+      "index": 8,
+      "label": "static viewport 7",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\008-static-viewport-7.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:49.394Z"
+    },
+    {
+      "index": 9,
+      "label": "static viewport 8",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\009-static-viewport-8.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:49.865Z"
+    },
+    {
+      "index": 10,
+      "label": "static viewport 9",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\010-static-viewport-9.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:50.332Z"
+    },
+    {
+      "index": 11,
+      "label": "static viewport 10",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\011-static-viewport-10.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:50.827Z"
+    },
+    {
+      "index": 12,
+      "label": "static viewport 11",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\012-static-viewport-11.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:51.300Z"
+    },
+    {
+      "index": 13,
+      "label": "static viewport 12",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\013-static-viewport-12.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:51.734Z"
+    },
+    {
+      "index": 14,
+      "label": "static viewport 13",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\014-static-viewport-13.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:52.177Z"
+    },
+    {
+      "index": 15,
+      "label": "static viewport 14",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\015-static-viewport-14.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:52.635Z"
+    },
+    {
+      "index": 16,
+      "label": "static viewport 15",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\016-static-viewport-15.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:53.100Z"
+    },
+    {
+      "index": 17,
+      "label": "static viewport 16",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\017-static-viewport-16.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:53.564Z"
+    },
+    {
+      "index": 18,
+      "label": "static viewport 17",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\018-static-viewport-17.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:54.021Z"
+    },
+    {
+      "index": 19,
+      "label": "static viewport 18",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\019-static-viewport-18.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:54.457Z"
+    },
+    {
+      "index": 20,
+      "label": "static viewport 19",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\020-static-viewport-19.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:54.905Z"
+    },
+    {
+      "index": 21,
+      "label": "static viewport 20",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\021-static-viewport-20.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:55.351Z"
+    },
+    {
+      "index": 22,
+      "label": "static viewport 21",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\022-static-viewport-21.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:55.834Z"
+    },
+    {
+      "index": 23,
+      "label": "static viewport 22",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\023-static-viewport-22.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:56.316Z"
+    },
+    {
+      "index": 24,
+      "label": "click 0 /",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\024-click-0.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:37:59.193Z"
+    },
+    {
+      "index": 25,
+      "label": "click failed 1",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\025-click-failed-1.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:05.965Z"
+    },
+    {
+      "index": 26,
+      "label": "click failed 2",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\026-click-failed-2.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:12.404Z"
+    },
+    {
+      "index": 27,
+      "label": "click failed 3",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\027-click-failed-3.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:18.833Z"
+    },
+    {
+      "index": 28,
+      "label": "click failed 4",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\028-click-failed-4.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:25.283Z"
+    },
+    {
+      "index": 29,
+      "label": "click failed 5",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\029-click-failed-5.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:31.793Z"
+    },
+    {
+      "index": 30,
+      "label": "click failed 6",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\030-click-failed-6.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:38.241Z"
+    },
+    {
+      "index": 31,
+      "label": "click failed 7",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\031-click-failed-7.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:44.659Z"
+    },
+    {
+      "index": 32,
+      "label": "click failed 8",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\032-click-failed-8.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:51.129Z"
+    },
+    {
+      "index": 33,
+      "label": "click failed 9",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\033-click-failed-9.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:38:57.561Z"
+    },
+    {
+      "index": 34,
+      "label": "click failed 10",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\034-click-failed-10.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:03.929Z"
+    },
+    {
+      "index": 35,
+      "label": "click failed 11",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\035-click-failed-11.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:10.281Z"
+    },
+    {
+      "index": 36,
+      "label": "click failed 12",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\036-click-failed-12.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:16.727Z"
+    },
+    {
+      "index": 37,
+      "label": "mobile initial viewport",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\037-mobile-initial-viewport.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:24.550Z"
+    },
+    {
+      "index": 38,
+      "label": "mobile mid scroll",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\038-mobile-mid-scroll.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:25.292Z"
+    },
+    {
+      "index": 39,
+      "label": "mobile click 0 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\039-mobile-click-0.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:26.692Z"
+    },
+    {
+      "index": 40,
+      "label": "mobile click 1 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\040-mobile-click-1.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:27.541Z"
+    },
+    {
+      "index": 41,
+      "label": "mobile click 2 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\041-mobile-click-2.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:28.813Z"
+    },
+    {
+      "index": 42,
+      "label": "mobile click 3 ",
+      "file": "E:\\个人简历进阶版\\学习成果\\twice-jype\\screenshots\\042-mobile-click-3.png",
+      "url": "https://twice.jype.com/Default",
+      "timestamp": "2026-06-24T16:39:29.897Z"
+    }
+  ]
+}

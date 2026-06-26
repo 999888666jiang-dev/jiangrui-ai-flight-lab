@@ -1,0 +1,37 @@
+node_modules
+dist
+.DS_Store
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local QA artifacts
+测试截图/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# private source resources and large local media
+个人信息资源包/
+source-documents/
+source-videos/
+reference-video-screenshots/
+参考截图-activetheory/
+学习成果/**/screenshots/
+学习成果/**/contact-sheet.jpg
+学习成果/**/*.png
+学习成果/**/*.jpg
+public/media/**/*.mp4
+public/media/**/*.m4v
+public/media/**/*.mov
+public/media/**/*.webm
+public/videos/**/*.mp4
+public/videos/**/*.m4v
+public/videos/**/*.mov
+public/videos/**/*.webm
+
+# local environment
+.env
+.env.*.local
+!.env.example

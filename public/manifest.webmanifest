@@ -1,0 +1,21 @@
+{
+  "name": "姜睿 | AI Flight Lab",
+  "short_name": "AI Flight Lab",
+  "description": "姜睿的沉浸式无人机、FPV、AI 设计工程与作品证据库网站。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020507",
+  "theme_color": "#020507",
+  "lang": "zh-CN",
+  "categories": ["portfolio", "productivity", "education"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
