@@ -19,9 +19,10 @@ if ($branch -ne "main") {
   git branch -M main
 }
 
-$origin = & git remote get-url origin 2>$null
-if ($LASTEXITCODE -ne 0) {
-  $origin = $null
+$remotes = @(git remote)
+$origin = $null
+if ($remotes -contains "origin") {
+  $origin = git remote get-url origin
 }
 if ($origin) {
   git push -u origin main
