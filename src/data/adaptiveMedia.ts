@@ -66,14 +66,12 @@ export function resolveAdaptiveMediaSources(item?: AdaptiveMediaItem): ResolvedA
   const poster = firstDefined(
     item.cdnPoster,
     mediaCdnAssetUrl(cdnPosterAsset),
-    variant?.releasePosterAsset ? githubReleaseAssetUrl(variant.releasePosterAsset) : undefined,
     localVariantSource(variant?.posterAsset),
     localSource(item.posterSrc),
   );
   const preview = firstDefined(
     item.cdnPreview,
     mediaCdnAssetUrl(cdnPreviewAsset),
-    variant?.releasePreviewAsset ? githubReleaseAssetUrl(variant.releasePreviewAsset) : undefined,
     item.releasePreviewAsset ? githubReleaseAssetUrl(item.releasePreviewAsset) : undefined,
     localVariantSource(variant?.previewAsset),
     localSource(item.previewSrc),
@@ -81,7 +79,6 @@ export function resolveAdaptiveMediaSources(item?: AdaptiveMediaItem): ResolvedA
   const full = firstDefined(
     item.cdnFull,
     mediaCdnAssetUrl(cdnFullAsset),
-    variant?.releaseFullAsset ? githubReleaseAssetUrl(variant.releaseFullAsset) : undefined,
     item.releaseFullAsset ? githubReleaseAssetUrl(item.releaseFullAsset) : undefined,
     localVariantSource(variant?.fullAsset),
     localSource(item.fullSrc),

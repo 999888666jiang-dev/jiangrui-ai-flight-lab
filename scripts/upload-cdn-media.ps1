@@ -7,6 +7,7 @@ param(
   [string]$SourceRoot = "public/media-variants/ai-flight-lab",
   [string]$CdnBaseUrl = $env:VITE_MEDIA_CDN_BASE_URL,
   [string]$ReportFile = "",
+  [string]$CoscliPath = "",
   [switch]$WhatIf
 )
 
@@ -15,8 +16,18 @@ $ErrorActionPreference = "Stop"
 $projectRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $sourcePath = Join-Path $projectRoot $SourceRoot
 
-if (-not (Get-Command coscli -ErrorAction SilentlyContinue)) {
-  throw "coscli was not found. Install Tencent COSCLI and login/configure it before uploading CDN media."
+$coscliCommand = $CoscliPath
+if ($coscliCommand) {
+  if (-not (Test-Path -LiteralPath $coscliCommand)) {
+    throw "coscli path does not exist: $coscliCommand"
+  }
+  $coscliCommand = (Resolve-Path -LiteralPath $coscliCommand).Path
+} else {
+  $command = Get-Command coscli -ErrorAction SilentlyContinue
+  if (-not $command) {
+    throw "coscli was not found. Install Tencent COSCLI and login/configure it before uploading CDN media."
+  }
+  $coscliCommand = $command.Source
 }
 
 if (-not (Test-Path -LiteralPath $sourcePath)) {
@@ -101,7 +112,7 @@ foreach ($file in $files) {
   } else {
     Write-Host "Uploading $objectKey ..."
     $destination = "cos://$Bucket/$objectKey"
-    & coscli cp $file.FullName $destination -r $Region -e "cos.$Region.myqcloud.com" -i $env:TENCENT_SECRET_ID -k $env:TENCENT_SECRET_KEY --init-skip=true
+    & $coscliCommand cp $file.FullName $destination -r $Region -e "cos.$Region.myqcloud.com" -i $env:TENCENT_SECRET_ID -k $env:TENCENT_SECRET_KEY --init-skip=true
     if ($LASTEXITCODE -ne 0) {
       throw "coscli upload failed for $objectKey"
     }

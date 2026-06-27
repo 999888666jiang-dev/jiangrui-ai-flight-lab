@@ -1,6 +1,8 @@
 param(
   [string]$VariantRoot = "public/media-variants",
   [string]$ManifestFile = "src/data/mediaVariantsManifest.ts",
+  [string]$FfmpegPath = "",
+  [string]$FfprobePath = "",
   [ValidateSet("copy", "standardize")]
   [string]$FullMode = "copy",
   [switch]$Force
@@ -16,8 +18,17 @@ $cdnPrefix = "ai-flight-lab"
 function Find-RequiredTool {
   param(
     [string]$Name,
+    [string]$ExplicitPath,
     [string]$InstallHint
   )
+
+  if ($ExplicitPath) {
+    if (Test-Path -LiteralPath $ExplicitPath) {
+      return (Resolve-Path -LiteralPath $ExplicitPath).Path
+    }
+
+    throw "$Name path does not exist: $ExplicitPath"
+  }
 
   $command = Get-Command $Name -ErrorAction SilentlyContinue
   if (-not $command) {
@@ -40,6 +51,20 @@ function Invoke-FFmpeg {
   if ($LASTEXITCODE -ne 0) {
     throw "ffmpeg failed with exit code $LASTEXITCODE"
   }
+}
+
+function Test-NeedsOutput {
+  param([string]$Path)
+
+  if ($Force) {
+    return $true
+  }
+
+  if (-not (Test-Path -LiteralPath $Path)) {
+    return $true
+  }
+
+  return (Get-Item -LiteralPath $Path).Length -le 0
 }
 
 function Read-VideoMetadata {
@@ -90,8 +115,8 @@ function Escape-TsString {
   return $Value.Replace("\", "\\").Replace("'", "\'")
 }
 
-$script:ffmpeg = Find-RequiredTool -Name "ffmpeg" -InstallHint "Reopen PowerShell after installation so PATH is refreshed."
-$script:ffprobe = Find-RequiredTool -Name "ffprobe" -InstallHint "ffprobe is bundled with FFmpeg."
+$script:ffmpeg = Find-RequiredTool -Name "ffmpeg" -ExplicitPath $FfmpegPath -InstallHint "Reopen PowerShell after installation so PATH is refreshed."
+$script:ffprobe = Find-RequiredTool -Name "ffprobe" -ExplicitPath $FfprobePath -InstallHint "ffprobe is bundled with FFmpeg."
 
 $inputs = New-Object System.Collections.Generic.List[object]
 Add-MediaInput -List $inputs -Group "video-bay" -Id "fpv-lab-background" -Path (Join-Path $projectRoot "public/videos/fpv-lab-background.mp4")
@@ -139,21 +164,21 @@ foreach ($input in $inputs) {
   $previewPath = Join-Path $outDir $previewName
   $fullPath = Join-Path $outDir $fullName
 
-  if ($Force -or -not (Test-Path -LiteralPath $posterPath)) {
+  if (Test-NeedsOutput -Path $posterPath) {
     Invoke-FFmpeg -Arguments @(
       "-y", "-ss", "00:00:01", "-i", $input.SourcePath,
       "-frames:v", "1",
-      "-vf", "scale='min(1280,iw)':-2",
+      "-vf", "scale=w='trunc(min(1280,iw)/2)*2':h=-2",
       "-q:v", "70",
       $posterPath
     )
   }
 
-  if ($Force -or -not (Test-Path -LiteralPath $previewPath)) {
+  if (Test-NeedsOutput -Path $previewPath) {
     Invoke-FFmpeg -Arguments @(
       "-y", "-i", $input.SourcePath,
       "-map", "0:v:0", "-map", "0:a?",
-      "-vf", "scale='min(1280,iw)':-2:force_original_aspect_ratio=decrease",
+      "-vf", "scale=w='trunc(min(1280,iw)/2)*2':h=-2",
       "-c:v", "libx264",
       "-profile:v", "main",
       "-preset", "medium",
@@ -170,7 +195,7 @@ foreach ($input in $inputs) {
     )
   }
 
-  if ($Force -or -not (Test-Path -LiteralPath $fullPath)) {
+  if (Test-NeedsOutput -Path $fullPath) {
     if ($FullMode -eq "standardize") {
       Invoke-FFmpeg -Arguments @(
         "-y", "-i", $input.SourcePath,
