@@ -3456,6 +3456,22 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .media-reel-grid--film {
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .media-reel-card,
+  .media-reel-grid--film .media-reel-card:nth-child(2n),
+  .media-reel-grid--film .media-reel-card:nth-child(3n) {
+    transform: none;
+  }
+
+  .media-reel-card:hover,
+  .media-reel-card:focus-visible {
+    transform: translateY(-4px) scale(1.01);
+  }
+
   .media-lightbox__player {
     grid-template-columns: 1fr;
     max-height: 88vh;
