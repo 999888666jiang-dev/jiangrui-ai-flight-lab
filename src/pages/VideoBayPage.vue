@@ -17,7 +17,13 @@ const {
   canSwitchToFull,
   isFullActive,
   isPreviewMissing,
+  isFullLoading,
+  fullLoadPercent,
+  fullLoadStyle,
   switchToFull,
+  syncFullLoadProgress,
+  completeFullLoad,
+  failFullLoad,
   releaseVideoElement,
 } = useAdaptiveMediaSource(adaptiveMedia);
 const isLoading = ref(false);
@@ -47,6 +53,7 @@ function syncVideoPlayback() {
 function handleLoadedMetadata() {
   isLoading.value = false;
   loadError.value = false;
+  syncFullLoadProgress(videoRef.value, 0.34);
 
   if (resumeTime.value > 0 && videoRef.value) {
     videoRef.value.currentTime = Math.min(resumeTime.value, Math.max(0, videoRef.value.duration - 0.2));
@@ -59,11 +66,31 @@ function handleLoadedMetadata() {
 function handleLoadStart() {
   isLoading.value = true;
   loadError.value = false;
+  syncFullLoadProgress(videoRef.value, 0.08);
+}
+
+function handleMediaProgress() {
+  syncFullLoadProgress(videoRef.value);
+}
+
+function handleLoadedData() {
+  syncFullLoadProgress(videoRef.value, 0.62);
+}
+
+function handleCanPlay() {
+  syncFullLoadProgress(videoRef.value, 0.92);
+  completeFullLoad(videoRef.value);
+}
+
+function handleMediaPlaying() {
+  clearPlaybackBlock();
+  completeFullLoad(videoRef.value);
 }
 
 function handleMediaError() {
   isLoading.value = false;
   loadError.value = true;
+  failFullLoad();
 }
 
 function playFromGate() {
@@ -119,8 +146,11 @@ onUnmounted(() => {
           :preload="policy.preload"
           aria-label="FPV background video"
           @loadstart="handleLoadStart"
+          @progress="handleMediaProgress"
           @loadedmetadata="handleLoadedMetadata"
-          @playing="clearPlaybackBlock"
+          @loadeddata="handleLoadedData"
+          @canplay="handleCanPlay"
+          @playing="handleMediaPlaying"
           @error="handleMediaError"
         />
         <div v-if="!activeSrc" class="video-bay__placeholder" aria-hidden="true">
@@ -176,8 +206,23 @@ onUnmounted(() => {
           <button class="button button--secondary" type="button" @click="toggleSound">
             {{ isMuted ? pickText({ zh: '开启声音', en: 'Sound on' }, language) : pickText({ zh: '静音播放', en: 'Mute' }, language) }}
           </button>
-          <button class="button button--secondary" type="button" :disabled="!canSwitchToFull" @click="playFullVersion">
-            {{ isFullActive ? pickText({ zh: '高清播放中', en: 'Full active' }, language) : pickText({ zh: '查看高清完整版本', en: 'Load full version' }, language) }}
+          <button
+            class="button button--secondary media-full-button"
+            :class="{ 'media-full-button--loading': isFullLoading, 'media-full-button--active': isFullActive && !isFullLoading }"
+            :style="fullLoadStyle"
+            type="button"
+            :disabled="!canSwitchToFull && !isFullLoading"
+            @click="playFullVersion"
+          >
+            <span>
+              {{
+                isFullLoading
+                  ? pickText({ zh: `高清接入 ${fullLoadPercent}%`, en: `Loading full ${fullLoadPercent}%` }, language)
+                  : isFullActive
+                    ? pickText({ zh: '高清播放中', en: 'Full active' }, language)
+                    : pickText({ zh: '查看高清完整版本', en: 'Load full version' }, language)
+              }}
+            </span>
           </button>
           <RouterLink class="button button--primary" to="/evidence-vault">
             {{ pickText({ zh: '进入证据库', en: 'Open Evidence Vault' }, language) }}

@@ -33,8 +33,14 @@ const {
   canSwitchToFull,
   isFullActive,
   isPreviewMissing,
+  isFullLoading,
+  fullLoadPercent,
+  fullLoadStyle,
   resetToPreview,
   switchToFull,
+  syncFullLoadProgress,
+  completeFullLoad,
+  failFullLoad,
   releaseVideoElement,
 } = useAdaptiveMediaSource(adaptiveMedia);
 const reelPath = computed(() => `/evidence-vault/${props.group}/reel`);
@@ -64,6 +70,7 @@ function syncVideoPlayback() {
 function handleLoadedMetadata() {
   isLoading.value = false;
   loadError.value = false;
+  syncFullLoadProgress(videoRef.value, 0.34);
 
   if (resumeTime.value > 0 && videoRef.value) {
     videoRef.value.currentTime = Math.min(resumeTime.value, Math.max(0, videoRef.value.duration - 0.2));
@@ -76,11 +83,31 @@ function handleLoadedMetadata() {
 function handleLoadStart() {
   isLoading.value = true;
   loadError.value = false;
+  syncFullLoadProgress(videoRef.value, 0.08);
+}
+
+function handleMediaProgress() {
+  syncFullLoadProgress(videoRef.value);
+}
+
+function handleLoadedData() {
+  syncFullLoadProgress(videoRef.value, 0.62);
+}
+
+function handleCanPlay() {
+  syncFullLoadProgress(videoRef.value, 0.92);
+  completeFullLoad(videoRef.value);
+}
+
+function handleMediaPlaying() {
+  clearPlaybackBlock();
+  completeFullLoad(videoRef.value);
 }
 
 function handleMediaError() {
   isLoading.value = false;
   loadError.value = true;
+  failFullLoad();
 }
 
 function pickRandomMedia() {
@@ -176,8 +203,11 @@ onUnmounted(() => {
       :preload="policy.preload"
       class="media-stage__video"
       @loadstart="handleLoadStart"
+      @progress="handleMediaProgress"
       @loadedmetadata="handleLoadedMetadata"
-      @playing="clearPlaybackBlock"
+      @loadeddata="handleLoadedData"
+      @canplay="handleCanPlay"
+      @playing="handleMediaPlaying"
       @error="handleMediaError"
       @ended="pickRandomMedia"
     />
@@ -209,8 +239,23 @@ onUnmounted(() => {
       <button type="button" @click="pickRandomMedia">
         {{ pickText(actionLabel, language) }}
       </button>
-      <button type="button" :disabled="!canSwitchToFull" @click="playFullVersion">
-        {{ isFullActive ? (language === 'zh' ? '高清播放中' : 'Full active') : (language === 'zh' ? '查看高清完整版本' : 'Load full version') }}
+      <button
+        type="button"
+        class="media-full-button"
+        :class="{ 'media-full-button--loading': isFullLoading, 'media-full-button--active': isFullActive && !isFullLoading }"
+        :style="fullLoadStyle"
+        :disabled="!canSwitchToFull && !isFullLoading"
+        @click="playFullVersion"
+      >
+        <span>
+          {{
+            isFullLoading
+              ? (language === 'zh' ? `高清接入 ${fullLoadPercent}%` : `Loading full ${fullLoadPercent}%`)
+              : isFullActive
+                ? (language === 'zh' ? '高清播放中' : 'Full active')
+                : (language === 'zh' ? '查看高清完整版本' : 'Load full version')
+          }}
+        </span>
       </button>
       <RouterLink :to="reelPath">
         {{ language === 'zh' ? '查看更多' : 'View more' }}

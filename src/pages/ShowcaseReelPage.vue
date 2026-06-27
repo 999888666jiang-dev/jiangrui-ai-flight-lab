@@ -38,8 +38,14 @@ const {
   activeSrc: selectedMediaSrc,
   canSwitchToFull,
   isFullActive,
+  isFullLoading,
+  fullLoadPercent,
+  fullLoadStyle,
   resetToPreview,
   switchToFull,
+  syncFullLoadProgress,
+  completeFullLoad,
+  failFullLoad,
   releaseVideoElement,
 } = useAdaptiveMediaSource(selectedAdaptiveMedia);
 const isLoading = ref(false);
@@ -86,6 +92,7 @@ function syncLightboxPlayback() {
 function handleLightboxLoadedMetadata() {
   isLoading.value = false;
   loadError.value = false;
+  syncFullLoadProgress(lightboxVideoRef.value, 0.34);
 
   if (resumeTime.value > 0 && lightboxVideoRef.value) {
     lightboxVideoRef.value.currentTime = Math.min(resumeTime.value, Math.max(0, lightboxVideoRef.value.duration - 0.2));
@@ -98,11 +105,31 @@ function handleLightboxLoadedMetadata() {
 function handleLightboxLoadStart() {
   isLoading.value = true;
   loadError.value = false;
+  syncFullLoadProgress(lightboxVideoRef.value, 0.08);
+}
+
+function handleLightboxProgress() {
+  syncFullLoadProgress(lightboxVideoRef.value);
+}
+
+function handleLightboxLoadedData() {
+  syncFullLoadProgress(lightboxVideoRef.value, 0.62);
+}
+
+function handleLightboxCanPlay() {
+  syncFullLoadProgress(lightboxVideoRef.value, 0.92);
+  completeFullLoad(lightboxVideoRef.value);
+}
+
+function handleLightboxPlaying() {
+  clearPlaybackBlock();
+  completeFullLoad(lightboxVideoRef.value);
 }
 
 function handleLightboxError() {
   isLoading.value = false;
   loadError.value = true;
+  failFullLoad();
 }
 
 function playLightboxFromGate() {
@@ -219,8 +246,11 @@ watch(selectedMediaSrc, () => {
             x5-video-orientation="portrait"
             :preload="policy.preload"
             @loadstart="handleLightboxLoadStart"
+            @progress="handleLightboxProgress"
             @loadedmetadata="handleLightboxLoadedMetadata"
-            @playing="clearPlaybackBlock"
+            @loadeddata="handleLightboxLoadedData"
+            @canplay="handleLightboxCanPlay"
+            @playing="handleLightboxPlaying"
             @error="handleLightboxError"
           />
           <div v-else class="media-lightbox__placeholder" aria-hidden="true">
@@ -245,8 +275,23 @@ watch(selectedMediaSrc, () => {
             <button type="button" @click="toggleLightboxSound">
               {{ isMuted ? (language === 'zh' ? '开启声音' : 'Sound on') : (language === 'zh' ? '静音播放' : 'Mute') }}
             </button>
-            <button type="button" :disabled="!canSwitchToFull" @click="playFullVersion">
-              {{ isFullActive ? (language === 'zh' ? '高清播放中' : 'Full active') : (language === 'zh' ? '查看高清完整版本' : 'Load full version') }}
+            <button
+              type="button"
+              class="media-full-button"
+              :class="{ 'media-full-button--loading': isFullLoading, 'media-full-button--active': isFullActive && !isFullLoading }"
+              :style="fullLoadStyle"
+              :disabled="!canSwitchToFull && !isFullLoading"
+              @click="playFullVersion"
+            >
+              <span>
+                {{
+                  isFullLoading
+                    ? (language === 'zh' ? `高清接入 ${fullLoadPercent}%` : `Loading full ${fullLoadPercent}%`)
+                    : isFullActive
+                      ? (language === 'zh' ? '高清播放中' : 'Full active')
+                      : (language === 'zh' ? '查看高清完整版本' : 'Load full version')
+                }}
+              </span>
             </button>
           </div>
         </div>
