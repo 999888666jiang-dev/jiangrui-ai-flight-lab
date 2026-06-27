@@ -139,7 +139,7 @@ onUnmounted(() => {
         </span>
         <span class="certificate-book__cover">
           <span class="certificate-book__paper">
-            <img :src="item.cover" :alt="item.title" :loading="index < 4 ? 'eager' : 'lazy'" decoding="async" />
+            <img :src="item.cover" :alt="item.title" loading="eager" decoding="async" />
           </span>
           <span class="certificate-book__seal" aria-hidden="true">JR</span>
         </span>
