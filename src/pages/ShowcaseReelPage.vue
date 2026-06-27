@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import { useAdaptiveMediaSource } from '../composables/useAdaptiveMediaSource';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { useVideoPolicy } from '../composables/useVideoPolicy';
 import { evidenceItems } from '../data/siteContent';
 import {
   getShowcaseMedia,
-  resolveShowcaseMediaSrc,
+  resolveShowcaseMediaSources,
+  toAdaptiveShowcaseMedia,
   type ShowcaseMediaGroup,
   type ShowcaseMediaItem,
 } from '../data/showcaseMedia';
@@ -29,7 +31,20 @@ const mediaGroup = computed<ShowcaseMediaGroup | undefined>(() => {
 const item = computed(() => evidenceItems.find((entry) => entry.slug === slug.value));
 const mediaItems = computed(() => (mediaGroup.value ? getShowcaseMedia(mediaGroup.value) : []));
 const isOutcome = computed(() => mediaGroup.value === 'deal-results-showcase');
-const selectedMediaSrc = computed(() => resolveShowcaseMediaSrc(selectedMedia.value));
+const selectedAdaptiveMedia = computed(() => toAdaptiveShowcaseMedia(selectedMedia.value));
+const {
+  quality,
+  poster,
+  activeSrc: selectedMediaSrc,
+  canSwitchToFull,
+  isFullActive,
+  resetToPreview,
+  switchToFull,
+  releaseVideoElement,
+} = useAdaptiveMediaSource(selectedAdaptiveMedia);
+const isLoading = ref(false);
+const loadError = ref(false);
+const resumeTime = ref(0);
 const pageTitle = computed(() =>
   isOutcome.value
     ? { zh: '成交成果流光展柜', en: 'Deal Results Prism Gallery' }
@@ -48,11 +63,14 @@ const pageIntro = computed(() =>
 );
 
 function openMedia(media: ShowcaseMediaItem) {
+  resetToPreview();
+  loadError.value = false;
   selectedMedia.value = media;
   isMuted.value = true;
 }
 
 function closeMedia() {
+  releaseVideoElement(lightboxVideoRef.value);
   selectedMedia.value = undefined;
 }
 
@@ -65,10 +83,58 @@ function syncLightboxPlayback() {
   });
 }
 
+function handleLightboxLoadedMetadata() {
+  isLoading.value = false;
+  loadError.value = false;
+
+  if (resumeTime.value > 0 && lightboxVideoRef.value) {
+    lightboxVideoRef.value.currentTime = Math.min(resumeTime.value, Math.max(0, lightboxVideoRef.value.duration - 0.2));
+    resumeTime.value = 0;
+  }
+
+  syncLightboxPlayback();
+}
+
+function handleLightboxLoadStart() {
+  isLoading.value = true;
+  loadError.value = false;
+}
+
+function handleLightboxError() {
+  isLoading.value = false;
+  loadError.value = true;
+}
+
 function playLightboxFromGate() {
   const video = lightboxVideoRef.value;
   if (!video) return;
   void requestPlayback(video, isMuted.value);
+}
+
+function toggleLightboxSound() {
+  isMuted.value = !isMuted.value;
+  if (lightboxVideoRef.value) {
+    lightboxVideoRef.value.muted = isMuted.value;
+    if (!isMuted.value) {
+      void requestPlayback(lightboxVideoRef.value, false);
+    }
+  }
+}
+
+function playFullVersion() {
+  const video = lightboxVideoRef.value;
+  if (!video || !canSwitchToFull.value) return;
+
+  resumeTime.value = video.currentTime || 0;
+  releaseVideoElement(video);
+  if (switchToFull()) {
+    syncLightboxPlayback();
+  }
+}
+
+function retryLightbox() {
+  loadError.value = false;
+  syncLightboxPlayback();
 }
 
 function handleKeydown(event: KeyboardEvent) {
@@ -84,6 +150,10 @@ onUnmounted(() => {
 });
 
 watch(selectedMedia, syncLightboxPlayback);
+watch(selectedMediaSrc, () => {
+  loadError.value = false;
+  syncLightboxPlayback();
+});
 </script>
 
 <template>
@@ -112,6 +182,7 @@ watch(selectedMedia, syncLightboxPlayback);
         @click="openMedia(media)"
       >
         <span class="media-reel-card__frame" aria-hidden="true">
+          <img v-if="resolveShowcaseMediaSources(media).poster" :src="resolveShowcaseMediaSources(media).poster" alt="" loading="lazy" />
           <i />
         </span>
         <small>{{ media.id.toUpperCase() }} / {{ media.sizeMB }}MB</small>
@@ -136,7 +207,9 @@ watch(selectedMedia, syncLightboxPlayback);
           <video
             v-if="selectedMediaSrc"
             ref="lightboxVideoRef"
+            :key="`${selectedMedia.id}-${quality}`"
             :src="selectedMediaSrc"
+            :poster="poster"
             :muted="isMuted"
             autoplay
             controls
@@ -145,12 +218,22 @@ watch(selectedMedia, syncLightboxPlayback);
             x5-video-player-type="h5"
             x5-video-orientation="portrait"
             :preload="policy.preload"
-            @loadedmetadata="syncLightboxPlayback"
+            @loadstart="handleLightboxLoadStart"
+            @loadedmetadata="handleLightboxLoadedMetadata"
             @playing="clearPlaybackBlock"
+            @error="handleLightboxError"
           />
           <div v-else class="media-lightbox__placeholder" aria-hidden="true">
+            <img v-if="poster" :src="poster" alt="" loading="eager" />
             <span>{{ isOutcome ? 'OUTCOME MEDIA SOURCE PENDING' : 'FPV MEDIA SOURCE PENDING' }}</span>
           </div>
+          <div v-if="isLoading" class="media-lightbox__status" aria-live="polite">
+            {{ language === 'zh' ? '媒体流接入中' : 'Loading media stream' }}
+          </div>
+          <button v-if="loadError" class="media-lightbox__playback-gate" type="button" @click="retryLightbox">
+            <span>{{ language === 'zh' ? '视频加载失败，点击重试' : 'Video failed. Tap to retry' }}</span>
+            <small>{{ language === 'zh' ? '当前会优先重试轻量预览版' : 'Retry uses the lightweight preview first' }}</small>
+          </button>
           <button v-if="playbackBlocked" class="media-lightbox__playback-gate" type="button" @click="playLightboxFromGate">
             <span>{{ language === 'zh' ? '点击播放素材' : 'Tap to play media' }}</span>
             <small>{{ playbackReasonText || (language === 'zh' ? '浏览器需要一次手势解锁' : 'Gesture required by browser') }}</small>
@@ -159,8 +242,11 @@ watch(selectedMedia, syncLightboxPlayback);
             <small>{{ selectedMedia.id.toUpperCase() }}</small>
             <h2>{{ pickText(selectedMedia.title, language) }}</h2>
             <p>{{ selectedMedia.originalName }} / {{ selectedMedia.sizeMB }}MB</p>
-            <button type="button" @click="isMuted = !isMuted">
+            <button type="button" @click="toggleLightboxSound">
               {{ isMuted ? (language === 'zh' ? '开启声音' : 'Sound on') : (language === 'zh' ? '静音播放' : 'Mute') }}
+            </button>
+            <button type="button" :disabled="!canSwitchToFull" @click="playFullVersion">
+              {{ isFullActive ? (language === 'zh' ? '高清播放中' : 'Full active') : (language === 'zh' ? '查看高清完整版本' : 'Load full version') }}
             </button>
           </div>
         </div>

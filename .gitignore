@@ -32,6 +32,7 @@ public/videos/**/*.mp4
 public/videos/**/*.m4v
 public/videos/**/*.mov
 public/videos/**/*.webm
+public/media-variants/
 
 # local environment
 .env

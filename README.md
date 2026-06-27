@@ -42,13 +42,22 @@ npm run preview
 
 `public/media/**/*.mp4` 和 `public/videos/**/*.mp4` 默认不进入 Git。当前视频文件有多个超过 GitHub 普通仓库单文件限制，直接提交会导致 push 失败。
 
-发布站点通过 GitHub Releases 显示真实视频。`scripts/generate-release-media-manifest.ps1` 会生成每个 release asset 的版本号，GitHub Actions 会自动注入 `VITE_GITHUB_OWNER` 并把播放地址解析为：
+生产优先使用腾讯云 COS + CDN 的 `poster/preview/full` 三版本资源；未配置 CDN 时回退 GitHub Releases。`scripts/prepare-media-variants.ps1` 负责生成轻量变体和 `src/data/mediaVariantsManifest.ts`。
+
+```powershell
+.\scripts\prepare-media-variants.ps1
+.\scripts\upload-cdn-media.ps1 -Bucket "<bucket-name>" -Region "ap-guangzhou"
+```
+
+GitHub Releases 仍作为兜底视频源。`scripts/generate-release-media-manifest.ps1` 会生成每个 release asset 的版本号，GitHub Actions 会自动注入 `VITE_GITHUB_OWNER` 并把播放地址解析为：
 
 ```text
 https://github.com/<owner>/jiangrui-ai-flight-lab/releases/download/media-current/<assetName>?v=<fileVersion>
 ```
 
-开发环境会继续优先使用本地视频；生产环境如果 Release asset 尚未上传，会显示设计占位，不请求缺失 MP4。
+开发环境会继续优先使用本地视频或本地 `public/media-variants`；生产环境如果 CDN 和 Release asset 尚未上传，会显示设计占位，不请求缺失 MP4。
+
+移动端、微信、弱网默认只加载 poster 或 preview；高清 full 版本只能通过“查看高清完整版本”按钮手动加载。
 
 ## PWA 策略
 

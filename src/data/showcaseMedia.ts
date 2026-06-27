@@ -1,4 +1,5 @@
-﻿import { resolveReleaseMediaSource, showcaseReleaseAssetName } from './releaseMedia';
+﻿import { resolveAdaptiveMediaSources, type AdaptiveMediaItem } from './adaptiveMedia';
+import { showcaseReleaseAssetName } from './releaseMedia';
 import { publicAsset } from '../utils/publicAsset';
 
 export type ShowcaseMediaGroup = 'fpv-flight-video' | 'deal-results-showcase';
@@ -8,6 +9,15 @@ export type ShowcaseMediaItem = {
   group: ShowcaseMediaGroup;
   kind: 'video';
   src: string;
+  posterSrc?: string;
+  previewSrc?: string;
+  fullSrc?: string;
+  cdnPoster?: string;
+  cdnPreview?: string;
+  cdnFull?: string;
+  releasePreview?: string;
+  releaseFull?: string;
+  variantHash?: string;
   originalName: string;
   title: {
     zh: string;
@@ -288,13 +298,34 @@ export function getFeaturedShowcaseMedia(group: ShowcaseMediaGroup) {
   return getShowcaseMedia(group).find((item) => item.featured) ?? getShowcaseMedia(group)[0];
 }
 
-export function resolveShowcaseMediaSrc(item?: ShowcaseMediaItem) {
+export function toAdaptiveShowcaseMedia(item?: ShowcaseMediaItem): AdaptiveMediaItem | undefined {
   if (!item) return undefined;
 
-  return resolveReleaseMediaSource({
-    localSrc: item.src,
-    assetName: showcaseReleaseAssetName(item.group, item.id),
-    fallbackSrc: item.streamUrl ?? item.fallbackSrc,
-  });
+  return {
+    key: `${item.group}/${item.id}`,
+    id: item.id,
+    group: item.group,
+    posterSrc: item.posterSrc ?? item.poster,
+    previewSrc: item.previewSrc,
+    fullSrc: item.fullSrc ?? item.src,
+    cdnPoster: item.cdnPoster,
+    cdnPreview: item.cdnPreview,
+    cdnFull: item.cdnFull,
+    releasePreviewAsset: item.releasePreview,
+    releaseFullAsset: item.releaseFull ?? showcaseReleaseAssetName(item.group, item.id),
+    originalName: item.originalName,
+    sizeMB: item.sizeMB,
+  };
+}
+
+export function resolveShowcaseMediaSources(item?: ShowcaseMediaItem) {
+  return resolveAdaptiveMediaSources(toAdaptiveShowcaseMedia(item));
+}
+
+export function resolveShowcaseMediaSrc(item?: ShowcaseMediaItem, quality: 'preview' | 'full' = 'preview') {
+  const sources = resolveShowcaseMediaSources(item);
+  if (quality === 'full') return sources.full;
+
+  return sources.preview;
 }
 

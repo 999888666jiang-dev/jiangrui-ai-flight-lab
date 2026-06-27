@@ -327,3 +327,13 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - 生产播放源通过 `VITE_GITHUB_OWNER`、仓库名、release tag 和 asset name 静态生成，开发环境继续使用本地 `public/media`。
 - Release URL 必须带版本 query，版本可用文件 size + mtime 生成，避免替换同名资产后浏览器继续用旧缓存。
 - Service Worker 必须跳过 `/releases/download/` 和所有视频格式，避免 CacheStorage 爆配额。
+
+## Pattern: 多版本媒体分发与移动端视频降级
+
+- 视频型高级作品站不能让手机和微信默认加载原始大 MP4。每个公开视频应拆成 `poster.webp`、`preview.mp4`、`full.mp4` 三层。
+- `poster` 负责首屏、列表卡片、弱网兜底；`preview` 负责默认自动播放；`full` 只在用户主动选择高清完整版本后加载。
+- 播放源解析应集中在一个 adaptive media 层：生产优先 CDN，缺失时回退 GitHub Releases，本地开发再使用 `public` 源。
+- 移动端、微信、弱网、`saveData` 不允许自动请求 full。preview 缺失时显示设计占位，不要“为了能播”直接拉 100MB+ 原片。
+- Reel/图库类页面的卡片首屏只加载 poster，点击后才创建或赋值 video source；灯箱关闭和路由离开时释放移动端 video src。
+- CDN 媒体使用 hash 文件名配长期缓存；Release 兜底使用稳定 asset 名 + `?v=<hash>` 刷新缓存。
+- QA 必须断言请求行为：移动首屏不请求 full、列表首屏不请求 MP4、高清按钮点击后才请求 full，而不仅是截图看起来正常。

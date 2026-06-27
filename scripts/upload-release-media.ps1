@@ -69,6 +69,50 @@ function Add-ReleaseAsset {
   $assets.Add($target)
 }
 
+function Add-ReleaseVariantAssets {
+  $variantRoot = Join-Path $projectRoot "public/media-variants/ai-flight-lab"
+  if (-not (Test-Path -LiteralPath $variantRoot)) {
+    Write-Warning "Missing media variant folder: $variantRoot"
+    return
+  }
+
+  $resolvedVariantRoot = (Resolve-Path -LiteralPath $variantRoot).Path
+
+  Get-ChildItem -LiteralPath $variantRoot -Recurse -File |
+    Where-Object { $_.Extension -match '^\.(webp|mp4|m4v|mov)$' } |
+    Sort-Object FullName |
+    ForEach-Object {
+      $relative = $_.FullName.Substring($resolvedVariantRoot.Length).TrimStart([char[]]@('\', '/')) -replace "\\", "/"
+      $parts = $relative -split "/"
+      if ($parts.Count -lt 3) {
+        return
+      }
+
+      $group = $parts[0]
+      $id = $parts[1]
+      $name = $_.Name
+      $kind = $null
+      $extension = $_.Extension.ToLowerInvariant()
+
+      if ($name -match "\.poster\.[^.]+\.webp$") {
+        $kind = "poster"
+        $extension = ".webp"
+      } elseif ($name -match "\.preview\.[^.]+\.mp4$") {
+        $kind = "preview"
+        $extension = ".mp4"
+      } elseif ($name -match "\.full\.[^.]+\.mp4$") {
+        $kind = "full"
+        $extension = ".mp4"
+      }
+
+      if (-not $kind) {
+        return
+      }
+
+      Add-ReleaseAsset -SourcePath $_.FullName -AssetName "$group`__$id`__$kind$extension"
+    }
+}
+
 Add-ReleaseAsset `
   -SourcePath (Join-Path $projectRoot "public/videos/fpv-lab-background.mp4") `
   -AssetName "video-bay__fpv-lab-background.mp4"
@@ -93,6 +137,8 @@ foreach ($group in $groups) {
       Add-ReleaseAsset -SourcePath $_.FullName -AssetName $assetName
     }
 }
+
+Add-ReleaseVariantAssets
 
 if ($assets.Count -eq 0) {
   throw "No media files found to upload."

@@ -5,6 +5,7 @@ env:
   VITE_GITHUB_OWNER: ${{ github.repository_owner }}
   VITE_GITHUB_REPOSITORY_NAME: jiangrui-ai-flight-lab
   VITE_GITHUB_MEDIA_TAG: media-current
+  VITE_MEDIA_CDN_BASE_URL: ${{ vars.VITE_MEDIA_CDN_BASE_URL }}
 
 on:
   push:
