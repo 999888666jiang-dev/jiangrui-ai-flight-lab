@@ -45,7 +45,21 @@ const introCopy = computed(() =>
       },
 );
 
+const preloadedPages = new Set<string>();
+
+function preloadCertificatePages(item: CertificateGalleryItem) {
+  item.pages.forEach((src) => {
+    if (preloadedPages.has(src)) return;
+    preloadedPages.add(src);
+
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = src;
+  });
+}
+
 function openCertificate(item: CertificateGalleryItem, event: MouseEvent | KeyboardEvent) {
+  preloadCertificatePages(item);
   selectedCertificate.value = item;
   selectedPageIndex.value = 0;
   lastTrigger.value = event.currentTarget as HTMLElement;
@@ -149,7 +163,7 @@ onUnmounted(() => {
           </button>
           <div class="certificate-reader__page">
             <div class="certificate-reader__sheet">
-              <img v-if="selectedPage" :src="selectedPage" :alt="selectedCertificate.title" />
+              <img v-if="selectedPage" :key="selectedPage" :src="selectedPage" :alt="selectedCertificate.title" loading="eager" decoding="async" />
             </div>
           </div>
           <aside class="certificate-reader__meta">
