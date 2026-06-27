@@ -11,14 +11,19 @@ export type AdaptiveMediaItem = {
   group: AdaptiveMediaGroup;
   title?: string;
   posterSrc?: string;
+  teaserSrc?: string;
   previewSrc?: string;
   fullSrc?: string;
   cdnPoster?: string;
+  cdnTeaser?: string;
   cdnPreview?: string;
   cdnFull?: string;
   cdnPosterAsset?: string;
+  cdnTeaserAsset?: string;
   cdnPreviewAsset?: string;
   cdnFullAsset?: string;
+  releasePosterAsset?: string;
+  releaseTeaserAsset?: string;
   releasePreviewAsset?: string;
   releaseFullAsset?: string;
   originalName?: string;
@@ -27,8 +32,10 @@ export type AdaptiveMediaItem = {
 
 export type ResolvedAdaptiveMediaSources = {
   poster?: string;
+  teaser?: string;
   preview?: string;
   full?: string;
+  hasTeaser: boolean;
   hasPreview: boolean;
   hasFull: boolean;
 };
@@ -55,24 +62,37 @@ function firstDefined(...values: Array<string | undefined>) {
 
 export function resolveAdaptiveMediaSources(item?: AdaptiveMediaItem): ResolvedAdaptiveMediaSources {
   if (!item) {
-    return { hasPreview: false, hasFull: false };
+    return { hasTeaser: false, hasPreview: false, hasFull: false };
   }
 
   const variant = mediaVariantManifest[item.key];
+  const canUseVariantReleaseAssets = item.group !== 'video-bay';
   const cdnPosterAsset = item.cdnPosterAsset ?? variant?.posterAsset;
+  const cdnTeaserAsset = item.cdnTeaserAsset ?? variant?.teaserAsset;
   const cdnPreviewAsset = item.cdnPreviewAsset ?? variant?.previewAsset;
   const cdnFullAsset = item.cdnFullAsset ?? variant?.fullAsset;
 
   const poster = firstDefined(
     item.cdnPoster,
     mediaCdnAssetUrl(cdnPosterAsset),
+    item.releasePosterAsset ? githubReleaseAssetUrl(item.releasePosterAsset) : undefined,
+    canUseVariantReleaseAssets && variant?.releasePosterAsset ? githubReleaseAssetUrl(variant.releasePosterAsset) : undefined,
     localVariantSource(variant?.posterAsset),
     localSource(item.posterSrc),
+  );
+  const teaser = firstDefined(
+    item.cdnTeaser,
+    mediaCdnAssetUrl(cdnTeaserAsset),
+    item.releaseTeaserAsset ? githubReleaseAssetUrl(item.releaseTeaserAsset) : undefined,
+    canUseVariantReleaseAssets && variant?.releaseTeaserAsset ? githubReleaseAssetUrl(variant.releaseTeaserAsset) : undefined,
+    localVariantSource(variant?.teaserAsset),
+    localSource(item.teaserSrc),
   );
   const preview = firstDefined(
     item.cdnPreview,
     mediaCdnAssetUrl(cdnPreviewAsset),
     item.releasePreviewAsset ? githubReleaseAssetUrl(item.releasePreviewAsset) : undefined,
+    canUseVariantReleaseAssets && variant?.releasePreviewAsset ? githubReleaseAssetUrl(variant.releasePreviewAsset) : undefined,
     localVariantSource(variant?.previewAsset),
     localSource(item.previewSrc),
   );
@@ -80,14 +100,17 @@ export function resolveAdaptiveMediaSources(item?: AdaptiveMediaItem): ResolvedA
     item.cdnFull,
     mediaCdnAssetUrl(cdnFullAsset),
     item.releaseFullAsset ? githubReleaseAssetUrl(item.releaseFullAsset) : undefined,
+    canUseVariantReleaseAssets && variant?.releaseFullAsset ? githubReleaseAssetUrl(variant.releaseFullAsset) : undefined,
     localVariantSource(variant?.fullAsset),
     localSource(item.fullSrc),
   );
 
   return {
     poster,
+    teaser,
     preview,
     full,
+    hasTeaser: Boolean(teaser),
     hasPreview: Boolean(preview),
     hasFull: Boolean(full),
   };

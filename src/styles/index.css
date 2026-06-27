@@ -918,6 +918,129 @@ a {
   transform: translate(-50%, -50%);
 }
 
+.video-preview-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(85, 247, 231, 0.18), transparent 36%),
+    linear-gradient(135deg, rgba(85, 247, 231, 0.08), rgba(255, 255, 255, 0.02)),
+    #020507;
+}
+
+.video-preview-tile--outcome {
+  --slot-rgb: 255, 209, 102;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 209, 102, 0.16), transparent 38%),
+    linear-gradient(135deg, rgba(255, 209, 102, 0.1), rgba(85, 247, 231, 0.04)),
+    #020507;
+}
+
+.video-preview-tile img,
+.video-preview-tile video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.08) saturate(0.9) brightness(0.62);
+  opacity: 0.82;
+  transform: scale(1.02);
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease,
+    transform 240ms ease;
+}
+
+.video-preview-tile video {
+  z-index: 1;
+  opacity: 0;
+}
+
+.video-preview-tile--playing video {
+  opacity: 0.96;
+  filter: contrast(1.1) saturate(1) brightness(0.74);
+}
+
+.video-preview-tile__play {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(var(--slot-rgb, 85, 247, 231), 0.42);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 44%, rgba(var(--slot-rgb, 85, 247, 231), 0.86) 44% 56%, transparent 56%),
+    rgba(2, 5, 7, 0.68);
+  box-shadow:
+    0 0 26px rgba(var(--slot-rgb, 85, 247, 231), 0.2),
+    inset 0 0 20px rgba(var(--slot-rgb, 85, 247, 231), 0.08);
+  transform: translate(-50%, -50%);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.video-preview-tile__scan {
+  position: absolute;
+  inset: 18px;
+  z-index: 3;
+  border: 1px solid rgba(var(--slot-rgb, 85, 247, 231), 0.2);
+  pointer-events: none;
+}
+
+.video-preview-tile__badge {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  border: 1px solid rgba(var(--slot-rgb, 85, 247, 231), 0.26);
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: rgba(233, 255, 251, 0.78);
+  background: rgba(2, 5, 7, 0.62);
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.video-card:hover .video-preview-tile img,
+.video-card:focus-visible .video-preview-tile img,
+.video-preview-tile--playing img {
+  opacity: 0.46;
+  transform: scale(1.06);
+}
+
+.video-card:hover .video-preview-tile__play,
+.video-card:focus-visible .video-preview-tile__play,
+.media-reel-card:hover .video-preview-tile__play,
+.media-reel-card:focus-visible .video-preview-tile__play {
+  border-color: rgba(var(--slot-rgb, 85, 247, 231), 0.72);
+  box-shadow:
+    0 0 34px rgba(var(--slot-rgb, 85, 247, 231), 0.3),
+    inset 0 0 24px rgba(var(--slot-rgb, 85, 247, 231), 0.12);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.video-card:hover .video-preview-tile__badge,
+.video-card:focus-visible .video-preview-tile__badge,
+.media-reel-card:hover .video-preview-tile__badge,
+.media-reel-card:focus-visible .video-preview-tile__badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .video-card__body {
   display: grid;
   gap: 10px;
@@ -3067,6 +3190,7 @@ body {
   position: relative;
   display: grid;
   min-height: 260px;
+  scroll-margin-top: 180px;
   overflow: hidden;
   border: 1px solid rgba(var(--reel-rgb), 0.2);
   border-radius: 8px;
@@ -3131,7 +3255,8 @@ body {
   pointer-events: none;
 }
 
-.media-reel-card__frame img {
+.media-reel-card__frame img,
+.media-reel-card__frame video {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -3147,9 +3272,16 @@ body {
 }
 
 .media-reel-card:hover .media-reel-card__frame img,
-.media-reel-card:focus-visible .media-reel-card__frame img {
+.media-reel-card:hover .media-reel-card__frame video,
+.media-reel-card:focus-visible .media-reel-card__frame img,
+.media-reel-card:focus-visible .media-reel-card__frame video {
   opacity: 0.92;
   transform: scale(1.06);
+}
+
+.media-reel-card__frame.video-preview-tile--playing video {
+  z-index: 1;
+  opacity: 0.96;
 }
 
 .media-reel-card__frame::before {
@@ -3172,7 +3304,7 @@ body {
   box-shadow: 0 0 22px rgba(var(--reel-rgb), 0.24);
 }
 
-.media-reel-card__frame i {
+.media-reel-card__frame .video-preview-tile__scan {
   position: absolute;
   inset: 18px;
   z-index: 3;

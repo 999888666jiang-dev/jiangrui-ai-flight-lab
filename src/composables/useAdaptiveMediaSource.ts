@@ -19,6 +19,7 @@ export function useAdaptiveMediaSource(media: Ref<AdaptiveMediaItem | undefined>
       !profile.value.isWeChat,
   );
   const poster = computed(() => sources.value.poster);
+  const teaserSrc = computed(() => sources.value.teaser);
   const previewSrc = computed(() => sources.value.preview);
   const fullSrc = computed(() => sources.value.full);
   const defaultSrc = computed(() => previewSrc.value ?? (canUseFullAsInitialSource.value ? fullSrc.value : undefined));
@@ -124,6 +125,7 @@ export function useAdaptiveMediaSource(media: Ref<AdaptiveMediaItem | undefined>
     quality,
     sources,
     poster,
+    teaserSrc,
     previewSrc,
     fullSrc,
     activeSrc,

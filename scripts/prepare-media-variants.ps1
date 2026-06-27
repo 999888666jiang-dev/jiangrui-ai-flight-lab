@@ -5,6 +5,7 @@ param(
   [string]$FfprobePath = "",
   [ValidateSet("copy", "standardize")]
   [string]$FullMode = "copy",
+  [double]$TeaserSeconds = 3,
   [switch]$Force
 )
 
@@ -156,21 +157,55 @@ foreach ($input in $inputs) {
   $outDir = Join-Path $variantRootPath (Join-Path $cdnPrefix (Join-Path $input.Group $input.Id))
   New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 
+  $posterSeekSeconds = if ($metadata.Duration -gt 0) {
+    [math]::Min(3, [math]::Max(1, [math]::Round($metadata.Duration * 0.15, 2)))
+  } else {
+    1
+  }
+  $teaserDurationSeconds = if ($metadata.Duration -gt 0) {
+    [math]::Min($TeaserSeconds, [math]::Max(0.6, $metadata.Duration))
+  } else {
+    $TeaserSeconds
+  }
+  $posterSeek = $posterSeekSeconds.ToString("0.##", [Globalization.CultureInfo]::InvariantCulture)
+  $teaserDuration = $teaserDurationSeconds.ToString("0.##", [Globalization.CultureInfo]::InvariantCulture)
+
   $posterName = "$($input.Id).poster.$hash.webp"
+  $teaserName = "$($input.Id).teaser.$hash.mp4"
   $previewName = "$($input.Id).preview.$hash.mp4"
   $fullName = "$($input.Id).full.$hash.mp4"
 
   $posterPath = Join-Path $outDir $posterName
+  $teaserPath = Join-Path $outDir $teaserName
   $previewPath = Join-Path $outDir $previewName
   $fullPath = Join-Path $outDir $fullName
 
   if (Test-NeedsOutput -Path $posterPath) {
     Invoke-FFmpeg -Arguments @(
-      "-y", "-ss", "00:00:01", "-i", $input.SourcePath,
+      "-y", "-ss", $posterSeek, "-i", $input.SourcePath,
       "-frames:v", "1",
       "-vf", "scale=w='trunc(min(1280,iw)/2)*2':h=-2",
       "-q:v", "70",
       $posterPath
+    )
+  }
+
+  if (Test-NeedsOutput -Path $teaserPath) {
+    Invoke-FFmpeg -Arguments @(
+      "-y", "-ss", "0", "-t", $teaserDuration, "-i", $input.SourcePath,
+      "-map", "0:v:0",
+      "-an",
+      "-vf", "scale=w='trunc(min(960,iw)/2)*2':h=-2",
+      "-c:v", "libx264",
+      "-profile:v", "baseline",
+      "-preset", "veryfast",
+      "-crf", "30",
+      "-maxrate", "700k",
+      "-bufsize", "1400k",
+      "-r", "25",
+      "-pix_fmt", "yuv420p",
+      "-movflags", "+faststart",
+      $teaserPath
     )
   }
 
@@ -230,13 +265,15 @@ foreach ($input in $inputs) {
   }
 
   $posterAsset = "$cdnPrefix/$($input.Group)/$($input.Id)/$posterName"
+  $teaserAsset = "$cdnPrefix/$($input.Group)/$($input.Id)/$teaserName"
   $previewAsset = "$cdnPrefix/$($input.Group)/$($input.Id)/$previewName"
   $fullAsset = "$cdnPrefix/$($input.Group)/$($input.Id)/$fullName"
   $releasePosterAsset = "$($input.Group)__$($input.Id)__poster.webp"
+  $releaseTeaserAsset = "$($input.Group)__$($input.Id)__teaser.mp4"
   $releasePreviewAsset = "$($input.Group)__$($input.Id)__preview.mp4"
   $releaseFullAsset = "$($input.Group)__$($input.Id)__full.mp4"
 
-  foreach ($asset in @($posterAsset, $previewAsset, $fullAsset, $releasePosterAsset, $releasePreviewAsset, $releaseFullAsset)) {
+  foreach ($asset in @($posterAsset, $teaserAsset, $previewAsset, $fullAsset, $releasePosterAsset, $releaseTeaserAsset, $releasePreviewAsset, $releaseFullAsset)) {
     $versions[$asset] = $hash
   }
 
@@ -245,9 +282,11 @@ foreach ($input in $inputs) {
     Group = $input.Group
     Id = $input.Id
     PosterAsset = $posterAsset
+    TeaserAsset = $teaserAsset
     PreviewAsset = $previewAsset
     FullAsset = $fullAsset
     ReleasePosterAsset = $releasePosterAsset
+    ReleaseTeaserAsset = $releaseTeaserAsset
     ReleasePreviewAsset = $releasePreviewAsset
     ReleaseFullAsset = $releaseFullAsset
     Width = $metadata.Width
@@ -270,9 +309,11 @@ $lines.Add("  key: string;")
 $lines.Add("  group: string;")
 $lines.Add("  id: string;")
 $lines.Add("  posterAsset?: string;")
+$lines.Add("  teaserAsset?: string;")
 $lines.Add("  previewAsset?: string;")
 $lines.Add("  fullAsset?: string;")
 $lines.Add("  releasePosterAsset?: string;")
+$lines.Add("  releaseTeaserAsset?: string;")
 $lines.Add("  releasePreviewAsset?: string;")
 $lines.Add("  releaseFullAsset?: string;")
 $lines.Add("  width?: number;")
@@ -288,9 +329,11 @@ foreach ($entry in ($entries | Sort-Object Key)) {
   $lines.Add("    group: '$(Escape-TsString $entry.Group)',")
   $lines.Add("    id: '$(Escape-TsString $entry.Id)',")
   $lines.Add("    posterAsset: '$(Escape-TsString $entry.PosterAsset)',")
+  $lines.Add("    teaserAsset: '$(Escape-TsString $entry.TeaserAsset)',")
   $lines.Add("    previewAsset: '$(Escape-TsString $entry.PreviewAsset)',")
   $lines.Add("    fullAsset: '$(Escape-TsString $entry.FullAsset)',")
   $lines.Add("    releasePosterAsset: '$(Escape-TsString $entry.ReleasePosterAsset)',")
+  $lines.Add("    releaseTeaserAsset: '$(Escape-TsString $entry.ReleaseTeaserAsset)',")
   $lines.Add("    releasePreviewAsset: '$(Escape-TsString $entry.ReleasePreviewAsset)',")
   $lines.Add("    releaseFullAsset: '$(Escape-TsString $entry.ReleaseFullAsset)',")
   $lines.Add("    width: $($entry.Width),")

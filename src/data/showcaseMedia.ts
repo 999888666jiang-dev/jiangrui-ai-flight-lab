@@ -10,11 +10,15 @@ export type ShowcaseMediaItem = {
   kind: 'video';
   src: string;
   posterSrc?: string;
+  teaserSrc?: string;
   previewSrc?: string;
   fullSrc?: string;
   cdnPoster?: string;
+  cdnTeaser?: string;
   cdnPreview?: string;
   cdnFull?: string;
+  releasePoster?: string;
+  releaseTeaser?: string;
   releasePreview?: string;
   releaseFull?: string;
   variantHash?: string;
@@ -306,11 +310,15 @@ export function toAdaptiveShowcaseMedia(item?: ShowcaseMediaItem): AdaptiveMedia
     id: item.id,
     group: item.group,
     posterSrc: item.posterSrc ?? item.poster,
+    teaserSrc: item.teaserSrc,
     previewSrc: item.previewSrc,
     fullSrc: item.fullSrc ?? item.src,
     cdnPoster: item.cdnPoster,
+    cdnTeaser: item.cdnTeaser,
     cdnPreview: item.cdnPreview,
     cdnFull: item.cdnFull,
+    releasePosterAsset: item.releasePoster,
+    releaseTeaserAsset: item.releaseTeaser,
     releasePreviewAsset: item.releasePreview,
     releaseFullAsset: item.releaseFull ?? showcaseReleaseAssetName(item.group, item.id),
     originalName: item.originalName,

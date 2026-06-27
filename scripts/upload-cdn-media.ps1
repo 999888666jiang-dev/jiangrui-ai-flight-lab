@@ -8,6 +8,8 @@ param(
   [string]$CdnBaseUrl = $env:VITE_MEDIA_CDN_BASE_URL,
   [string]$ReportFile = "",
   [string]$CoscliPath = "",
+  [ValidateSet("light", "all")]
+  [string]$VariantMode = "light",
   [switch]$WhatIf
 )
 
@@ -88,6 +90,7 @@ if (-not $ReportFile) {
 
 $files = @(Get-ChildItem -LiteralPath $sourcePath -Recurse -File |
   Where-Object { $_.Extension -match '^\.(webp|mp4|m4v|mov)$' } |
+  Where-Object { $VariantMode -eq "all" -or $_.Name -notmatch "\.full\.[^.]+\.mp4$" } |
   Sort-Object FullName)
 
 if ($files.Count -eq 0) {

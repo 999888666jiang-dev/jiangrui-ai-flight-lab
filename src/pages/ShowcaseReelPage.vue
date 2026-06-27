@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import VideoPreviewTile from '../components/media/VideoPreviewTile.vue';
 import { useAdaptiveMediaSource } from '../composables/useAdaptiveMediaSource';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { useVideoPolicy } from '../composables/useVideoPolicy';
@@ -73,6 +74,10 @@ function openMedia(media: ShowcaseMediaItem) {
   loadError.value = false;
   selectedMedia.value = media;
   isMuted.value = true;
+}
+
+function mediaPreviewSources(media: ShowcaseMediaItem) {
+  return resolveShowcaseMediaSources(media);
 }
 
 function closeMedia() {
@@ -210,10 +215,12 @@ watch(selectedMediaSrc, () => {
         :style="{ '--media-index': index }"
         @click="openMedia(media)"
       >
-        <span class="media-reel-card__frame" aria-hidden="true">
-          <img v-if="resolveShowcaseMediaSources(media).poster" :src="resolveShowcaseMediaSources(media).poster" alt="" loading="lazy" />
-          <i />
-        </span>
+        <VideoPreviewTile
+          class="media-reel-card__frame"
+          :poster="mediaPreviewSources(media).poster"
+          :teaser="mediaPreviewSources(media).teaser"
+          :variant="isOutcome ? 'outcome' : 'flight'"
+        />
         <small>{{ media.id.toUpperCase() }} / {{ media.sizeMB }}MB</small>
         <strong>{{ pickText(media.title, language) }}</strong>
         <span>{{ media.originalName }}</span>

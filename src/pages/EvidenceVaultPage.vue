@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { onUnmounted, ref } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import VaultPortalOverlay from '../components/effects/VaultPortalOverlay.vue';
+import VideoPreviewTile from '../components/media/VideoPreviewTile.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { certificate, contactItems, evidenceItems, type EvidenceItem } from '../data/siteContent';
+import { getShowcaseMedia, resolveShowcaseMediaSources, type ShowcaseMediaGroup } from '../data/showcaseMedia';
 import { publicAsset } from '../utils/publicAsset';
 
 const { language, t } = useLanguage();
@@ -12,6 +14,11 @@ const { profile } = useEnvironment();
 const router = useRouter();
 const resumePdf = publicAsset('documents/jiangrui-uav-tester-resume.pdf');
 const wechatQr = publicAsset('images/wechat-qr.jpg');
+const vaultPreviewSeed = Math.floor(Math.random() * 1000);
+const mediaShowcaseGroups: Partial<Record<string, ShowcaseMediaGroup>> = {
+  'fpv-flight-video': 'fpv-flight-video',
+  'deal-results-showcase': 'deal-results-showcase',
+};
 const portal = ref<
   | {
       item: EvidenceItem;
@@ -25,6 +32,19 @@ const portal = ref<
   | undefined
 >();
 let portalTimer = 0;
+
+const evidencePreviewSources = computed(() =>
+  evidenceItems.map((item, index) => {
+    const group = mediaShowcaseGroups[item.slug];
+    if (!group) return undefined;
+
+    const media = getShowcaseMedia(group);
+    if (media.length === 0) return undefined;
+
+    const selected = media[(vaultPreviewSeed + index * 7) % media.length];
+    return resolveShowcaseMediaSources(selected);
+  }),
+);
 
 function openShowcase(item: EvidenceItem, event: MouseEvent | KeyboardEvent) {
   if (portal.value) return;
@@ -116,7 +136,15 @@ onUnmounted(() => {
         @keydown.enter="openShowcase(item, $event)"
         @keydown.space.prevent="openShowcase(item, $event)"
       >
-        <div class="video-card__poster" aria-hidden="true">
+        <VideoPreviewTile
+          v-if="evidencePreviewSources[index]?.poster"
+          class="video-card__poster"
+          :poster="evidencePreviewSources[index]?.poster"
+          :teaser="evidencePreviewSources[index]?.teaser"
+          :variant="item.theme === 'outcome' ? 'outcome' : 'flight'"
+          :eager="index < 2"
+        />
+        <div v-else class="video-card__poster" aria-hidden="true">
           <span />
         </div>
         <div class="video-card__body">

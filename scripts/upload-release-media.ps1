@@ -2,7 +2,10 @@ param(
   [string]$Tag = "media-current",
   [string]$Repository = "jiangrui-ai-flight-lab",
   [string]$Owner = "",
-  [string]$StagingDir = ".release-media"
+  [string]$StagingDir = ".release-media",
+  [ValidateSet("light", "all")]
+  [string]$VariantMode = "light",
+  [switch]$SkipOriginalMedia
 )
 
 $ErrorActionPreference = "Stop"
@@ -97,10 +100,16 @@ function Add-ReleaseVariantAssets {
       if ($name -match "\.poster\.[^.]+\.webp$") {
         $kind = "poster"
         $extension = ".webp"
+      } elseif ($name -match "\.teaser\.[^.]+\.mp4$") {
+        $kind = "teaser"
+        $extension = ".mp4"
       } elseif ($name -match "\.preview\.[^.]+\.mp4$") {
         $kind = "preview"
         $extension = ".mp4"
       } elseif ($name -match "\.full\.[^.]+\.mp4$") {
+        if ($VariantMode -ne "all") {
+          return
+        }
         $kind = "full"
         $extension = ".mp4"
       }
@@ -113,29 +122,33 @@ function Add-ReleaseVariantAssets {
     }
 }
 
-Add-ReleaseAsset `
-  -SourcePath (Join-Path $projectRoot "public/videos/fpv-lab-background.mp4") `
-  -AssetName "video-bay__fpv-lab-background.mp4"
+if (-not $SkipOriginalMedia) {
+  Add-ReleaseAsset `
+    -SourcePath (Join-Path $projectRoot "public/videos/fpv-lab-background.mp4") `
+    -AssetName "video-bay__fpv-lab-background.mp4"
+}
 
 $groups = @(
   @{ Group = "fpv-flight-video"; Path = "public/media/fpv-flight-video" },
   @{ Group = "deal-results-showcase"; Path = "public/media/deal-results-showcase" }
 )
 
-foreach ($group in $groups) {
-  $dir = Join-Path $projectRoot $group.Path
-  if (-not (Test-Path -LiteralPath $dir)) {
-    Write-Warning "Missing media folder: $dir"
-    continue
-  }
-
-  Get-ChildItem -LiteralPath $dir -File |
-    Where-Object { $_.Extension -match '^\.(mp4|m4v|mov|webm)$' } |
-    Sort-Object Name |
-    ForEach-Object {
-      $assetName = "$($group.Group)__$($_.BaseName)$($_.Extension.ToLowerInvariant())"
-      Add-ReleaseAsset -SourcePath $_.FullName -AssetName $assetName
+if (-not $SkipOriginalMedia) {
+  foreach ($group in $groups) {
+    $dir = Join-Path $projectRoot $group.Path
+    if (-not (Test-Path -LiteralPath $dir)) {
+      Write-Warning "Missing media folder: $dir"
+      continue
     }
+
+    Get-ChildItem -LiteralPath $dir -File |
+      Where-Object { $_.Extension -match '^\.(mp4|m4v|mov|webm)$' } |
+      Sort-Object Name |
+      ForEach-Object {
+        $assetName = "$($group.Group)__$($_.BaseName)$($_.Extension.ToLowerInvariant())"
+        Add-ReleaseAsset -SourcePath $_.FullName -AssetName $assetName
+      }
+  }
 }
 
 Add-ReleaseVariantAssets
