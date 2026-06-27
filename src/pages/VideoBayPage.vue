@@ -101,10 +101,12 @@ function playFromGate() {
 
 function playFullVersion() {
   const video = videoRef.value;
-  if (!video || !canSwitchToFull.value) return;
+  if (!canSwitchToFull.value) return;
 
-  resumeTime.value = video.currentTime || 0;
-  releaseVideoElement(video);
+  if (video) {
+    resumeTime.value = video.currentTime || 0;
+    releaseVideoElement(video);
+  }
   if (switchToFull()) {
     syncVideoPlayback();
   }

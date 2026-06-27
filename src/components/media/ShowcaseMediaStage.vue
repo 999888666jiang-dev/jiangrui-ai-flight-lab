@@ -137,10 +137,12 @@ function playFromGate() {
 }
 
 function playFullVersion() {
-  if (!videoRef.value || !canSwitchToFull.value) return;
+  if (!canSwitchToFull.value) return;
 
-  resumeTime.value = videoRef.value.currentTime || 0;
-  releaseVideoElement(videoRef.value);
+  if (videoRef.value) {
+    resumeTime.value = videoRef.value.currentTime || 0;
+    releaseVideoElement(videoRef.value);
+  }
   if (switchToFull()) {
     syncVideoPlayback();
   }
