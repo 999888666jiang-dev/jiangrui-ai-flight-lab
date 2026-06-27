@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import CertificateBookGallery from '../components/media/CertificateBookGallery.vue';
 import ShowcaseMediaStage from '../components/media/ShowcaseMediaStage.vue';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { evidenceItems } from '../data/siteContent';
@@ -18,6 +19,7 @@ const mediaGroup = computed<ShowcaseMediaGroup | undefined>(() => {
   if (item.value?.slug === 'fpv-flight-video' || item.value?.slug === 'deal-results-showcase') return item.value.slug;
   return undefined;
 });
+const isCertificateBook = computed(() => item.value?.slug === 'certificates-awards');
 const pageIndex = computed(() => (item.value ? evidenceItems.findIndex((entry) => entry.slug === item.value?.slug) : -1));
 const nextItem = computed(() => {
   if (pageIndex.value < 0) return evidenceItems[0];
@@ -52,6 +54,9 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
       </div>
     </header>
 
+    <CertificateBookGallery v-if="isCertificateBook" />
+
+    <template v-else>
     <div class="showcase-stage" :class="`showcase-stage--${item.detailLayout}`">
       <div class="showcase-stage__visual" :class="{ 'showcase-stage__visual--media': mediaGroup }" :aria-hidden="mediaGroup ? undefined : 'true'">
         <ShowcaseMediaStage
@@ -103,6 +108,7 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
         <p>{{ pickText(slot.hint, language) }}</p>
       </article>
     </div>
+    </template>
 
     <nav class="showcase-next" aria-label="Showcase navigation">
       <RouterLink to="/evidence-vault">

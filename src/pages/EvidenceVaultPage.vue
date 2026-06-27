@@ -5,6 +5,7 @@ import VaultPortalOverlay from '../components/effects/VaultPortalOverlay.vue';
 import VideoPreviewTile from '../components/media/VideoPreviewTile.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
+import { certificateGalleryItems } from '../data/certificatesManifest';
 import { certificate, contactItems, evidenceItems, type EvidenceItem } from '../data/siteContent';
 import { getShowcaseMedia, resolveShowcaseMediaSources, type ShowcaseMediaGroup } from '../data/showcaseMedia';
 import { publicAsset } from '../utils/publicAsset';
@@ -45,6 +46,10 @@ const evidencePreviewSources = computed(() =>
     return resolveShowcaseMediaSources(selected);
   }),
 );
+const certificateVaultPreview = computed(() => {
+  if (certificateGalleryItems.length === 0) return undefined;
+  return certificateGalleryItems[(vaultPreviewSeed + 11) % certificateGalleryItems.length];
+});
 
 function openShowcase(item: EvidenceItem, event: MouseEvent | KeyboardEvent) {
   if (portal.value) return;
@@ -144,6 +149,10 @@ onUnmounted(() => {
           :variant="item.theme === 'outcome' ? 'outcome' : 'flight'"
           :eager="index < 2"
         />
+        <figure v-else-if="item.slug === 'certificates-awards' && certificateVaultPreview" class="video-card__poster certificate-vault-preview" aria-hidden="true">
+          <img :src="certificateVaultPreview.cover" :alt="certificateVaultPreview.title" loading="lazy" decoding="async" />
+          <figcaption>{{ certificateVaultPreview.title }}</figcaption>
+        </figure>
         <div v-else class="video-card__poster" aria-hidden="true">
           <span />
         </div>

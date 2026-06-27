@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { RouterLink, useRoute, type RouteLocationRaw } from 'vue-router';
 import { useLanguage } from '../../composables/useLanguage';
+import FlightPillNav from './FlightPillNav.vue';
 
 const { t, toggleLanguage } = useLanguage();
 const route = useRoute();
@@ -25,6 +27,16 @@ function isNavActive(to: RouteLocationRaw) {
 
   return false;
 }
+
+const pillItems = computed(() =>
+  navItems.map((item) => ({
+    ...item,
+    label: t(item.key),
+    active: isNavActive(item.to),
+  })),
+);
+
+const activeNavLabel = computed(() => pillItems.value.find((item) => item.active)?.label ?? t('nav.about'));
 </script>
 
 <template>
@@ -37,13 +49,7 @@ function isNavActive(to: RouteLocationRaw) {
       </span>
     </RouterLink>
 
-    <nav class="nav-links" aria-label="Primary navigation">
-      <RouterLink v-for="item in navItems" :key="item.key" :to="item.to" custom v-slot="{ href, navigate }">
-        <a :href="href" :class="{ 'nav-link--active': isNavActive(item.to) }" @click="navigate">
-          {{ t(item.key) }}
-        </a>
-      </RouterLink>
-    </nav>
+    <FlightPillNav :items="pillItems" :active-label="activeNavLabel" />
 
     <button class="language-toggle" type="button" @click="toggleLanguage">
       {{ t('labels.language') }}

@@ -337,3 +337,19 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - Reel/图库类页面的卡片首屏只加载 poster，点击后才创建或赋值 video source；灯箱关闭和路由离开时释放移动端 video src。
 - CDN 媒体使用 hash 文件名配长期缓存；Release 兜底使用稳定 asset 名 + `?v=<hash>` 刷新缓存。
 - QA 必须断言请求行为：移动首屏不请求 full、列表首屏不请求 MP4、高清按钮点击后才请求 full，而不仅是截图看起来正常。
+## Pattern: Vue 药丸导航
+
+- 适用场景：沉浸式作品集、技术展示站、需要高级但轻量导航反馈的页面。
+- 实现原则：不要直接把 React Bits 的 React 组件塞进 Vue 项目；抽取交互原则，用 Vue Router + GSAP 原生实现。
+- 关键体验：active 胶囊明确当前页面；hover 圆形扩散提供液态反馈；双层文字上下切换增加精致感。
+- 响应式：桌面单行药丸组，平板横向滚动，小屏使用当前页胶囊 + 弹层菜单。
+- 降级：`prefers-reduced-motion`、微信、低性能设备只保留 active 和 hover 色彩，不执行强 GSAP 动效。
+
+## Pattern: PDF 证书转图书本展厅
+
+- 适用场景：证书、奖项、录用通知、荣誉材料等只需要公开展示、不希望提供源 PDF 下载的内容。
+- 资源管线：源 PDF 留在私有资源包；构建前用 Poppler 渲染 PNG/WebP；页面只读取图片 manifest。
+- 数据策略：一份 PDF 对应一个展示卡；多页 PDF 在打开态内部翻页，不拆成多个入口。
+- 视觉策略：用书脊、纸张底板、压印、细光边和轻微翻页替代重 HUD，降低“AI 模块感”。
+- 交互策略：卡片 hover 轻微开合；点击后书本打开；支持 Escape 关闭和方向键翻页。
+- 风险处理：中文路径用 ASCII 临时工作目录或安全构造；公开页面不暴露 PDF href/download；图片路径必须相对 public 根目录。

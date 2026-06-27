@@ -96,6 +96,7 @@
 
 @media (hover: none) {
   .button:hover,
+  .flight-pill:hover,
   .video-card:hover,
   .showcase-panel:hover,
   .media-reel-card:hover {
@@ -126,8 +127,12 @@
   .media-reel-card,
   .media-reel-grid--film .media-reel-card:nth-child(2n),
   .media-reel-grid--film .media-reel-card:nth-child(3n),
+  .certificate-book:hover .certificate-book__cover,
+  .certificate-book:focus-visible .certificate-book__cover,
+  .certificate-reader__book,
   .mission-tab--active,
-  .button:hover {
+  .button:hover,
+  .flight-pill:hover {
     transform: none !important;
   }
 }
