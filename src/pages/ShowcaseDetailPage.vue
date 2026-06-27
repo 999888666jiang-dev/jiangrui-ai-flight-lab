@@ -3,9 +3,11 @@ import { computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import CertificateBookGallery from '../components/media/CertificateBookGallery.vue';
 import ShowcaseMediaStage from '../components/media/ShowcaseMediaStage.vue';
+import UavHangarDome from '../components/media/UavHangarDome.vue';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { evidenceItems } from '../data/siteContent';
 import type { ShowcaseMediaGroup } from '../data/showcaseMedia';
+import { uavGalleryImages } from '../data/uavGalleryManifest';
 
 const route = useRoute();
 const { language } = useLanguage();
@@ -20,6 +22,7 @@ const mediaGroup = computed<ShowcaseMediaGroup | undefined>(() => {
   return undefined;
 });
 const isCertificateBook = computed(() => item.value?.slug === 'certificates-awards');
+const isUavGallery = computed(() => item.value?.slug === 'uav-platform-gallery');
 const pageIndex = computed(() => (item.value ? evidenceItems.findIndex((entry) => entry.slug === item.value?.slug) : -1));
 const nextItem = computed(() => {
   if (pageIndex.value < 0) return evidenceItems[0];
@@ -55,6 +58,7 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
     </header>
 
     <CertificateBookGallery v-if="isCertificateBook" />
+    <UavHangarDome v-else-if="isUavGallery" :images="uavGalleryImages" />
 
     <template v-else>
     <div class="showcase-stage" :class="`showcase-stage--${item.detailLayout}`">

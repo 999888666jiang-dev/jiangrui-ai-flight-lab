@@ -8,6 +8,7 @@ import { pickText, useLanguage } from '../composables/useLanguage';
 import { certificateGalleryItems } from '../data/certificatesManifest';
 import { certificate, contactItems, evidenceItems, type EvidenceItem } from '../data/siteContent';
 import { getShowcaseMedia, resolveShowcaseMediaSources, type ShowcaseMediaGroup } from '../data/showcaseMedia';
+import { uavGalleryImages } from '../data/uavGalleryManifest';
 import { publicAsset } from '../utils/publicAsset';
 
 const { language, t } = useLanguage();
@@ -49,6 +50,10 @@ const evidencePreviewSources = computed(() =>
 const certificateVaultPreview = computed(() => {
   if (certificateGalleryItems.length === 0) return undefined;
   return certificateGalleryItems[(vaultPreviewSeed + 11) % certificateGalleryItems.length];
+});
+const uavVaultPreview = computed(() => {
+  if (uavGalleryImages.length === 0) return undefined;
+  return uavGalleryImages[(vaultPreviewSeed + 5) % uavGalleryImages.length];
 });
 
 function openShowcase(item: EvidenceItem, event: MouseEvent | KeyboardEvent) {
@@ -152,6 +157,10 @@ onUnmounted(() => {
         <figure v-else-if="item.slug === 'certificates-awards' && certificateVaultPreview" class="video-card__poster certificate-vault-preview" aria-hidden="true">
           <img :src="certificateVaultPreview.cover" :alt="certificateVaultPreview.title" loading="lazy" decoding="async" />
           <figcaption>{{ certificateVaultPreview.title }}</figcaption>
+        </figure>
+        <figure v-else-if="item.slug === 'uav-platform-gallery' && uavVaultPreview" class="video-card__poster uav-vault-preview" aria-hidden="true">
+          <img :src="uavVaultPreview.displaySrc" :alt="pickText(uavVaultPreview.title, language)" loading="lazy" decoding="async" />
+          <figcaption>{{ pickText(uavVaultPreview.title, language) }}</figcaption>
         </figure>
         <div v-else class="video-card__poster" aria-hidden="true">
           <span />

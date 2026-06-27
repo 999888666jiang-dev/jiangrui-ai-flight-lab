@@ -353,3 +353,13 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - 视觉策略：用书脊、纸张底板、压印、细光边和轻微翻页替代重 HUD，降低“AI 模块感”。
 - 交互策略：卡片 hover 轻微开合；点击后书本打开；支持 Escape 关闭和方向键翻页。
 - 风险处理：中文路径用 ASCII 临时工作目录或安全构造；公开页面不暴露 PDF href/download；图片路径必须相对 public 根目录。
+## Pattern: Hangar Dome 图片展厅
+
+- 适用场景：无人机图库、作品摄影、空间装置、产品图集等需要“高端浏览感 + 大量图片管理”的展示页。
+- 技术选择：在 Vue 项目中不要直接引入 React Bits 的 React DomeGallery；抽取“球面环绕、拖拽、惯性、点击放大”的交互原则，用 Vue + CSS 3D + Pointer Events + GSAP 实现。
+- 资源管线：源图片保留在私有资源目录；公开页面只使用生成后的 `thumb.webp`、`display.webp`、`full.webp`，并由 TypeScript manifest 驱动。
+- 文件策略：公开路径使用 ASCII 稳定命名，例如 `uav-img-001/full.webp`；原始中文或设备文件名只保存在 manifest 中用于展示。
+- 动效策略：桌面端可以使用 3D dome 做记忆点，但必须保留底部网格或列表作为高效率浏览入口，避免炫技替代可用性。
+- 降级策略：移动端、微信、触摸设备、低性能设备和 `prefers-reduced-motion` 不启用重 3D 与惯性，改用横向精选轨道 + 瀑布流。
+- 灯箱策略：点击图片打开沉浸灯箱，支持上一张、下一张、Escape 关闭，并预加载当前图片前后邻近资源。
+- QA 策略：必须断言页面不请求源 JPG/PNG/HEIC 和任何被排除的视频；图片变体 `naturalWidth > 0`；桌面拖拽、移动降级、灯箱键盘、网络 400+ 和横向溢出都要覆盖。
