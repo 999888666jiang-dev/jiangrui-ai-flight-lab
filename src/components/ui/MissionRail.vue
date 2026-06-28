@@ -12,7 +12,7 @@ const homeItems = [
   { to: { path: '/', hash: '#skills' }, label: 'SYSTEMS', code: '02' },
   { to: { path: '/', hash: '#experience' }, label: 'MISSIONS', code: '03' },
   { to: '/video-bay', label: 'VIDEO', code: '04' },
-  { to: '/evidence-vault', label: 'VAULT', code: '05' },
+  { to: '/evidence-vault', label: 'LIBRARY', code: '05' },
   { to: { path: '/', hash: '#contact' }, label: 'CONTACT', code: '06' },
 ];
 
@@ -21,7 +21,7 @@ const routeItems = computed(() => {
     return [
       { to: '/', label: 'HOME', code: '00' },
       { to: '/video-bay', label: 'VIDEO', code: '04' },
-      { to: '/evidence-vault', label: 'VAULT', code: '05' },
+      { to: '/evidence-vault', label: 'LIBRARY', code: '05' },
     ];
   }
 
@@ -29,7 +29,7 @@ const routeItems = computed(() => {
     return [
       { to: '/', label: 'HOME', code: '00' },
       { to: '/video-bay', label: 'VIDEO', code: '04' },
-      { to: '/evidence-vault', label: 'VAULT', code: '05' },
+      { to: '/evidence-vault', label: 'LIBRARY', code: '05' },
     ];
   }
 

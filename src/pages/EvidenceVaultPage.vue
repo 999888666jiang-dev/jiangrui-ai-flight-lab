@@ -93,7 +93,7 @@ onUnmounted(() => {
 <template>
   <section class="section section--evidence evidence-route-page">
     <div class="section-heading vault-heading" data-reveal>
-      <p class="section-code">05 / EVIDENCE VAULT</p>
+      <p class="section-code">05 / RESOURCE LIBRARY</p>
       <h1>{{ pickText(vaultCopy.title, language) }}</h1>
       <p>{{ pickText(vaultCopy.intro, language) }}</p>
     </div>

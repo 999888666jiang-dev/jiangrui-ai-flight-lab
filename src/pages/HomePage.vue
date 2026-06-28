@@ -141,7 +141,7 @@ onUnmounted(() => {
   </section>
 
   <section id="skills" class="section section--systems">
-    <div class="section-heading" data-reveal>
+    <div class="section-heading section-heading--proof" data-reveal>
       <h2>{{ pickText(homeCopy.skills.title, language) }}</h2>
       <p>{{ pickText(homeCopy.skills.body, language) }}</p>
     </div>
@@ -194,7 +194,7 @@ onUnmounted(() => {
   </section>
 
   <section id="experience" class="section section--timeline">
-    <div class="section-heading" data-reveal>
+    <div class="section-heading section-heading--timeline" data-reveal>
       <h2>{{ pickText(homeCopy.timeline.title, language) }}</h2>
       <p>{{ pickText(homeCopy.timeline.body, language) }}</p>
     </div>

@@ -70,7 +70,7 @@ export const pageCopy = {
       },
     },
     skills: {
-      title: { zh: '四条证据链，证明我能把想法做成作品', en: 'Four Evidence Tracks Behind the Work' },
+      title: { zh: '四条证据链，把想法落成作品', en: 'Four Proof Tracks, Built Into Work' },
       body: {
         zh: '能力不按关键词堆叠，而按“开发、测试、现场、转化”组织。点击节点查看当前能力读数。',
         en: 'The capability system is organized by building, testing, field execution, and conversion rather than keyword stacking. Click a node to inspect the active readout.',
@@ -81,7 +81,7 @@ export const pageCopy = {
       },
     },
     timeline: {
-      title: { zh: '从前端作品到真实场景的成长轨迹', en: 'From Front-End Work to Real-World Systems' },
+      title: { zh: '从前端作品，走向真实场景', en: 'From Front-End Work to Real-World Systems' },
       body: {
         zh: '时间线只保留可追溯事实：个人网站开发、产品测试实习、极飞无人机实验、软件工程学习、竞赛与组织经历。',
         en: 'The timeline keeps traceable facts only: portfolio development, product testing, XAG UAV experimentation, software engineering study, contests, and leadership.',
@@ -96,10 +96,10 @@ export const pageCopy = {
     },
   },
   evidenceVault: {
-    title: { zh: '证据库：前端作品与真实能力档案', en: 'Evidence Vault for Front-End Work and Real Skills' },
+    title: { zh: '资料库：作品、证书与真实能力档案', en: 'Resource Library for Work, Credentials, and Field Proof' },
     intro: {
       zh: '这里集中放置简历、证书、视频、图库、成交成果和后续作品。每个入口都对应简历中的一条能力线，不靠空泛形容词堆砌。',
-      en: 'This vault holds the resume, credentials, videos, galleries, deal outcomes, and future work. Each entry maps to a resume-backed capability track, not generic adjectives.',
+      en: 'This library holds the resume, credentials, videos, galleries, deal outcomes, and future work. Each entry maps to a resume-backed capability track, not generic adjectives.',
     },
   },
   videoBay: {

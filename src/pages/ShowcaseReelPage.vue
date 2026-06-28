@@ -264,7 +264,7 @@ watch(selectedMediaSrc, () => {
           />
           <div v-else class="media-lightbox__placeholder" aria-hidden="true">
             <img v-if="poster" :src="poster" alt="" loading="eager" />
-            <span>{{ isOutcome ? 'OUTCOME MEDIA SOURCE PENDING' : 'FPV MEDIA SOURCE PENDING' }}</span>
+            <span>{{ isOutcome ? 'OUTCOME MEDIA SOURCE STANDBY' : 'FPV MEDIA SOURCE STANDBY' }}</span>
           </div>
           <div v-if="isLoading" class="media-lightbox__status" aria-live="polite">
             {{ language === 'zh' ? '媒体流接入中' : 'Loading media stream' }}
@@ -312,9 +312,9 @@ watch(selectedMediaSrc, () => {
     <div class="section-heading">
       <p class="section-code">404 / MEDIA REEL</p>
       <h1>{{ language === 'zh' ? '媒体集合不存在' : 'Media reel missing' }}</h1>
-      <p>{{ language === 'zh' ? '该展示页没有独立媒体集合，请返回证据库。' : 'This showcase has no media reel. Return to the evidence vault.' }}</p>
+      <p>{{ language === 'zh' ? '该展示页没有独立媒体集合，请返回资料库。' : 'This showcase has no media reel. Return to the resource library.' }}</p>
       <RouterLink class="button button--primary" to="/evidence-vault">
-        {{ language === 'zh' ? '返回证据库' : 'Back to Evidence Vault' }}
+        {{ language === 'zh' ? '返回资料库' : 'Back to Resource Library' }}
       </RouterLink>
     </div>
   </section>

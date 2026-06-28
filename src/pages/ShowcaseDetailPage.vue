@@ -130,7 +130,7 @@ onUnmounted(() => {
 
     <header class="showcase-detail__hero">
       <RouterLink class="showcase-back" to="/evidence-vault">
-        {{ language === 'zh' ? '返回证据库' : 'Back to Evidence Vault' }}
+        {{ language === 'zh' ? '返回资料库' : 'Back to Resource Library' }}
       </RouterLink>
       <p class="section-code">{{ item.index }} / {{ pickText(item.world, language) }}</p>
       <h1>{{ pickText(item.title, language) }}</h1>
@@ -270,9 +270,9 @@ onUnmounted(() => {
     <div class="section-heading">
       <p class="section-code">404 / VAULT CHANNEL</p>
       <h1>{{ language === 'zh' ? '展示舱不存在' : 'Showcase channel missing' }}</h1>
-      <p>{{ language === 'zh' ? '该素材通道尚未建立，请返回证据库。' : 'This asset channel is not registered yet. Return to the evidence vault.' }}</p>
+      <p>{{ language === 'zh' ? '该素材通道尚未建立，请返回资料库。' : 'This asset channel is not registered yet. Return to the resource library.' }}</p>
       <RouterLink class="button button--primary" to="/evidence-vault">
-        {{ language === 'zh' ? '返回证据库' : 'Back to Evidence Vault' }}
+        {{ language === 'zh' ? '返回资料库' : 'Back to Resource Library' }}
       </RouterLink>
     </div>
   </section>

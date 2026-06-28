@@ -19,7 +19,7 @@ const { language } = useLanguage();
 const route = useRoute();
 const particlePreset = computed(() => {
   if (route.path === '/video-bay') return 'video';
-  if (route.path.startsWith('/evidence-vault')) return 'vault';
+  if (route.path.startsWith('/evidence-vault') || route.path.startsWith('/resource-library')) return 'vault';
   return 'home';
 });
 </script>

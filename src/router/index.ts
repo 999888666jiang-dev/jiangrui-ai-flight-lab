@@ -11,6 +11,10 @@ export const router = createRouter({
   routes: [
     { path: '/', name: 'home', component: HomePage },
     { path: '/video-bay', name: 'video-bay', component: VideoBayPage },
+    { path: '/resource-library', redirect: '/evidence-vault' },
+    { path: '/resource-library/code-projects', redirect: '/evidence-vault/deal-results-showcase' },
+    { path: '/resource-library/:slug/reel', redirect: (to) => `/evidence-vault/${String(to.params.slug)}/reel` },
+    { path: '/resource-library/:slug', redirect: (to) => `/evidence-vault/${String(to.params.slug)}` },
     { path: '/evidence-vault', name: 'evidence-vault', component: EvidenceVaultPage },
     { path: '/evidence-vault/code-projects', redirect: '/evidence-vault/deal-results-showcase' },
     { path: '/evidence-vault/:slug/reel', name: 'evidence-showcase-reel', component: ShowcaseReelPage },

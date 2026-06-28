@@ -275,7 +275,7 @@ defineExpose({
     />
     <div v-else class="media-stage__placeholder" aria-hidden="true">
       <img v-if="poster" class="media-stage__poster" :src="poster" alt="" loading="eager" />
-      <span>{{ isPreviewMissing ? 'PREVIEW SOURCE PENDING' : (variant === 'velocity' ? 'FPV MEDIA SOURCE PENDING' : 'OUTCOME MEDIA SOURCE PENDING') }}</span>
+      <span>{{ isPreviewMissing ? 'PREVIEW SOURCE STANDBY' : (variant === 'velocity' ? 'FPV MEDIA SOURCE STANDBY' : 'OUTCOME MEDIA SOURCE STANDBY') }}</span>
     </div>
     <div v-if="isLoading" class="media-stage__status" aria-live="polite">
       {{ language === 'zh' ? '媒体流接入中' : 'Loading media stream' }}

@@ -4,19 +4,19 @@
     "skills": "Capabilities",
     "experience": "Experience",
     "videoBay": "Video Bay",
-    "videos": "Evidence",
+    "videos": "Library",
     "contact": "Contact"
   },
   "cta": {
     "viewExperience": "View Experience",
     "contact": "Contact",
     "downloadResume": "Download Updated Resume",
-    "resumePending": "Resource pending",
+    "resumePending": "Resource standby",
     "wechat": "WeChat"
   },
   "labels": {
     "language": "中文",
-    "resourcePending": "Resource pending",
+    "resourcePending": "Resource standby",
     "wechatHint": "Static fallback is active in WeChat browser",
     "redacted": "Sensitive license ID is hidden in the public preview"
   }

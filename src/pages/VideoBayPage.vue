@@ -158,7 +158,7 @@ onUnmounted(() => {
         />
         <div v-if="!activeSrc" class="video-bay__placeholder" aria-hidden="true">
           <img v-if="poster" class="video-bay__poster" :src="poster" alt="" loading="eager" />
-          <span>{{ isPreviewMissing ? 'PREVIEW SOURCE PENDING' : 'VIDEO SOURCE PENDING' }}</span>
+          <span>{{ isPreviewMissing ? 'PREVIEW SOURCE STANDBY' : 'VIDEO SOURCE STANDBY' }}</span>
         </div>
         <div v-if="isLoading" class="video-bay__status" aria-live="polite">
           {{ language === 'zh' ? '媒体流接入中' : 'Loading media stream' }}
@@ -216,7 +216,7 @@ onUnmounted(() => {
             </span>
           </button>
           <RouterLink class="button button--primary" to="/evidence-vault">
-            {{ pickText({ zh: '进入证据库', en: 'Open Evidence Vault' }, language) }}
+            {{ pickText({ zh: '进入资料库', en: 'Open Resource Library' }, language) }}
           </RouterLink>
         </div>
       </div>
