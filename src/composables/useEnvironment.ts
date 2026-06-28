@@ -116,6 +116,9 @@ const profile = computed<AdaptationProfile>(() => {
       motion,
       dpr: viewport.value.dpr,
       runtime: runtime.value,
+      width: viewport.value.width,
+      reducedMotion: reducedMotion.value,
+      saveData: saveData.value,
     }),
   };
 });

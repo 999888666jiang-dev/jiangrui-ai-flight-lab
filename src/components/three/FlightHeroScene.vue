@@ -39,6 +39,40 @@ let camera: PerspectiveCamera | undefined;
 let points: Points | undefined;
 let particleBase: Float32Array | undefined;
 const pointer = { x: 0, y: 0 };
+const propellerLayout = {
+  x: 1.45,
+  y: 0.45,
+  z: -0.82,
+  scale: 0.74,
+};
+
+function resolvePropellerLayout(width: number) {
+  if (width <= 430) {
+    return { x: 1.14, y: -0.76, z: -0.82, scale: 0.84 };
+  }
+
+  if (width <= 680) {
+    return { x: 1.2, y: -0.68, z: -0.82, scale: 0.84 };
+  }
+
+  if (width <= 1024) {
+    return { x: 1.48, y: -0.18, z: -0.82, scale: 0.82 };
+  }
+
+  return { x: 1.45, y: 0.45, z: -0.82, scale: 0.74 };
+}
+
+function applyPropellerLayout(width: number) {
+  if (!group) return;
+  const next = resolvePropellerLayout(width);
+  propellerLayout.x = next.x;
+  propellerLayout.y = next.y;
+  propellerLayout.z = next.z;
+  propellerLayout.scale = next.scale;
+  group.position.x = next.x;
+  group.position.z = next.z;
+  group.scale.setScalar(next.scale);
+}
 
 function bladeShape() {
   const shape = new Shape();
@@ -169,6 +203,7 @@ function resize() {
   camera.aspect = width / Math.max(1, height);
   camera.updateProjectionMatrix();
   renderer.setSize(width, height);
+  applyPropellerLayout(width);
 }
 
 function animate() {
@@ -179,7 +214,7 @@ function animate() {
   group.rotation.z = time * (0.38 + scrollProgress * 1.35) + scrollProgress * Math.PI * 1.6;
   group.rotation.x = 0.12 + pointer.y * 0.05 + Math.sin(time * 0.42) * 0.02 + scrollProgress * 0.18;
   group.rotation.y = -0.08 + pointer.x * 0.075 - scrollProgress * 0.22;
-  group.position.y = 0.45 + Math.sin(time * 0.55) * 0.12 + scrollProgress * 0.18;
+  group.position.y = propellerLayout.y + Math.sin(time * 0.55) * 0.12 + scrollProgress * 0.18;
 
   if (points && particleBase) {
     const attribute = points.geometry.getAttribute('position') as BufferAttribute;
@@ -232,6 +267,7 @@ onMounted(() => {
 
   group = buildPropeller();
   scene.add(group);
+  applyPropellerLayout(host.clientWidth);
   points = buildParticles();
   scene.add(points);
 
@@ -294,33 +330,38 @@ onUnmounted(() => {
 .hero-fallback-propeller__rotor {
   position: absolute;
   inset: 0;
+  isolation: isolate;
   transform-origin: 50% 50%;
   will-change: transform;
 }
 
 .hero-fallback-propeller__rotor::before {
   position: absolute;
-  inset: 17%;
+  inset: 15.5%;
   content: '';
-  border: 1px dashed rgba(155, 255, 246, 0.22);
+  border: 1px dashed rgba(155, 255, 246, 0.28);
   border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 49%, rgba(85, 247, 231, 0.08) 50%, transparent 51%),
+    conic-gradient(from 18deg, transparent 0 12deg, rgba(205, 255, 250, 0.12) 13deg 16deg, transparent 17deg 58deg);
   box-shadow:
-    0 0 64px rgba(85, 247, 231, 0.13),
-    inset 0 0 62px rgba(85, 247, 231, 0.08);
+    0 0 80px rgba(85, 247, 231, 0.18),
+    inset 0 0 72px rgba(85, 247, 231, 0.1);
 }
 
 .hero-fallback-propeller__rotor::after {
   position: absolute;
   top: 50%;
   left: 51%;
-  width: 42%;
-  height: 3px;
+  z-index: 5;
+  width: 43%;
+  height: 2px;
   content: '';
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(245, 255, 253, 0.92), rgba(85, 247, 231, 0.42), transparent 82%);
+  background: linear-gradient(90deg, rgba(245, 255, 253, 0.94), rgba(85, 247, 231, 0.55), transparent 84%);
   box-shadow:
-    0 0 18px rgba(85, 247, 231, 0.58),
-    0 0 34px rgba(245, 255, 253, 0.26);
+    0 0 18px rgba(85, 247, 231, 0.68),
+    0 0 34px rgba(245, 255, 253, 0.32);
   opacity: 0.82;
   transform: translate3d(0, -50%, 0);
 }
@@ -329,28 +370,45 @@ onUnmounted(() => {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 43%;
-  height: 13.5%;
-  border: 1px solid rgba(205, 255, 250, 0.58);
-  border-radius: 78% 14% 78% 16%;
+  z-index: 2;
+  width: 46%;
+  height: 15.2%;
+  border: 1px solid rgba(214, 255, 251, 0.68);
+  border-radius: 86% 12% 78% 16%;
   background:
-    linear-gradient(90deg, rgba(85, 247, 231, 0.34), rgba(188, 255, 249, 0.08) 48%, transparent 76%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 24px),
-    rgba(7, 36, 40, 0.34);
+    radial-gradient(ellipse at 14% 48%, rgba(232, 255, 252, 0.2), transparent 26%),
+    linear-gradient(90deg, rgba(95, 255, 238, 0.38), rgba(188, 255, 249, 0.12) 52%, transparent 78%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 22px),
+    rgba(7, 36, 40, 0.22);
   box-shadow:
-    inset 0 0 28px rgba(85, 247, 231, 0.15),
-    0 0 22px rgba(85, 247, 231, 0.2);
-  clip-path: polygon(0 44%, 14% 20%, 70% 0, 100% 46%, 74% 100%, 14% 78%, 0 58%);
+    inset 0 0 28px rgba(85, 247, 231, 0.18),
+    inset 0 1px 0 rgba(245, 255, 253, 0.26),
+    0 0 26px rgba(85, 247, 231, 0.24);
+  clip-path: polygon(0 45%, 13% 18%, 72% 0, 100% 42%, 78% 100%, 15% 80%, 0 58%);
   transform-origin: 0 50%;
 }
 
+.hero-fallback-propeller__blade::before,
 .hero-fallback-propeller__blade::after {
   position: absolute;
-  inset: 19% 15% 19% 13%;
   content: '';
-  border-top: 1px solid rgba(238, 255, 253, 0.36);
-  border-bottom: 1px solid rgba(85, 247, 231, 0.2);
   border-radius: inherit;
+}
+
+.hero-fallback-propeller__blade::before {
+  inset: 9% 11% 13% 8%;
+  border-right: 1px solid rgba(238, 255, 253, 0.28);
+  border-left: 1px solid rgba(85, 247, 231, 0.22);
+  background:
+    linear-gradient(19deg, transparent 0 40%, rgba(238, 255, 253, 0.2) 41% 42%, transparent 44%),
+    linear-gradient(-17deg, transparent 0 52%, rgba(85, 247, 231, 0.18) 53% 54%, transparent 56%);
+  transform: skewX(-14deg);
+}
+
+.hero-fallback-propeller__blade::after {
+  inset: 22% 12% 20% 11%;
+  border-top: 1px solid rgba(238, 255, 253, 0.36);
+  border-bottom: 1px solid rgba(85, 247, 231, 0.26);
   transform: skewX(-16deg);
 }
 
@@ -388,66 +446,72 @@ onUnmounted(() => {
 }
 
 .hero-fallback-propeller__ring--outer {
-  width: 31%;
-  height: 31%;
-  border: 1px solid rgba(220, 255, 251, 0.24);
+  z-index: 3;
+  width: 34%;
+  height: 34%;
+  border: 1px solid rgba(220, 255, 251, 0.3);
   box-shadow:
-    inset 0 0 34px rgba(85, 247, 231, 0.09),
-    0 0 28px rgba(85, 247, 231, 0.12);
+    inset 0 0 40px rgba(85, 247, 231, 0.12),
+    0 0 32px rgba(85, 247, 231, 0.18);
 }
 
 .hero-fallback-propeller__ring--inner {
-  width: 18%;
-  height: 18%;
-  border: 1px solid rgba(220, 255, 251, 0.4);
-  background: rgba(5, 24, 26, 0.26);
+  z-index: 4;
+  width: 19%;
+  height: 19%;
+  border: 1px solid rgba(220, 255, 251, 0.46);
+  background:
+    radial-gradient(circle at 42% 38%, rgba(232, 255, 252, 0.15), transparent 42%),
+    rgba(5, 24, 26, 0.28);
 }
 
 .hero-fallback-propeller__hub {
-  width: 10%;
-  height: 10%;
-  border: 1px solid rgba(232, 255, 252, 0.46);
+  z-index: 6;
+  width: 11.2%;
+  height: 11.2%;
+  border: 1px solid rgba(232, 255, 252, 0.6);
   background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.3), transparent 28%),
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.4), transparent 26%),
+    radial-gradient(circle at 58% 64%, rgba(85, 247, 231, 0.18), transparent 42%),
     rgba(4, 20, 23, 0.9);
   box-shadow:
-    inset 0 0 14px rgba(85, 247, 231, 0.18),
-    0 0 28px rgba(85, 247, 231, 0.18);
+    inset 0 0 18px rgba(85, 247, 231, 0.22),
+    0 0 34px rgba(85, 247, 231, 0.24);
 }
 
 @media (max-width: 680px) {
   .hero-fallback-propeller {
-    right: clamp(-198px, -32vw, -118px);
-    bottom: clamp(38px, 7.5vh, 112px);
-    width: clamp(306px, 94vw, 388px);
-    opacity: 0.7;
+    right: clamp(-330px, -46vw, -205px);
+    bottom: clamp(150px, 21vh, 230px);
+    width: clamp(460px, 112vw, 640px);
+    opacity: 0.72;
     transform: rotateZ(-18deg);
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 430px) {
   .hero-fallback-propeller {
-    right: clamp(-182px, -36vw, -112px);
-    bottom: clamp(30px, 6vh, 92px);
-    width: clamp(282px, 92vw, 352px);
-    opacity: 0.66;
+    right: clamp(-290px, -58vw, -205px);
+    bottom: clamp(172px, 22vh, 220px);
+    width: clamp(440px, 126vw, 520px);
+    opacity: 0.7;
   }
 }
 
 @media (min-width: 681px) and (max-width: 1024px) {
   .hero-fallback-propeller {
-    right: clamp(-190px, -18vw, -96px);
-    bottom: clamp(6px, 3.5vh, 70px);
-    width: min(570px, 54vw);
-    opacity: 0.66;
+    right: clamp(-300px, -24vw, -156px);
+    bottom: clamp(136px, 13vh, 220px);
+    width: min(740px, 72vw);
+    opacity: 0.7;
   }
 }
 
 @media (max-width: 360px) {
   .hero-fallback-propeller {
-    right: clamp(-166px, -38vw, -106px);
-    bottom: clamp(18px, 4.5vh, 74px);
-    width: clamp(254px, 88vw, 318px);
+    right: clamp(-248px, -62vw, -180px);
+    bottom: clamp(132px, 20vh, 184px);
+    width: clamp(390px, 130vw, 456px);
   }
 }
 

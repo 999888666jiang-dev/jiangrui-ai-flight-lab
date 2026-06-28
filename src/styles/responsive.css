@@ -310,10 +310,6 @@ html[data-device-tier='low'] .side-scroll-particles {
   opacity: 0.46;
 }
 
-html[data-runtime-shell='wechat'] .hero-canvas:not(.hero-canvas--fallback) {
-  display: none;
-}
-
 html[data-runtime-shell='wechat'] .hero-canvas.hero-canvas--fallback {
   display: block;
 }

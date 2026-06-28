@@ -162,8 +162,34 @@ export function createVideoPolicy(input: {
   };
 }
 
-export function createWebglPolicy(input: { tier: DeviceTier; motion: MotionBudget; dpr: number; runtime: RuntimeShell }): WebglPolicy {
-  if (!input.motion.three || input.runtime === 'wechat') {
+export function createWebglPolicy(input: {
+  tier: DeviceTier;
+  motion: MotionBudget;
+  dpr: number;
+  runtime: RuntimeShell;
+  width: number;
+  reducedMotion: boolean;
+  saveData: boolean;
+}): WebglPolicy {
+  if (input.reducedMotion || input.saveData) {
+    return {
+      three: false,
+      pixelRatio: 1,
+      antialias: false,
+      heroParticles: 0,
+    };
+  }
+
+  if (input.width <= ADAPTATION_BREAKPOINTS.tablet || input.runtime === 'wechat' || input.tier === 'minimal' || input.tier === 'low') {
+    return {
+      three: true,
+      pixelRatio: Math.min(input.dpr, 1.4),
+      antialias: true,
+      heroParticles: 360,
+    };
+  }
+
+  if (!input.motion.three) {
     return {
       three: false,
       pixelRatio: 1,
