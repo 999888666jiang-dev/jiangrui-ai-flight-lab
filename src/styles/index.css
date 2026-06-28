@@ -2521,6 +2521,7 @@ body {
 }
 
 .showcase-detail__metrics div,
+.showcase-metric-action,
 .showcase-panel,
 .showcase-stage__copy {
   border: 1px solid rgba(var(--showcase-rgb), 0.18);
@@ -2530,10 +2531,20 @@ body {
     rgba(2, 5, 7, 0.64);
 }
 
-.showcase-detail__metrics div {
+.showcase-detail__metrics div,
+.showcase-metric-action {
   display: grid;
   gap: 8px;
   padding: 16px;
+}
+
+.showcase-metric-action {
+  width: 100%;
+  appearance: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .showcase-detail__metrics span,
@@ -4012,6 +4023,14 @@ body {
   max-width: calc(100% - 32px);
 }
 
+.showcase-stage__visual--media .media-stage__controls {
+  display: none;
+}
+
+.showcase-stage__visual--media .media-stage__hud {
+  bottom: clamp(28px, 5vw, 52px);
+}
+
 .media-stage__controls button,
 .media-stage__controls a,
 .media-lightbox__meta button,
@@ -4519,6 +4538,157 @@ body {
   transform: translateY(-3px);
 }
 
+.showcase-detail__metrics--media-actions .showcase-metric-action,
+.showcase-panels--media-actions .showcase-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.showcase-detail__metrics--media-actions .showcase-metric-action::after,
+.showcase-panels--media-actions .showcase-panel::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  opacity: 0;
+  background: linear-gradient(105deg, transparent 8%, rgba(var(--showcase-rgb), 0.16), transparent 62%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.showcase-detail__metrics--media-actions .showcase-metric-action:hover,
+.showcase-detail__metrics--media-actions .showcase-metric-action:focus-visible,
+.showcase-panels--media-actions .showcase-panel:hover,
+.showcase-panels--media-actions .showcase-panel:focus-within {
+  border-color: rgba(var(--showcase-rgb), 0.52);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--showcase-rgb), 0.06),
+    0 0 44px rgba(var(--showcase-rgb), 0.13);
+  transform: translateY(-3px);
+}
+
+.showcase-detail__metrics--media-actions .showcase-metric-action:hover::after,
+.showcase-detail__metrics--media-actions .showcase-metric-action:focus-visible::after,
+.showcase-panels--media-actions .showcase-panel:hover::after,
+.showcase-panels--media-actions .showcase-panel:focus-within::after,
+.showcase-action-card--pulse::after {
+  animation: media-card-scan 720ms ease-out;
+}
+
+.showcase-action-card--active {
+  border-color: rgba(var(--showcase-rgb), 0.48);
+  background:
+    linear-gradient(135deg, rgba(var(--showcase-rgb), 0.13), transparent 48%),
+    rgba(2, 5, 7, 0.7);
+}
+
+.showcase-action-card--pulse {
+  animation: showcase-action-pulse 340ms ease-out;
+}
+
+.showcase-card-command {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 44px;
+  margin-top: auto;
+  border: 1px solid rgba(var(--showcase-rgb), 0.32);
+  border-radius: 999px;
+  padding: 11px 15px;
+  color: var(--color-text);
+  background:
+    linear-gradient(135deg, rgba(var(--showcase-rgb), 0.08), transparent 58%),
+    rgba(2, 5, 7, 0.62);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.showcase-card-command:hover,
+.showcase-card-command:focus-visible {
+  border-color: rgba(var(--showcase-rgb), 0.72);
+  color: var(--showcase-accent);
+  background: rgba(var(--showcase-rgb), 0.12);
+  box-shadow: 0 0 28px rgba(var(--showcase-rgb), 0.13);
+  transform: translateY(-2px);
+}
+
+.showcase-card-command:disabled {
+  border-color: rgba(151, 177, 175, 0.16);
+  color: rgba(151, 177, 175, 0.46);
+  background: rgba(2, 5, 7, 0.42);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.showcase-card-command.media-full-button {
+  width: 100%;
+  justify-self: stretch;
+}
+
+.showcase-card-command.media-full-button > span {
+  font-size: 0.78rem;
+  white-space: normal;
+  text-align: center;
+}
+
+.showcase-card-command.media-full-button--active:disabled {
+  border-color: rgba(var(--showcase-rgb), 0.42);
+  color: var(--showcase-accent);
+  background: rgba(var(--showcase-rgb), 0.08);
+  box-shadow: 0 0 28px rgba(var(--showcase-rgb), 0.12);
+}
+
+.showcase-card-command--sound {
+  width: 100%;
+  justify-self: start;
+}
+
+.showcase-sound-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  width: 18px;
+  height: 16px;
+}
+
+.showcase-sound-wave b {
+  display: block;
+  width: 3px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.5;
+  transform-origin: center bottom;
+}
+
+.showcase-action-card--active .showcase-sound-wave b {
+  animation: showcase-sound-bar 760ms ease-in-out infinite alternate;
+}
+
+.showcase-action-card--active .showcase-sound-wave b:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.showcase-action-card--active .showcase-sound-wave b:nth-child(3) {
+  animation-delay: 180ms;
+}
+
 .showcase-next {
   display: flex;
   justify-content: space-between;
@@ -4725,6 +4895,29 @@ body {
   }
 }
 
+@keyframes showcase-action-pulse {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  48% {
+    transform: translateY(-3px) scale(1.012);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes showcase-sound-bar {
+  0% {
+    opacity: 0.42;
+    transform: scaleY(0.62);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scaleY(1.32);
+  }
+}
+
 .contact-panel {
   min-height: 360px;
 }
@@ -4865,6 +5058,7 @@ body {
   }
 
   .showcase-detail__metrics div,
+  .showcase-metric-action,
   .showcase-panel,
   .showcase-stage__copy {
     padding: 18px;
@@ -4885,6 +5079,10 @@ body {
     max-width: none;
   }
 
+  .showcase-stage__visual--media .media-stage__hud {
+    bottom: 18px;
+  }
+
   .media-stage__hud strong {
     font-size: clamp(1.5rem, 9vw, 2.8rem);
   }
@@ -4899,6 +5097,13 @@ body {
   .media-stage__controls a {
     padding: 10px 12px;
     font-size: 0.76rem;
+  }
+
+  .showcase-card-command {
+    width: 100%;
+    justify-self: stretch;
+    font-size: 0.8rem;
+    line-height: 1.35;
   }
 
   .media-reel-page {
@@ -5150,6 +5355,9 @@ body {
   .media-stage--outcome::before,
   .media-reel-card__frame::before,
   .uav-lightbox__panel,
+  .showcase-action-card--pulse,
+  .showcase-action-card::after,
+  .showcase-sound-wave b,
   .neural-map::before,
   .code-console__cursor,
   .blackbox-wave span,

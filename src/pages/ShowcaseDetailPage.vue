@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import CertificateBookGallery from '../components/media/CertificateBookGallery.vue';
 import ShowcaseMediaStage from '../components/media/ShowcaseMediaStage.vue';
@@ -11,6 +11,45 @@ import { uavGalleryImages } from '../data/uavGalleryManifest';
 
 const route = useRoute();
 const { language } = useLanguage();
+
+type MediaStageControlState = {
+  isMuted: boolean;
+  isFullLoading: boolean;
+  fullLoadPercent: number;
+  fullLoadStyle: Record<string, string>;
+  isFullActive: boolean;
+  canSwitchToFull: boolean;
+  reelPath: string;
+  soundLabel: string;
+  randomLabel: string;
+  fullLabel: string;
+  viewMoreLabel: string;
+};
+
+type MediaStagePublicControls = {
+  toggleSound: () => void;
+  pickRandomMedia: () => void;
+  playFullVersion: () => void;
+};
+
+const defaultMediaControlState = (): MediaStageControlState => ({
+  isMuted: true,
+  isFullLoading: false,
+  fullLoadPercent: 0,
+  fullLoadStyle: { '--media-full-progress': '0%' },
+  isFullActive: false,
+  canSwitchToFull: false,
+  reelPath: '',
+  soundLabel: language.value === 'zh' ? '开启声音' : 'Sound on',
+  randomLabel: language.value === 'zh' ? '随机切片' : 'Random slice',
+  fullLabel: language.value === 'zh' ? '查看高清完整版本' : 'Load full version',
+  viewMoreLabel: language.value === 'zh' ? '查看更多' : 'View more',
+});
+
+const mediaStageRef = ref<MediaStagePublicControls | null>(null);
+const mediaControlState = ref<MediaStageControlState>(defaultMediaControlState());
+const activeActionCard = ref<string | null>(null);
+let actionPulseTimer: number | undefined;
 
 const slug = computed(() => {
   const value = route.params.slug;
@@ -34,6 +73,53 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
   y: `${12 + (index % 6) * 13}%`,
   delay: `${index * -140}ms`,
 }));
+
+const isMediaShowcase = computed(() => Boolean(mediaGroup.value));
+const soundActionAria = computed(() =>
+  language.value === 'zh'
+    ? `声音控制：${mediaControlState.value.soundLabel}`
+    : `Audio control: ${mediaControlState.value.soundLabel}`,
+);
+
+function handleMediaControlsChange(state: MediaStageControlState) {
+  mediaControlState.value = state;
+}
+
+function pulseActionCard(card: string) {
+  activeActionCard.value = card;
+  if (actionPulseTimer) window.clearTimeout(actionPulseTimer);
+  actionPulseTimer = window.setTimeout(() => {
+    activeActionCard.value = null;
+  }, 360);
+}
+
+function triggerSoundControl() {
+  mediaStageRef.value?.toggleSound();
+  pulseActionCard('sound');
+}
+
+function triggerRandomControl() {
+  mediaStageRef.value?.pickRandomMedia();
+  pulseActionCard('random');
+}
+
+function triggerFullControl() {
+  if (!mediaControlState.value.canSwitchToFull && !mediaControlState.value.isFullLoading) return;
+  mediaStageRef.value?.playFullVersion();
+  pulseActionCard('full');
+}
+
+function panelActionKind(index: number) {
+  if (!isMediaShowcase.value) return '';
+  if (index === 0) return 'random';
+  if (index === 1) return 'more';
+  if (index === 2) return 'full';
+  return '';
+}
+
+onUnmounted(() => {
+  if (actionPulseTimer) window.clearTimeout(actionPulseTimer);
+});
 </script>
 
 <template>
@@ -49,11 +135,29 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
       <p class="section-code">{{ item.index }} / {{ pickText(item.world, language) }}</p>
       <h1>{{ pickText(item.title, language) }}</h1>
       <p>{{ pickText(item.detailHeadline, language) }}</p>
-      <div class="showcase-detail__metrics" aria-label="Showcase metadata">
-        <div v-for="metric in item.metrics" :key="metric.label.zh">
-          <span>{{ pickText(metric.label, language) }}</span>
-          <strong>{{ pickText(metric.value, language) }}</strong>
-        </div>
+      <div class="showcase-detail__metrics" :class="{ 'showcase-detail__metrics--media-actions': isMediaShowcase }" aria-label="Showcase metadata">
+        <template v-for="(metric, metricIndex) in item.metrics" :key="metric.label.zh">
+          <button
+            v-if="isMediaShowcase && metricIndex === 2"
+            class="showcase-metric-action showcase-action-card showcase-action-card--sound"
+            :class="{ 'showcase-action-card--pulse': activeActionCard === 'sound', 'showcase-action-card--active': !mediaControlState.isMuted }"
+            type="button"
+            :aria-label="soundActionAria"
+            :aria-pressed="!mediaControlState.isMuted"
+            @click="triggerSoundControl"
+          >
+            <span>{{ pickText(metric.label, language) }}</span>
+            <strong>{{ pickText(metric.value, language) }}</strong>
+            <span class="showcase-card-command showcase-card-command--sound">
+              <i class="showcase-sound-wave" aria-hidden="true"><b /><b /><b /></i>
+              {{ mediaControlState.soundLabel }}
+            </span>
+          </button>
+          <div v-else>
+            <span>{{ pickText(metric.label, language) }}</span>
+            <strong>{{ pickText(metric.value, language) }}</strong>
+          </div>
+        </template>
       </div>
     </header>
 
@@ -65,8 +169,10 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
       <div class="showcase-stage__visual" :class="{ 'showcase-stage__visual--media': mediaGroup }" :aria-hidden="mediaGroup ? undefined : 'true'">
         <ShowcaseMediaStage
           v-if="mediaGroup"
+          ref="mediaStageRef"
           :group="mediaGroup"
           :variant="mediaGroup === 'deal-results-showcase' ? 'outcome' : 'velocity'"
+          @controls-change="handleMediaControlsChange"
         />
 
         <template v-else-if="item.detailLayout === 'atelier'">
@@ -105,11 +211,47 @@ const orbitDots = Array.from({ length: 18 }, (_, index) => ({
       </article>
     </div>
 
-    <div class="showcase-panels">
-      <article v-for="slot in item.assetSlots" :key="slot.label.zh" class="showcase-panel">
+    <div class="showcase-panels" :class="{ 'showcase-panels--media-actions': isMediaShowcase }">
+      <article
+        v-for="(slot, slotIndex) in item.assetSlots"
+        :key="slot.label.zh"
+        class="showcase-panel"
+        :class="[
+          isMediaShowcase ? 'showcase-action-card' : '',
+          isMediaShowcase ? `showcase-action-card--${panelActionKind(slotIndex)}` : '',
+          activeActionCard === panelActionKind(slotIndex) ? 'showcase-action-card--pulse' : '',
+          panelActionKind(slotIndex) === 'full' && mediaControlState.isFullActive ? 'showcase-action-card--active' : '',
+        ]"
+      >
         <small>{{ pickText(slot.status, language) }}</small>
         <h3>{{ pickText(slot.label, language) }}</h3>
         <p>{{ pickText(slot.hint, language) }}</p>
+        <button
+          v-if="panelActionKind(slotIndex) === 'random'"
+          class="showcase-card-command"
+          type="button"
+          @click="triggerRandomControl"
+        >
+          {{ mediaControlState.randomLabel }}
+        </button>
+        <RouterLink
+          v-else-if="panelActionKind(slotIndex) === 'more'"
+          class="showcase-card-command showcase-card-command--link"
+          :to="mediaControlState.reelPath || `/evidence-vault/${mediaGroup}/reel`"
+        >
+          {{ mediaControlState.viewMoreLabel }}
+        </RouterLink>
+        <button
+          v-else-if="panelActionKind(slotIndex) === 'full'"
+          class="showcase-card-command media-full-button"
+          :class="{ 'media-full-button--loading': mediaControlState.isFullLoading, 'media-full-button--active': mediaControlState.isFullActive && !mediaControlState.isFullLoading }"
+          :style="mediaControlState.fullLoadStyle"
+          type="button"
+          :disabled="!mediaControlState.canSwitchToFull && !mediaControlState.isFullLoading"
+          @click="triggerFullControl"
+        >
+          <span>{{ mediaControlState.fullLabel }}</span>
+        </button>
       </article>
     </div>
     </template>

@@ -16,6 +16,24 @@ const props = defineProps<{
   variant: 'velocity' | 'outcome';
 }>();
 
+type MediaStageControlState = {
+  isMuted: boolean;
+  isFullLoading: boolean;
+  fullLoadPercent: number;
+  fullLoadStyle: Record<string, string>;
+  isFullActive: boolean;
+  canSwitchToFull: boolean;
+  reelPath: string;
+  soundLabel: string;
+  randomLabel: string;
+  fullLabel: string;
+  viewMoreLabel: string;
+};
+
+const emit = defineEmits<{
+  controlsChange: [state: MediaStageControlState];
+}>();
+
 const { language } = useLanguage();
 const { policy, playbackBlocked, playbackReasonText, applyInlineAttributes, attemptPlayback, requestPlayback, clearPlaybackBlock } = useVideoPolicy();
 const videoRef = ref<HTMLVideoElement>();
@@ -57,6 +75,34 @@ const actionLabel = computed(() =>
     ? { zh: '随机切片', en: 'Random slice' }
     : { zh: '随机抽取成果', en: 'Shuffle outcome' },
 );
+const soundControlLabel = computed(() =>
+  isMuted.value
+    ? (language.value === 'zh' ? '开启声音' : 'Sound on')
+    : (language.value === 'zh' ? '静音播放' : 'Mute'),
+);
+const fullControlLabel = computed(() => {
+  if (isFullLoading.value) {
+    return language.value === 'zh' ? `高清接入 ${fullLoadPercent.value}%` : `Loading full ${fullLoadPercent.value}%`;
+  }
+  if (isFullActive.value) {
+    return language.value === 'zh' ? '高清播放中' : 'Full active';
+  }
+  return language.value === 'zh' ? '查看高清完整版本' : 'Load full version';
+});
+const viewMoreLabel = computed(() => (language.value === 'zh' ? '查看更多' : 'View more'));
+const controlState = computed<MediaStageControlState>(() => ({
+  isMuted: isMuted.value,
+  isFullLoading: isFullLoading.value,
+  fullLoadPercent: fullLoadPercent.value,
+  fullLoadStyle: fullLoadStyle.value,
+  isFullActive: isFullActive.value,
+  canSwitchToFull: canSwitchToFull.value,
+  reelPath: reelPath.value,
+  soundLabel: soundControlLabel.value,
+  randomLabel: pickText(actionLabel.value, language.value),
+  fullLabel: fullControlLabel.value,
+  viewMoreLabel: viewMoreLabel.value,
+}));
 
 function syncVideoPlayback() {
   nextTick(() => {
@@ -153,6 +199,14 @@ function retryMedia() {
   syncVideoPlayback();
 }
 
+watch(
+  controlState,
+  (state) => {
+    emit('controlsChange', state);
+  },
+  { immediate: true },
+);
+
 watch(currentMedia, syncVideoPlayback);
 watch(
   () => props.group,
@@ -180,6 +234,12 @@ onMounted(() => {
 
 onUnmounted(() => {
   releaseVideoElement(videoRef.value);
+});
+
+defineExpose({
+  toggleSound,
+  pickRandomMedia,
+  playFullVersion,
 });
 </script>
 
@@ -236,7 +296,7 @@ onUnmounted(() => {
     </div>
     <div class="media-stage__controls">
       <button type="button" @click="toggleSound">
-        {{ isMuted ? (language === 'zh' ? '开启声音' : 'Sound on') : (language === 'zh' ? '静音播放' : 'Mute') }}
+        {{ soundControlLabel }}
       </button>
       <button type="button" @click="pickRandomMedia">
         {{ pickText(actionLabel, language) }}
@@ -251,16 +311,12 @@ onUnmounted(() => {
       >
         <span>
           {{
-            isFullLoading
-              ? (language === 'zh' ? `高清接入 ${fullLoadPercent}%` : `Loading full ${fullLoadPercent}%`)
-              : isFullActive
-                ? (language === 'zh' ? '高清播放中' : 'Full active')
-                : (language === 'zh' ? '查看高清完整版本' : 'Load full version')
+            fullControlLabel
           }}
         </span>
       </button>
       <RouterLink :to="reelPath">
-        {{ language === 'zh' ? '查看更多' : 'View more' }}
+        {{ viewMoreLabel }}
       </RouterLink>
     </div>
   </div>
