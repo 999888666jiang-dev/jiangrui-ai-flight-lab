@@ -1,0 +1,660 @@
+<script setup lang="ts">
+import { computed, onUnmounted, ref } from 'vue';
+import { gsap } from 'gsap';
+import { useEnvironment } from '../../composables/useEnvironment';
+
+const props = defineProps<{
+  imageSrc: string;
+  title: string;
+  body: string;
+  alt: string;
+}>();
+
+const { profile } = useEnvironment();
+const rootRef = ref<HTMLElement>();
+const passRef = ref<HTMLElement>();
+const isDragging = ref(false);
+const isRevealed = ref(false);
+
+let pointerStart: { x: number; y: number } | undefined;
+let dragMoved = false;
+let suppressClick = false;
+let activeTween: gsap.core.Tween | undefined;
+
+const canAnimate = computed(() => {
+  const current = profile.value;
+  return !current.reducedMotion && current.deviceTier !== 'minimal';
+});
+
+const canDrag = computed(() => {
+  const current = profile.value;
+  return canAnimate.value && current.runtime === 'desktop' && current.viewport.width >= 900 && !current.isWeChat;
+});
+
+const interactionLabel = computed(() =>
+  canDrag.value ? 'Drag or click to inspect flight pass' : 'Click to inspect flight pass',
+);
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function setVars(vars: Record<string, string | number>, duration = 0.18, ease = 'power3.out') {
+  if (!rootRef.value) return;
+  activeTween?.kill();
+  activeTween = gsap.to(rootRef.value, {
+    ...vars,
+    duration,
+    ease,
+    overwrite: 'auto',
+  });
+}
+
+function resetPose(duration = 0.68) {
+  setVars(
+    {
+      '--pass-x': '0px',
+      '--pass-y': '0px',
+      '--pass-rot': '0deg',
+      '--pass-tilt-x': '0deg',
+      '--pass-tilt-y': '0deg',
+      '--strap-x': '0px',
+      '--strap-y': '0px',
+      '--strap-stretch': 1,
+    },
+    duration,
+    'elastic.out(1, 0.58)',
+  );
+}
+
+function handlePointerDown(event: PointerEvent) {
+  if (!canDrag.value || event.pointerType === 'touch' || !passRef.value) return;
+  pointerStart = { x: event.clientX, y: event.clientY };
+  dragMoved = false;
+  isDragging.value = true;
+  activeTween?.kill();
+  passRef.value.setPointerCapture(event.pointerId);
+  event.preventDefault();
+}
+
+function handlePointerMove(event: PointerEvent) {
+  if (!canAnimate.value || !rootRef.value || !passRef.value) return;
+
+  if (pointerStart && canDrag.value) {
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+    const distance = Math.hypot(dx, dy);
+
+    if (distance > 5) dragMoved = true;
+    gsap.set(rootRef.value, {
+      '--pass-x': `${clamp(dx, -86, 86)}px`,
+      '--pass-y': `${clamp(dy, -58, 82)}px`,
+      '--pass-rot': `${clamp(dx / 13, -7, 7)}deg`,
+      '--pass-tilt-x': `${clamp(-dy / 16, -7, 7)}deg`,
+      '--pass-tilt-y': `${clamp(dx / 14, -8, 8)}deg`,
+      '--strap-x': `${clamp(dx * 0.16, -14, 14)}px`,
+      '--strap-y': `${clamp(Math.max(0, dy) * 0.12, 0, 14)}px`,
+      '--strap-stretch': 1 + clamp(distance / 560, 0, 0.16),
+    });
+    return;
+  }
+
+  const rect = passRef.value.getBoundingClientRect();
+  const localX = (event.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+  const localY = (event.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+  setVars(
+    {
+      '--pass-tilt-x': `${clamp(-localY * 8, -5, 5)}deg`,
+      '--pass-tilt-y': `${clamp(localX * 10, -6, 6)}deg`,
+      '--pass-rot': `${clamp(localX * 2, -1.2, 1.2)}deg`,
+    },
+    0.22,
+  );
+}
+
+function finishDrag(event: PointerEvent) {
+  if (!pointerStart) return;
+  pointerStart = undefined;
+  passRef.value?.releasePointerCapture(event.pointerId);
+  isDragging.value = false;
+  suppressClick = dragMoved;
+  resetPose();
+}
+
+function handlePointerLeave() {
+  if (pointerStart || !canAnimate.value) return;
+  resetPose(0.42);
+}
+
+function toggleReveal(event?: Event) {
+  if (suppressClick) {
+    suppressClick = false;
+    event?.preventDefault();
+    return;
+  }
+  isRevealed.value = !isRevealed.value;
+}
+
+function handleKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape' && isRevealed.value) {
+    isRevealed.value = false;
+  }
+}
+
+onUnmounted(() => {
+  activeTween?.kill();
+});
+</script>
+
+<template>
+  <figure
+    ref="rootRef"
+    class="hero-lanyard"
+    :class="{
+      'hero-lanyard--motion': canAnimate,
+      'hero-lanyard--dragging': isDragging,
+      'hero-lanyard--revealed': isRevealed,
+      'hero-lanyard--static': !canAnimate,
+    }"
+    @pointermove="handlePointerMove"
+    @pointerleave="handlePointerLeave"
+  >
+    <div class="hero-lanyard__rig" aria-hidden="true">
+      <span class="hero-lanyard__anchor hero-lanyard__anchor--left" />
+      <span class="hero-lanyard__anchor hero-lanyard__anchor--right" />
+      <svg class="hero-lanyard__strap" viewBox="0 0 320 138" focusable="false">
+        <path class="hero-lanyard__strap-shadow" d="M112 10 C119 48 137 76 160 103 C183 76 201 48 208 10" />
+        <path class="hero-lanyard__strap-edge" d="M96 10 C110 58 134 88 160 116 C186 88 210 58 224 10" />
+        <path class="hero-lanyard__strap-core" d="M116 10 C123 47 140 74 160 98 C180 74 197 47 204 10" />
+      </svg>
+      <span class="hero-lanyard__clip">
+        <span />
+      </span>
+    </div>
+
+    <button
+      ref="passRef"
+      class="hero-lanyard__pass"
+      type="button"
+      :aria-label="interactionLabel"
+      :aria-pressed="isRevealed"
+      @pointerdown="handlePointerDown"
+      @pointerup="finishDrag"
+      @pointercancel="finishDrag"
+      @click="toggleReveal"
+      @keydown="handleKeydown"
+    >
+      <span class="hero-lanyard__back-panel" aria-hidden="true">
+        <small>FLIGHT PASS</small>
+        <strong>VIBE CODING</strong>
+        <span>VUE3 / GSAP / UAV-FPV</span>
+      </span>
+
+      <span class="hero-lanyard__shell">
+        <span class="hero-lanyard__topline">
+          <span>JR</span>
+          <small>AI FLIGHT LAB</small>
+        </span>
+        <img :src="props.imageSrc" :alt="props.alt" draggable="false" />
+        <span class="hero-lanyard__shine" aria-hidden="true" />
+        <span class="hero-lanyard__identity">
+          <strong>{{ props.title }}</strong>
+          <span>{{ props.body }}</span>
+        </span>
+      </span>
+    </button>
+  </figure>
+</template>
+
+<style scoped>
+.hero-lanyard {
+  --pass-x: 0px;
+  --pass-y: 0px;
+  --pass-rot: 0deg;
+  --pass-tilt-x: 0deg;
+  --pass-tilt-y: 0deg;
+  --strap-x: 0px;
+  --strap-y: 0px;
+  --strap-stretch: 1;
+  position: absolute;
+  right: 102px;
+  bottom: 0;
+  width: min(330px, 78vw);
+  margin: 0;
+  overflow: visible;
+  perspective: 960px;
+  transform-style: preserve-3d;
+  z-index: 3;
+}
+
+.hero-lanyard__rig {
+  position: relative;
+  height: 94px;
+  transform:
+    translate3d(var(--strap-x), var(--strap-y), 0)
+    scaleY(var(--strap-stretch));
+  transform-origin: 50% 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.hero-lanyard__anchor {
+  position: absolute;
+  top: 0;
+  width: 42px;
+  height: 12px;
+  border: 1px solid rgba(202, 226, 224, 0.34);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28), rgba(85, 247, 231, 0.08), rgba(255, 255, 255, 0.2)),
+    rgba(5, 15, 16, 0.84);
+  box-shadow: 0 0 24px rgba(85, 247, 231, 0.1);
+}
+
+.hero-lanyard__anchor--left {
+  left: 74px;
+}
+
+.hero-lanyard__anchor--right {
+  right: 74px;
+}
+
+.hero-lanyard__strap {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 136px;
+  overflow: visible;
+}
+
+.hero-lanyard__strap path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-lanyard__strap-shadow {
+  stroke: rgba(0, 0, 0, 0.62);
+  stroke-width: 20;
+  filter: blur(1px);
+}
+
+.hero-lanyard__strap-edge {
+  stroke: rgba(207, 227, 225, 0.24);
+  stroke-width: 15;
+}
+
+.hero-lanyard__strap-core {
+  stroke: rgba(13, 22, 22, 0.96);
+  stroke-width: 11;
+  stroke-dasharray: 10 6;
+}
+
+.hero-lanyard__clip {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  display: grid;
+  width: 72px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(218, 238, 235, 0.42);
+  border-radius: 8px 8px 14px 14px;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.36), rgba(92, 106, 106, 0.18) 46%, rgba(255, 255, 255, 0.16)),
+    rgba(20, 28, 29, 0.86);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 14px 28px rgba(0, 0, 0, 0.34);
+  transform: translateX(-50%);
+}
+
+.hero-lanyard__clip span {
+  width: 42px;
+  height: 9px;
+  border: 1px solid rgba(5, 11, 12, 0.64);
+  border-radius: 999px;
+  background: rgba(5, 12, 13, 0.54);
+}
+
+.hero-lanyard__pass {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: -4px 0 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: grab;
+  outline: none;
+  transform:
+    translate3d(var(--pass-x), var(--pass-y), 0)
+    rotateZ(var(--pass-rot))
+    rotateX(var(--pass-tilt-x))
+    rotateY(var(--pass-tilt-y));
+  transform-style: preserve-3d;
+  transform-origin: 50% 5%;
+  will-change: transform;
+}
+
+.hero-lanyard--dragging .hero-lanyard__pass {
+  cursor: grabbing;
+}
+
+.hero-lanyard__shell,
+.hero-lanyard__back-panel {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(139, 255, 242, 0.32);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent 26%),
+    rgba(5, 18, 20, 0.74);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 42px rgba(85, 247, 231, 0.1);
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+}
+
+.hero-lanyard__shell::before {
+  position: absolute;
+  inset: 16px;
+  z-index: 2;
+  content: '';
+  border: 1px solid rgba(216, 255, 250, 0.12);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.hero-lanyard__back-panel {
+  position: absolute;
+  inset: 18px 0 auto;
+  z-index: 0;
+  display: grid;
+  min-height: 78%;
+  place-items: center;
+  padding: 28px;
+  color: rgba(237, 255, 252, 0.82);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(85, 247, 231, 0.2), transparent 46%),
+    linear-gradient(135deg, rgba(85, 247, 231, 0.1), rgba(255, 198, 92, 0.06)),
+    rgba(4, 12, 13, 0.94);
+  opacity: 0;
+  transform: translate3d(0, 0, -28px) rotateY(-10deg) scale(0.95);
+  transition:
+    opacity 280ms ease,
+    transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-lanyard--revealed .hero-lanyard__back-panel {
+  opacity: 1;
+  transform: translate3d(24px, -14px, -24px) rotateY(-14deg) rotateZ(1.4deg) scale(0.98);
+}
+
+.hero-lanyard__back-panel small,
+.hero-lanyard__back-panel span {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.hero-lanyard__back-panel strong {
+  color: var(--color-accent);
+  font-size: clamp(1.6rem, 5vw, 2.25rem);
+  letter-spacing: 0.08em;
+}
+
+.hero-lanyard__shell {
+  z-index: 1;
+  transition:
+    transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.hero-lanyard__pass:hover .hero-lanyard__shell,
+.hero-lanyard__pass:focus-visible .hero-lanyard__shell {
+  border-color: rgba(139, 255, 242, 0.56);
+  box-shadow:
+    0 34px 110px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+    0 0 52px rgba(85, 247, 231, 0.18);
+}
+
+.hero-lanyard--revealed .hero-lanyard__shell {
+  transform: translate3d(-6px, 3px, 12px) rotateY(7deg);
+}
+
+.hero-lanyard__topline {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  left: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(237, 255, 252, 0.78);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.hero-lanyard__topline span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(139, 255, 242, 0.42);
+  border-radius: 50%;
+  color: #061615;
+  background: var(--color-accent);
+  box-shadow: 0 0 24px rgba(85, 247, 231, 0.24);
+}
+
+.hero-lanyard__shell img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.88) contrast(1.1) brightness(0.9);
+  user-select: none;
+}
+
+.hero-lanyard__shine {
+  position: absolute;
+  inset: -30% auto -30% -55%;
+  z-index: 4;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-17deg) translateX(-120%);
+  pointer-events: none;
+}
+
+.hero-lanyard__pass:hover .hero-lanyard__shine,
+.hero-lanyard__pass:focus-visible .hero-lanyard__shine {
+  animation: lanyardShine 1.25s ease forwards;
+}
+
+.hero-lanyard__identity {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 62px;
+  padding: 12px 14px;
+  border: 1px solid rgba(139, 255, 242, 0.2);
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, rgba(8, 46, 52, 0.84), rgba(5, 12, 14, 0.76)),
+    rgba(2, 5, 7, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.hero-lanyard__identity::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, rgba(85, 247, 231, 0.24), transparent);
+  opacity: 0;
+  transform: translateX(-55%);
+}
+
+.hero-lanyard__pass:hover .hero-lanyard__identity::after,
+.hero-lanyard__pass:focus-visible .hero-lanyard__identity::after {
+  animation: lanyardDataSweep 900ms ease forwards;
+}
+
+.hero-lanyard__identity strong {
+  color: var(--color-accent);
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-lanyard__identity span {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.hero-lanyard--motion:not(.hero-lanyard--dragging) .hero-lanyard__rig {
+  animation: lanyardRigBreath 4.8s ease-in-out infinite;
+}
+
+.hero-lanyard--motion:not(.hero-lanyard--dragging):not(.hero-lanyard--revealed) .hero-lanyard__shell {
+  animation: lanyardShellFloat 4.8s ease-in-out infinite;
+  animation-delay: 90ms;
+}
+
+.hero-lanyard--static .hero-lanyard__pass {
+  cursor: pointer;
+}
+
+.hero-lanyard__pass:focus-visible {
+  outline: 2px solid rgba(85, 247, 231, 0.74);
+  outline-offset: 8px;
+}
+
+@keyframes lanyardShellFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(-0.35deg);
+  }
+  50% {
+    transform: translate3d(0, 2px, 0) rotateZ(0.35deg);
+  }
+}
+
+@keyframes lanyardRigBreath {
+  0%,
+  100% {
+    transform:
+      translate3d(var(--strap-x), var(--strap-y), 0)
+      scaleY(var(--strap-stretch))
+      rotateZ(-0.35deg);
+  }
+  50% {
+    transform:
+      translate3d(var(--strap-x), var(--strap-y), 0)
+      scaleY(var(--strap-stretch))
+      rotateZ(0.35deg);
+  }
+}
+
+@keyframes lanyardShine {
+  to {
+    transform: skewX(-17deg) translateX(420%);
+  }
+}
+
+@keyframes lanyardDataSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-55%);
+  }
+  34% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(55%);
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero-lanyard {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-lanyard {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: min(360px, 100%);
+    margin-top: 10px;
+  }
+
+  .hero-lanyard__rig {
+    height: 76px;
+  }
+
+  .hero-lanyard__anchor--left {
+    left: 68px;
+  }
+
+  .hero-lanyard__anchor--right {
+    right: 68px;
+  }
+
+  .hero-lanyard__strap {
+    height: 112px;
+  }
+
+  .hero-lanyard__clip {
+    width: 64px;
+    height: 26px;
+  }
+
+  .hero-lanyard__identity {
+    min-height: 58px;
+    padding: 11px 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-lanyard__identity {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-lanyard__identity span {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-lanyard *,
+  .hero-lanyard *::before,
+  .hero-lanyard *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>

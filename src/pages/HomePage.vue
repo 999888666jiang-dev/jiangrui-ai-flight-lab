@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FlightHeroScene from '../components/three/FlightHeroScene.vue';
+import HeroLanyardCard from '../components/ui/HeroLanyardCard.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import {
@@ -33,6 +34,9 @@ const homeCopy = pageCopy.home;
 
 const currentSystem = computed(() => systemNodes[activeSystem.value]);
 const currentMission = computed(() => experienceItems[activeMission.value]);
+const portraitAlt = computed(() =>
+  language.value === 'zh' ? '姜睿 FPV 操控场景照片' : 'Jiang Rui FPV field operation portrait',
+);
 
 let gsapContext: gsap.Context | undefined;
 
@@ -102,13 +106,12 @@ onUnmounted(() => {
         <div class="hero-sector-map" aria-hidden="true">
           <span v-for="item in homeCopy.sectorMap" :key="item.zh">{{ pickText(item, language) }}</span>
         </div>
-        <figure class="hero-portrait">
-          <img :src="profileImage" alt="姜睿 FPV 操控场景照片" />
-          <figcaption>
-            <strong>{{ pickText(homeCopy.portraitCaption.title, language) }}</strong>
-            <span>{{ pickText(homeCopy.portraitCaption.body, language) }}</span>
-          </figcaption>
-        </figure>
+        <HeroLanyardCard
+          :image-src="profileImage"
+          :title="pickText(homeCopy.portraitCaption.title, language)"
+          :body="pickText(homeCopy.portraitCaption.body, language)"
+          :alt="portraitAlt"
+        />
       </aside>
     </div>
 
