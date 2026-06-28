@@ -30,21 +30,119 @@ export type EvidenceItem = {
   }>;
 };
 
+export const resumeProfile = {
+  targetRole: {
+    zh: 'Vibe Coding / Vue3 前端开发师',
+    en: 'Vibe Coding / Vue3 Front-End Developer',
+  },
+  city: { zh: '深圳', en: 'Shenzhen' },
+  email: '3164175833@qq.com',
+  resumePdf: publicAsset('documents/jiangrui-vibe-coding-front-end-resume.pdf'),
+  resumeDownloadName: 'jiangrui-vibe-coding-front-end-resume.pdf',
+  privacyNote: {
+    zh: '公开网页展示邮箱与微信二维码，更多私人信息保留在简历 PDF 内。',
+    en: 'The public site shows email and WeChat. More private details stay inside the resume PDF.',
+  },
+};
+
+export const pageCopy = {
+  home: {
+    heroStatus: [
+      { zh: 'VIBE CODING FRONT-END', en: 'VIBE CODING FRONT-END' },
+      { zh: 'VUE3 / TS / GSAP / THREE', en: 'VUE3 / TS / GSAP / THREE' },
+      { zh: 'UAV-FPV FIELD EVIDENCE', en: 'UAV-FPV FIELD EVIDENCE' },
+    ],
+    sectorMap: [
+      { zh: 'VUE3 前端', en: 'VUE3 FRONT-END' },
+      { zh: '产品测试', en: 'PRODUCT TESTING' },
+      { zh: '无人机现场', en: 'UAV FIELD' },
+      { zh: '创业转化', en: 'VENTURE OPS' },
+    ],
+    portraitCaption: {
+      title: { zh: 'FPV', en: 'FPV' },
+      body: { zh: '现场操控 / 画面判断 / 速度感', en: 'Field control / image judgement / speed sense' },
+    },
+    about: {
+      title: { zh: '把简历变成可交互的能力证明', en: 'A Resume Turned Into Interactive Proof' },
+      body: {
+        zh: '这个网站不再只陈列经历，而是用 Vue3、动效、媒体和真实资料，把前端实现、产品测试、无人机场景与创业转化串成一套可验证的个人作品。',
+        en: 'This site does more than list experience: Vue3, motion, media, and real evidence connect front-end implementation, product testing, UAV field work, and venture outcomes into one verifiable portfolio.',
+      },
+    },
+    skills: {
+      title: { zh: '四条证据链，证明我能把想法做成作品', en: 'Four Evidence Tracks Behind the Work' },
+      body: {
+        zh: '能力不按关键词堆叠，而按“开发、测试、现场、转化”组织。点击节点查看当前能力读数。',
+        en: 'The capability system is organized by building, testing, field execution, and conversion rather than keyword stacking. Click a node to inspect the active readout.',
+      },
+      readout: {
+        zh: '当前节点对应一条简历事实链。后续可继续挂接真实项目、视频、日志、证书和代码链接，让能力从一句话变成可查看的证据。',
+        en: 'Each node maps to a resume-backed evidence track. Projects, videos, logs, certificates, and code links can keep turning each claim into viewable proof.',
+      },
+    },
+    timeline: {
+      title: { zh: '从前端作品到真实场景的成长轨迹', en: 'From Front-End Work to Real-World Systems' },
+      body: {
+        zh: '时间线只保留可追溯事实：个人网站开发、产品测试实习、极飞无人机实验、软件工程学习、竞赛与组织经历。',
+        en: 'The timeline keeps traceable facts only: portfolio development, product testing, XAG UAV experimentation, software engineering study, contests, and leadership.',
+      },
+    },
+    contact: {
+      title: { zh: '联系与资料', en: 'Contact & Materials' },
+      body: {
+        zh: '当前公开展示邮箱、微信二维码和新版简历 PDF。更完整的私人信息放在简历内，正式沟通时再展开。',
+        en: 'The public page shows email, WeChat, and the updated resume PDF. More private details stay inside the resume for formal conversations.',
+      },
+    },
+  },
+  evidenceVault: {
+    title: { zh: '证据库：前端作品与真实能力档案', en: 'Evidence Vault for Front-End Work and Real Skills' },
+    intro: {
+      zh: '这里集中放置简历、证书、视频、图库、成交成果和后续作品。每个入口都对应简历中的一条能力线，不靠空泛形容词堆砌。',
+      en: 'This vault holds the resume, credentials, videos, galleries, deal outcomes, and future work. Each entry maps to a resume-backed capability track, not generic adjectives.',
+    },
+  },
+  videoBay: {
+    title: { zh: '视频舱：真实素材驱动的前端动效场景', en: 'Video Bay for Real-Media Front-End Motion' },
+    intro: {
+      zh: '展示.mp4 已接入视频舱，作为全屏真实背景自动播放。它既展示媒体处理能力，也展示移动端视频策略、HUD 叠层和前端动效控制。',
+      en: 'The showcase video is connected as the full-screen background. It demonstrates media handling, mobile video policy, HUD layering, and front-end motion control.',
+    },
+    qualityPreview: {
+      zh: '生产环境优先使用 CDN 或轻量预览源；高清完整版本只在手动点击后加载。',
+      en: 'Production prefers CDN or lightweight preview sources. The full version loads only after a manual unlock.',
+    },
+    qualityFull: {
+      zh: '当前播放高清完整版本。移动端离开页面或进入后台时仍会释放资源。',
+      en: 'Full quality is active. Mobile devices still release media when hidden or leaving the route.',
+    },
+    briefTitle: { zh: '视频设计原则', en: 'Video design rule' },
+    briefBody: {
+      zh: '素材以稳定、速度感、现场感和少干扰为优先，方便叠加 HUD、粒子和文字信息，同时保持移动端可播放。',
+      en: 'Footage prioritizes stability, speed, field presence, and low visual clutter so HUD, particles, and text can layer cleanly while staying mobile-playable.',
+    },
+  },
+  footer: {
+    zh: '姜睿个人网站。以 Vibe Coding 前端开发为主线，用真实资源、动效系统和统一适配层展示作品、证书、视频与现场能力。',
+    en: 'Jiang Rui portfolio. A Vibe Coding front-end narrative backed by real assets, motion systems, and an adaptive layer across work, certificates, videos, and field capability.',
+  },
+};
+
 export const heroContent = {
   name: { zh: '姜睿', en: 'Jiang Rui' },
   title: {
-    zh: 'AI 设计工程师 / FPV 飞手 / 全机型无人机飞手 / 程序员',
-    en: 'AI Design Engineer / FPV Pilot / UAV Pilot / Programmer',
+    zh: 'Vibe Coding 前端开发者 / Vue3 动效网站制作者 / UAV-FPV 跨域执行者',
+    en: 'Vibe Coding Front-End Developer / Vue3 Motion Website Builder / UAV-FPV Field Operator',
   },
   summary: {
-    zh: '用代码构建智能体工作流，用飞行经验理解真实场景，用测试记录把无人机系统跑得更稳、更可复盘。',
-    en: 'I connect AI workflows, flight operation, and test documentation to make UAV systems more reliable, measurable, and repeatable.',
+    zh: '我把需求分析、产品测试、无人机场景、智能体工作流和前端实现串成可交互作品：能写代码，也能理解真实场景里的问题。',
+    en: 'I turn requirement analysis, product testing, UAV field context, agent workflows, and front-end implementation into interactive work that stays grounded in real problems.',
   },
   traits: [
+    { zh: 'Vue3 / TypeScript / Vite', en: 'Vue3 / TypeScript / Vite' },
+    { zh: 'GSAP / Three.js 动效实现', en: 'GSAP / Three.js motion implementation' },
     { zh: 'CAAC 多旋翼教员', en: 'CAAC Multi-Rotor Instructor' },
-    { zh: '中型超视距多旋翼机长', en: 'Medium BVLOS Multi-Rotor PIC' },
-    { zh: '中型超视距直升机机长', en: 'Medium BVLOS Helicopter PIC' },
-    { zh: 'Python / 嵌入式 / 前端工程', en: 'Python / Embedded / Front-End' },
+    { zh: '测试开发 / Python 数据采集', en: 'Test development / Python data collection' },
   ],
   telemetry: [
     { label: 'ALT', value: '120M' },
@@ -55,111 +153,125 @@ export const heroContent = {
 
 export const missionCopy = [
   {
-    zh: '我的页面不再按普通简历模板铺开，而是把无人机测试、FPV 操控、AI 工作流和程序开发整理成一个可持续补充证据的技术实验室。',
-    en: 'This page is structured as a technical lab rather than a generic resume: UAV testing, FPV operation, AI workflows, and software engineering are connected through evidence.',
+    zh: '我正在求职 Vibe Coding / Vue3 前端开发方向。这个网站本身就是核心作品：用 Vite、Vue Router、TypeScript、GSAP、Three.js 和响应式适配构建，并把真实素材持续接入。',
+    en: 'I am targeting Vibe Coding and Vue3 front-end roles. This site is the core work sample: built with Vite, Vue Router, TypeScript, GSAP, Three.js, responsive adaptation, and continuously connected real assets.',
   },
   {
-    zh: '简历中已确认的基础包括：软件工程本科、测试开发实习、Python 数据收集、智能体工作流搭建、CAAC 多旋翼教员、中型超视距多旋翼机长和中型超视距直升机机长。',
-    en: 'Verified resume signals include software engineering study, test development internship, Python data collection, agent workflow building, and multiple CAAC UAV credentials.',
+    zh: '我的差异化不只在前端：酣睡博士测试开发实习让我接触竞品分析、Python 采集 200+ 用户反馈、需求文档和原型测试；极飞无人机实验经历让我熟悉质量测试、飞行日志分析、固件烧录和临时测试方案。',
+    en: 'The differentiator is wider than front-end work: Hanshui Doctor gave me competitor analysis, Python collection of 200+ feedback records, requirement docs, and prototype testing; XAG UAV experimentation gave me quality testing, flight-log analysis, firmware flashing, and temporary test-plan design.',
   },
 ];
 
 export const facts = [
-  { label: { zh: '当前方向', en: 'Direction' }, value: { zh: '无人机测试 / AI 设计工程', en: 'UAV Testing / AI Design Engineering' } },
+  { label: { zh: '当前方向', en: 'Direction' }, value: resumeProfile.targetRole },
   { label: { zh: '教育背景', en: 'Education' }, value: { zh: '广州新华学院 软件工程 本科 2023-2027', en: 'Software Engineering, Guangzhou Xinhua University, 2023-2027' } },
-  { label: { zh: '资源策略', en: 'Resource strategy' }, value: { zh: '本地资源包持续补齐，不再依赖过期临时链接', en: 'Local resource package first; expired temporary links are not used' } },
+  { label: { zh: '求职城市', en: 'Target city' }, value: resumeProfile.city },
+  { label: { zh: '公开联系', en: 'Public contact' }, value: { zh: '邮箱 + 微信二维码', en: 'Email + WeChat QR' } },
 ];
 
 export const systemNodes = [
-  { label: { zh: 'AI 设计工程师', en: 'AI Design Engineer' }, value: 'Agent / Prototype' },
-  { label: { zh: 'FPV 飞手', en: 'FPV Pilot' }, value: 'Manual / Image' },
-  { label: { zh: '全机型无人机飞手', en: 'UAV Pilot' }, value: 'Multi-rotor / Helicopter' },
-  { label: { zh: '程序员', en: 'Programmer' }, value: 'Python / Embedded / Web' },
+  { label: { zh: 'Vibe Coding 前端开发', en: 'Vibe Coding Front-End' }, value: 'Vue3 / TS / Vite' },
+  { label: { zh: '产品研究与测试开发', en: 'Product Research & Testing' }, value: 'Python / PRD / Prototype' },
+  { label: { zh: '无人机与 FPV 场景能力', en: 'UAV & FPV Field Capability' }, value: 'CAAC / Logs / Firmware' },
+  { label: { zh: '创新创业与成交转化', en: 'Venture & Conversion Ops' }, value: 'Contest / Live / Market' },
 ];
 
 export const skills = [
   {
-    name: { zh: '无人机测试与场地执行', en: 'UAV Testing & Field Execution' },
+    name: { zh: 'Vibe Coding 前端开发', en: 'Vibe Coding Front-End Development' },
     description: {
-      zh: '围绕起降检查、风险识别、现场记录、稳定性观察和问题复盘建立测试流程。',
-      en: 'Builds test flow around pre-flight checks, risk awareness, field notes, stability observation, and issue review.',
+      zh: '以 Vue3、TypeScript、Vite、Vue Router、Tailwind、GSAP 和 Three.js 构建个人网站，兼顾动效、媒体、路由和多端适配。',
+      en: 'Builds this portfolio with Vue3, TypeScript, Vite, Vue Router, Tailwind, GSAP, and Three.js across motion, media, routing, and responsive adaptation.',
+    },
+    level: 90,
+  },
+  {
+    name: { zh: '产品研究与测试开发', en: 'Product Research & Test Development' },
+    description: {
+      zh: '完成 5 款竞品功能分析，Python 收集 200+ 用户反馈，形成需求文档并参与原型测试与关键性能问题定位。',
+      en: 'Produced 5 competitor analyses, collected 200+ feedback records with Python, shaped requirement docs, and joined prototype testing and key performance issue diagnosis.',
     },
     level: 88,
   },
   {
-    name: { zh: 'FPV / 穿越机操控', en: 'FPV Operation' },
+    name: { zh: '无人机与 FPV 场景能力', en: 'UAV & FPV Field Capability' },
     description: {
-      zh: '具备穿越机操控经验，可把画面、速度、姿态变化转化为可说明的飞行证据。',
-      en: 'FPV control experience that turns image, speed, and attitude changes into explainable flight evidence.',
+      zh: '持有 CAAC 多旋翼教员、中型超视距多旋翼机长、中型超视距直升机机长资质，具备飞行日志分析、固件烧录、维修和临时测试方案能力。',
+      en: 'Holds CAAC multi-rotor instructor, medium BVLOS multi-rotor PIC, and medium BVLOS helicopter PIC credentials, with flight-log analysis, firmware flashing, repair, and temporary test-plan experience.',
     },
-    level: 86,
+    level: 87,
   },
   {
-    name: { zh: 'AI 工作流与数据采集', en: 'AI Workflow & Data Collection' },
+    name: { zh: '创新创业与成交转化', en: 'Venture, Market & Conversion' },
     description: {
-      zh: '简历中包含智能体工作流搭建和 Python 收集 200+ 用户反馈数据的经历。',
-      en: 'Resume-backed experience in agent workflow building and Python collection of 200+ user feedback entries.',
+      zh: '参与挑战杯省级银奖、她轻创电商赛省级银奖和创新创业项目，覆盖直播选品、脚本、数据优化、合作洽谈与活动组织。',
+      en: 'Contributed to Challenge Cup and She-Light Entrepreneurship provincial silver awards plus innovation projects, covering live-stream selection, scripts, data optimization, partnership talks, and event organization.',
     },
-    level: 82,
-  },
-  {
-    name: { zh: '程序开发与嵌入式基础', en: 'Programming & Embedded Basics' },
-    description: {
-      zh: '软件工程背景，覆盖 Python、嵌入式、前端工程、地面站和测试文档能力。',
-      en: 'Software engineering background covering Python, embedded basics, front-end engineering, ground stations, and test documentation.',
-    },
-    level: 80,
+    level: 85,
   },
 ];
 
 export const certificate = {
-  title: { zh: '民用无人驾驶航空器操控员执照', en: 'Civil Remote Pilot License' },
-  meta: { zh: '签发日期 2025-12-16 / 有效期至 2032-05-06', en: 'Issued 2025-12-16 / Valid until 2032-05-06' },
+  title: { zh: 'CAAC 无人机资质与证书书册', en: 'CAAC UAV Credentials and Certificate Book' },
+  meta: {
+    zh: '多旋翼教员 / 中型超视距多旋翼机长 / 中型超视距直升机机长',
+    en: 'Multi-rotor instructor / Medium BVLOS multi-rotor PIC / Medium BVLOS helicopter PIC',
+  },
   note: {
-    zh: '公开页面使用脱敏预览图。更多证书和原件可在面试或正式核验时提供。',
-    en: 'The public page uses a redacted preview. More certificates and originals can be provided for formal verification.',
+    zh: '公开页面展示证书图片与脱敏预览，正式核验时可提供原件。',
+    en: 'The public page shows certificate images and redacted previews. Originals can be provided for formal verification.',
   },
   image: publicAsset('images/caac-license-preview.png'),
 };
 
 export const experienceItems = [
   {
-    period: '2026',
-    title: { zh: '个人网站升级为 AI Flight Lab', en: 'AI Flight Lab Portfolio Upgrade' },
-    role: { zh: '个人技术品牌 / 前端实现', en: 'Personal technical brand / Front-end implementation' },
+    period: '2026.05 - 2026.07',
+    title: { zh: 'Vibe Coding 个人网站', en: 'Vibe Coding Personal Website' },
+    role: { zh: '制作者 / Vue3 前端开发', en: 'Creator / Vue3 Front-End Developer' },
     description: {
-      zh: '围绕无人机测试、AI 工作流、FPV 和代码能力重构页面，把后续资源统一接入证据库。',
-      en: 'Rebuilt the page around UAV testing, AI workflow, FPV operation, and code, with future resources routed into the evidence archive.',
+      zh: '主导以 Vue3、Vite、TypeScript 为核心的个人网站开发，接入 Vue Router、Tailwind、GSAP、Three.js、媒体资源和全尺寸适配，形成技术展示、作品集与动态效果一体化页面。',
+      en: 'Led a Vue3, Vite, and TypeScript portfolio build with Vue Router, Tailwind, GSAP, Three.js, media assets, and full-size responsive adaptation into one technical showcase.',
     },
-    tags: ['Vue3', 'TypeScript', 'Three.js', 'GSAP'],
+    tags: ['Vue3', 'TypeScript', 'Vite', 'GSAP', 'Three.js'],
   },
   {
-    period: '2025 - 2032',
-    title: { zh: 'CAAC 无人机资质有效期', en: 'CAAC UAV Credential Validity' },
-    role: { zh: '多旋翼教员 / 中型超视距机长', en: 'Multi-rotor instructor / Medium BVLOS PIC' },
+    period: '2026.06 - 至今',
+    title: { zh: '广州极飞科技股份有限公司', en: 'XAG Guangzhou Technology Co., Ltd.' },
+    role: { zh: '无人机实验员', en: 'UAV Experimentation Intern' },
     description: {
-      zh: '简历与执照资源显示：CAAC 多旋翼教员、中型超视距多旋翼机长、中型超视距直升机机长。',
-      en: 'Resume and license resources show CAAC multi-rotor instructor, medium BVLOS multi-rotor PIC, and medium BVLOS helicopter PIC credentials.',
+      zh: '参与无人机、智能农用无人车、智能灌溉相关部件质量测试，分析飞行日志判断飞机状态或炸机原因，负责固件更新烧录、维修和临时测试方案设计。',
+      en: 'Tests UAV, smart agricultural vehicle, and irrigation components, analyzes flight logs for aircraft state or crash causes, handles firmware flashing, repair, and temporary test-plan design.',
     },
-    tags: ['CAAC', 'BVLOS', 'Multi-Rotor', 'Helicopter'],
+    tags: ['XAG', 'UAV Testing', 'Flight Logs', 'Firmware'],
   },
   {
     period: '2024.07 - 2024.09',
     title: { zh: '酣睡博士（深圳）科技有限公司', en: 'Hanshui Doctor Shenzhen Technology' },
     role: { zh: '测试开发工程师实习', en: 'Test Development Engineer Intern' },
     description: {
-      zh: '参与智能止鼾新产品设计、竞品分析、Python 用户反馈采集、需求文档和原型机测试，发现并解决关键性能问题。',
-      en: 'Worked on product design, competitor analysis, Python feedback collection, requirements documentation, and prototype testing for a smart anti-snoring product.',
+      zh: '参与智能止鼾新产品设计流程，完成 5 款竞品分析，Python 收集 200+ 份用户反馈并形成需求文档，参与原型机测试并定位 2 个关键性能问题。',
+      en: 'Joined the smart anti-snoring product design flow, completed 5 competitor analyses, collected 200+ feedback records with Python, shaped requirement docs, and diagnosed 2 key prototype issues.',
     },
-    tags: ['Testing', 'Python', 'Product', 'Prototype'],
+    tags: ['Testing', 'Python', 'Requirement Docs', 'Prototype'],
+  },
+  {
+    period: '2023.11 - 2025.01',
+    title: { zh: '创新创业与竞赛项目', en: 'Innovation and Entrepreneurship Projects' },
+    role: { zh: '团队核心成员 / 负责人 / 项目设计人', en: 'Core member / lead / project designer' },
+    description: {
+      zh: '参与挑战杯、省级“她轻创”电商赛、东宝杯和创新大赛，负责项目设计、商业可行性评估、直播选品与脚本、数据优化、资源协调和合作洽谈。',
+      en: 'Worked across Challenge Cup, She-Light e-commerce, Dongbao Cup, and innovation contests, covering project design, business feasibility, live-stream selection and scripts, data optimization, coordination, and partnership talks.',
+    },
+    tags: ['Challenge Cup', 'E-commerce', 'Market Analysis', 'Leadership'],
   },
   {
     period: '2023 - 2027',
     title: { zh: '广州新华学院 软件工程本科', en: 'Software Engineering Undergraduate' },
     role: { zh: '专业班长 / 创业协会会长 / 创赛项目设计人', en: 'Class lead / entrepreneurship association lead / competition designer' },
     description: {
-      zh: '组织班级与创业活动，主导创新创业竞赛项目设计；挑战杯项目获得省级银奖。',
-      en: 'Organized class and entrepreneurship activities, led innovation competition design, and contributed to a provincial silver award Challenge Cup project.',
+      zh: '担任专业班长、创业协会会长和创业团队队长，组织教学事务、创业讲座与项目推进，持续训练沟通、组织、项目管理和团队协作能力。',
+      en: 'Serves as class lead, entrepreneurship association president, and venture team lead, coordinating academic affairs, startup events, project delivery, communication, organization, and teamwork.',
     },
     tags: ['Software Engineering', 'Leadership', 'Competition'],
   },
@@ -171,16 +283,16 @@ export const evidenceItems: EvidenceItem[] = [
     index: '01',
     title: { zh: 'FPV 飞行视频', en: 'FPV Flight Video' },
     description: {
-      zh: '用于展示操控稳定性、速度感、画面判断和现场执行。已接入 FPV 飞行视频文件夹资源。',
-      en: 'Shows control stability, speed sense, image judgement, and field execution with connected local FPV folder footage.',
+      zh: '以第一视角视频展示画面判断、速度感和现场操控经验，是前端媒体播放与无人机场景能力的共同证据。',
+      en: 'First-person footage showing image judgement, speed sense, and field control, supporting both media playback work and UAV field capability.',
     },
     status: { zh: '已接入本地视频', en: 'Local videos connected' },
     theme: 'velocity',
     detailLayout: 'cinema',
     world: { zh: 'Velocity Cinema', en: 'Velocity Cinema' },
     detailHeadline: {
-      zh: '把速度、姿态和画面判断放进一个可复盘的视频舱。',
-      en: 'A replay bay for speed, attitude, and image judgement.',
+      zh: '把速度、姿态和画面判断做成可点击、可播放、可复盘的视频舱。',
+      en: 'A playable replay bay for speed, attitude, and image judgement.',
     },
     detailIntro: {
       zh: '这里接入资源包中的 FPV 飞行视频文件夹。主舞台自动播放文件夹内素材，完整素材进入胶卷式集合页查看。',
@@ -204,8 +316,8 @@ export const evidenceItems: EvidenceItem[] = [
       },
       {
         label: { zh: '复盘备注', en: 'Review notes' },
-        status: { zh: '待补充说明', en: 'Notes pending' },
-        hint: { zh: '补充速度、姿态、风险点和操作判断。', en: 'Add speed, attitude, risk points, and control decisions.' },
+        status: { zh: '待补充复盘', en: 'Review notes pending' },
+        hint: { zh: '后续补充速度、姿态、风险点和操作判断，让视频不只是素材，而是训练记录。', en: 'Future notes will add speed, attitude, risk points, and control decisions so clips become training evidence.' },
       },
     ],
   },
@@ -214,16 +326,16 @@ export const evidenceItems: EvidenceItem[] = [
     index: '02',
     title: { zh: 'AI 设计作品', en: 'AI Design Works' },
     description: {
-      zh: '用于展示 AI 原型、智能体工作流、交互设计和视觉方案。可接图片、短视频或项目链接。',
-      en: 'Reserved for AI prototypes, agent workflows, interaction design, and visual systems. Images, clips, or project links can be attached.',
+      zh: '用于沉淀智能体工作流、AI 辅助设计、交互原型和前端落地过程，重点展示从想法到界面的转换能力。',
+      en: 'For agent workflows, AI-assisted design, interaction prototypes, and front-end delivery, focused on turning ideas into interfaces.',
     },
     status: { zh: '待补充作品', en: 'Works pending' },
     theme: 'neural',
     detailLayout: 'atelier',
     world: { zh: 'Neural Atelier', en: 'Neural Atelier' },
     detailHeadline: {
-      zh: '把 AI 方案做成可解释、可演示、可继续迭代的设计工坊。',
-      en: 'An atelier for explainable, demo-ready, and extensible AI design work.',
+      zh: '把智能体工作流和 AI 设计思路做成可解释、可演示、可继续迭代的设计工坊。',
+      en: 'An atelier for explainable, demo-ready, and extensible agent workflows and AI design thinking.',
     },
     detailIntro: {
       zh: '后续 AI 原型、智能体流程、交互稿和视觉方案会集中在这里，按“输入、推理、界面、输出”展示过程。',
@@ -257,40 +369,40 @@ export const evidenceItems: EvidenceItem[] = [
     index: '03',
     title: { zh: '全机型无人机图库', en: 'UAV Platform Gallery' },
     description: {
-      zh: '用于归档多旋翼、直升机、地面站、穿越机和现场设备照片。',
-      en: 'Reserved for multi-rotor, helicopter, ground station, FPV, and field equipment images.',
+      zh: '归档多旋翼、直升机、地面站、穿越机和现场设备图片，证明我对无人机平台与现场环境的真实接触。',
+      en: 'Archives multi-rotor, helicopter, ground station, FPV, and field equipment images as proof of real platform and field exposure.',
     },
-    status: { zh: '待补充照片', en: 'Images pending' },
+    status: { zh: '已接入图库', en: 'Gallery connected' },
     theme: 'hangar',
     detailLayout: 'hangar',
     world: { zh: 'Hangar Matrix', en: 'Hangar Matrix' },
     detailHeadline: {
-      zh: '把不同平台、地面站和现场装备整理成一座数字机库。',
-      en: 'A digital hangar for platforms, ground stations, and field equipment.',
+      zh: '把不同平台、地面站和现场装备整理成一座可拖拽的数字机库。',
+      en: 'A draggable digital hangar for platforms, ground stations, and field equipment.',
     },
     detailIntro: {
-      zh: '后续照片会按平台类型、现场环境和设备用途归档，避免只做普通相册。',
-      en: 'Future photos will be grouped by platform, environment, and equipment role rather than shown as a generic gallery.',
+      zh: '图库已接入资源包图片，页面以机库穹顶和移动端瀑布流展示。后续可继续按平台、场景和设备用途精细分类。',
+      en: 'The gallery now uses connected resource-package images through a hangar dome and mobile waterfall view. Future updates can refine platform, scenario, and equipment categories.',
     },
     metrics: [
       { label: { zh: '平台分类', en: 'Platforms' }, value: { zh: '多旋翼 / 直升机 / FPV', en: 'Multi-rotor / helicopter / FPV' } },
-      { label: { zh: '资料类型', en: 'Media' }, value: { zh: '照片优先', en: 'Photos first' } },
-      { label: { zh: '展示方式', en: 'Display' }, value: { zh: '机库矩阵', en: 'Hangar matrix' } },
+      { label: { zh: '资料类型', en: 'Media' }, value: { zh: '图片变体已生成', en: 'Image variants generated' } },
+      { label: { zh: '展示方式', en: 'Display' }, value: { zh: '机库穹顶', en: 'Hangar dome' } },
     ],
     assetSlots: [
       {
         label: { zh: '多旋翼平台', en: 'Multi-rotor bay' },
-        status: { zh: '待补充照片', en: 'Photos pending' },
-        hint: { zh: '放机体、任务载荷、地面检查和现场环境。', en: 'Use for aircraft, payloads, checks, and field context.' },
+        status: { zh: '图片已接入', en: 'Images connected' },
+        hint: { zh: '展示机体、任务载荷、地面检查和现场环境，作为无人机实验经历的视觉证据。', en: 'Shows aircraft, payloads, checks, and field context as visual evidence for UAV experimentation.' },
       },
       {
         label: { zh: '直升机平台', en: 'Helicopter bay' },
-        status: { zh: '待补充照片', en: 'Photos pending' },
+        status: { zh: '图片已接入', en: 'Images connected' },
         hint: { zh: '放机型识别、起降准备和操控场景。', en: 'Use for platform ID, launch prep, and control scenes.' },
       },
       {
         label: { zh: '地面站与设备', en: 'Ground station & gear' },
-        status: { zh: '待补充照片', en: 'Photos pending' },
+        status: { zh: '图片已接入', en: 'Images connected' },
         hint: { zh: '放遥控器、地面站、现场设备和维护记录。', en: 'Use for controllers, stations, field gear, and maintenance notes.' },
       },
     ],
@@ -300,16 +412,16 @@ export const evidenceItems: EvidenceItem[] = [
     index: '04',
     title: { zh: '成交成果展示', en: 'Deal Results Showcase' },
     description: {
-      zh: '用于集中展示成交成果、交付画面、客户沟通成果和后续可补充的视频图片素材。',
-      en: 'A media archive for deal outcomes, delivery scenes, communication proof, and future video or image evidence.',
+      zh: '集中展示成交、交付、直播运营或转化相关素材，承接简历中的市场分析、直播选品、脚本和数据优化经历。',
+      en: 'A showcase for deal, delivery, live-commerce, or conversion assets, tied to market analysis, live-stream selection, scripts, and data optimization in the resume.',
     },
     status: { zh: '已接入成交视频', en: 'Deal videos connected' },
     theme: 'outcome',
     detailLayout: 'outcome',
     world: { zh: 'Outcome Prism Stage', en: 'Outcome Prism Stage' },
     detailHeadline: {
-      zh: '把成交成果做成一座会流动、会聚焦、可继续扩展的成果展柜。',
-      en: 'A flowing, focusable showcase wall for deal outcomes and future proof assets.',
+      zh: '把成交和转化结果做成一座会流动、会聚焦、可继续扩展的成果展柜。',
+      en: 'A flowing, focusable showcase wall for deal and conversion outcomes.',
     },
     detailIntro: {
       zh: '这里对应资源包中的“成交成果展示”文件夹。主舞台会随机抽取成果视频静音自动播放，更多素材进入独立展柜页查看。',
@@ -334,7 +446,7 @@ export const evidenceItems: EvidenceItem[] = [
       {
         label: { zh: '展柜复盘说明', en: 'Showcase review notes' },
         status: { zh: '待补充说明', en: 'Notes pending' },
-        hint: { zh: '后续可按时间、类型或成果阶段补充说明，避免只堆素材。', en: 'Future notes can group assets by date, type, or result stage so the archive stays readable.' },
+        hint: { zh: '后续可按选品、脚本、数据、成交结果或交付阶段补充说明，避免只堆素材。', en: 'Future notes can group assets by selection, scripts, data, deal result, or delivery stage so the archive stays readable.' },
       },
     ],
   },
@@ -343,36 +455,36 @@ export const evidenceItems: EvidenceItem[] = [
     index: '05',
     title: { zh: '飞行日志与测试报告', en: 'Flight Logs & Test Reports' },
     description: {
-      zh: '用于沉淀任务目标、环境条件、问题现象、复盘结论和测试截图。',
-      en: 'Reserved for mission goals, conditions, observations, conclusions, and test screenshots.',
+      zh: '承接极飞无人机实验经历：部件质量测试、飞行日志分析、固件烧录、维修记录和临时测试方案。',
+      en: 'Tied to XAG UAV experimentation: component quality testing, flight-log analysis, firmware flashing, repair notes, and temporary test plans.',
     },
-    status: { zh: '待补充文档', en: 'Docs pending' },
+    status: { zh: '测试档案待补充', en: 'Test archive pending' },
     theme: 'blackbox',
     detailLayout: 'recorder',
     world: { zh: 'Black Box Recorder', en: 'Black Box Recorder' },
     detailHeadline: {
-      zh: '把飞行和测试从“经历”变成可复盘的黑匣子记录。',
-      en: 'A black-box recorder that turns flight and test work into reviewable evidence.',
+      zh: '把质量测试、日志分析和现场问题从“经历”变成可复盘的黑匣子记录。',
+      en: 'A black-box recorder that turns quality tests, log analysis, and field issues into reviewable evidence.',
     },
     detailIntro: {
-      zh: '这里后续放任务目标、环境条件、异常现象、测试截图、结论和改进建议，体现无人机测试的严谨度。',
-      en: 'Future records will hold goals, conditions, anomalies, screenshots, conclusions, and improvement notes for rigorous UAV testing evidence.',
+      zh: '这里后续放质量测试目标、设备状态、飞行日志摘要、炸机原因分析、固件烧录记录、维修结论和改进建议，体现无人机实验员的严谨度。',
+      en: 'Future records will hold quality-test goals, equipment state, flight-log summaries, crash-cause analysis, firmware flashing records, repair conclusions, and improvement notes.',
     },
     metrics: [
-      { label: { zh: '文档类型', en: 'Doc types' }, value: { zh: 'PDF / 截图 / 复盘', en: 'PDF / screenshots / reviews' } },
-      { label: { zh: '记录维度', en: 'Dimensions' }, value: { zh: '目标 / 环境 / 现象 / 结论', en: 'Goal / condition / issue / conclusion' } },
-      { label: { zh: '状态', en: 'Status' }, value: { zh: '等待真实报告', en: 'Reports pending' } },
+      { label: { zh: '记录类型', en: 'Record types' }, value: { zh: '日志 / 固件 / 维修 / 报告', en: 'Logs / firmware / repair / reports' } },
+      { label: { zh: '记录维度', en: 'Dimensions' }, value: { zh: '目标 / 状态 / 原因 / 结论', en: 'Goal / state / cause / conclusion' } },
+      { label: { zh: '来源', en: 'Source' }, value: { zh: '极飞无人机实验经历', en: 'XAG UAV experimentation' } },
     ],
     assetSlots: [
       {
         label: { zh: '任务记录', en: 'Mission log' },
         status: { zh: '待补充文档', en: 'Doc pending' },
-        hint: { zh: '适合放任务目标、环境、人员和设备状态。', en: 'Use for goals, environment, team, and equipment state.' },
+        hint: { zh: '适合放测试目标、设备状态、固件版本和执行步骤。', en: 'Use for test goals, equipment state, firmware version, and execution steps.' },
       },
       {
         label: { zh: '问题复盘', en: 'Issue review' },
         status: { zh: '待补充记录', en: 'Record pending' },
-        hint: { zh: '记录异常现象、定位过程和修复建议。', en: 'Record anomalies, diagnosis, and fix recommendations.' },
+        hint: { zh: '记录异常现象、飞行日志判断、炸机原因、定位过程和修复建议。', en: 'Record anomalies, flight-log judgement, crash causes, diagnosis, and fix recommendations.' },
       },
       {
         label: { zh: '测试截图 / 报告', en: 'Screenshots / report' },
@@ -386,41 +498,41 @@ export const evidenceItems: EvidenceItem[] = [
     index: '06',
     title: { zh: '证书与荣誉', en: 'Certificates & Awards' },
     description: {
-      zh: '用于补充挑战杯、省级银奖、电子商务大赛、大创等证据材料。',
-      en: 'Reserved for Challenge Cup, provincial silver award, e-commerce competition, and innovation project evidence.',
+      zh: '展示 CAAC 三项无人机资质、挑战杯省级银奖、她轻创电商赛省级银奖和创新创业奖项。',
+      en: 'Shows CAAC UAV credentials, Challenge Cup provincial silver, She-Light e-commerce provincial silver, and innovation awards.',
     },
-    status: { zh: '待补充材料', en: 'Evidence pending' },
+    status: { zh: '证书图片已接入', en: 'Certificate images connected' },
     theme: 'verify',
     detailLayout: 'vault',
     world: { zh: 'Verification Vault', en: 'Verification Vault' },
     detailHeadline: {
-      zh: '把证书、奖项和可核验材料放进一个严谨的验证库。',
-      en: 'A verification vault for certificates, awards, and checkable proof.',
+      zh: '把 CAAC 资质、竞赛奖项和组织经历装订成可翻阅的验证书册。',
+      en: 'A book-style verification gallery for CAAC credentials, awards, and leadership evidence.',
     },
     detailIntro: {
-      zh: '这里后续补充挑战杯、省级银奖、电子商务大赛、大创等证据材料。公开页优先使用脱敏预览，正式核验时再提供原件。',
-      en: 'This vault will store Challenge Cup, provincial awards, e-commerce competition, and innovation proof. Public pages use redacted previews first.',
+      zh: '这里展示已转图的证书与荣誉材料，包括 CAAC 资质、挑战杯、“她轻创”电商赛和创新创业奖项。公开页只展示图片，不提供 PDF 下载。',
+      en: 'This gallery displays rendered certificate and honor images, including CAAC credentials, Challenge Cup, She-Light e-commerce, and innovation awards. Public pages show images only, without PDF downloads.',
     },
     metrics: [
-      { label: { zh: '公开策略', en: 'Public rule' }, value: { zh: '脱敏预览', en: 'Redacted preview' } },
+      { label: { zh: '公开策略', en: 'Public rule' }, value: { zh: '图片展示', en: 'Image display only' } },
       { label: { zh: '核验方式', en: 'Verification' }, value: { zh: '正式场景提供原件', en: 'Originals on request' } },
-      { label: { zh: '状态', en: 'Status' }, value: { zh: '等待补充材料', en: 'Evidence pending' } },
+      { label: { zh: '状态', en: 'Status' }, value: { zh: '证书书册已接入', en: 'Book gallery connected' } },
     ],
     assetSlots: [
       {
         label: { zh: '挑战杯 / 创赛', en: 'Challenge Cup / contests' },
-        status: { zh: '待补充材料', en: 'Evidence pending' },
-        hint: { zh: '可放奖项证明、项目说明和团队角色。', en: 'Use for award proof, project notes, and role evidence.' },
+        status: { zh: '荣誉已接入', en: 'Honors connected' },
+        hint: { zh: '展示挑战杯省级银奖、创新创业竞赛和项目设计经历。', en: 'Shows Challenge Cup provincial silver, innovation contests, and project design experience.' },
       },
       {
         label: { zh: '资格证书', en: 'Credentials' },
-        status: { zh: '待补充证书', en: 'Credential pending' },
-        hint: { zh: '补充无人机、软件、竞赛或培训类证书。', en: 'Add UAV, software, contest, or training credentials.' },
+        status: { zh: 'CAAC 资质已接入', en: 'CAAC credentials connected' },
+        hint: { zh: '覆盖多旋翼教员、中型超视距多旋翼机长和中型超视距直升机机长。', en: 'Covers multi-rotor instructor, medium BVLOS multi-rotor PIC, and medium BVLOS helicopter PIC.' },
       },
       {
         label: { zh: '荣誉材料', en: 'Honor evidence' },
-        status: { zh: '待补充图片', en: 'Images pending' },
-        hint: { zh: '公开页使用脱敏图，避免泄露敏感编号。', en: 'Use redacted images publicly to protect sensitive IDs.' },
+        status: { zh: '图片已接入', en: 'Images connected' },
+        hint: { zh: '公开页使用图片书册展示，不暴露源 PDF 下载入口。', en: 'The public page uses a book-style image gallery without exposing source PDF downloads.' },
       },
     ],
   },
@@ -428,6 +540,8 @@ export const evidenceItems: EvidenceItem[] = [
 
 export const contactItems = [
   { label: { zh: '微信', en: 'WeChat' }, value: { zh: '扫码添加好友', en: 'Scan the QR code' } },
-  { label: { zh: '求职方向', en: 'Target role' }, value: { zh: '无人机测试 / AI 设计工程 / 无人机应用', en: 'UAV Testing / AI Design Engineering / UAV Applications' } },
-  { label: { zh: '简历状态', en: 'Resume' }, value: { zh: 'PDF 已接入，可下载查看完整经历', en: 'PDF connected and ready to download' } },
+  { label: { zh: '邮箱', en: 'Email' }, value: { zh: resumeProfile.email, en: resumeProfile.email } },
+  { label: { zh: '求职方向', en: 'Target role' }, value: resumeProfile.targetRole },
+  { label: { zh: '目标城市', en: 'Target city' }, value: resumeProfile.city },
+  { label: { zh: '简历状态', en: 'Resume' }, value: { zh: '新版 PDF 已接入，可下载查看完整经历', en: 'Updated PDF connected and ready to download' } },
 ];

@@ -12,6 +12,8 @@ import {
   facts,
   heroContent,
   missionCopy,
+  pageCopy,
+  resumeProfile,
   skills,
   systemNodes,
 } from '../data/siteContent';
@@ -23,9 +25,11 @@ const { language, t } = useLanguage();
 const { profile } = useEnvironment();
 const activeSystem = ref(0);
 const activeMission = ref(0);
-const resumePdf = publicAsset('documents/jiangrui-uav-tester-resume.pdf');
+const resumePdf = resumeProfile.resumePdf;
+const resumeDownloadName = resumeProfile.resumeDownloadName;
 const profileImage = publicAsset('images/profile-fpv.jpg');
 const wechatQr = publicAsset('images/wechat-qr.jpg');
+const homeCopy = pageCopy.home;
 
 const currentSystem = computed(() => systemNodes[activeSystem.value]);
 const currentMission = computed(() => experienceItems[activeMission.value]);
@@ -73,7 +77,7 @@ onUnmounted(() => {
 
         <div class="hero-actions">
           <RouterLink class="button button--primary" :to="{ path: '/', hash: '#experience' }">{{ t('cta.viewExperience') }}</RouterLink>
-          <a class="button button--secondary" :href="resumePdf" download>
+          <a class="button button--secondary" :href="resumePdf" :download="resumeDownloadName">
             {{ t('cta.downloadResume') }}
           </a>
         </div>
@@ -83,9 +87,7 @@ onUnmounted(() => {
         </div>
 
         <div class="mission-status-strip" aria-label="Mission status">
-          <span>VUE3 MIGRATION ACTIVE</span>
-          <span>AI / FPV / UAV / CODE</span>
-          <span>SCROLL TO ARM SYSTEMS</span>
+          <span v-for="item in homeCopy.heroStatus" :key="item.zh">{{ pickText(item, language) }}</span>
         </div>
       </div>
 
@@ -98,16 +100,13 @@ onUnmounted(() => {
           </span>
         </div>
         <div class="hero-sector-map" aria-hidden="true">
-          <span>AI DESIGN</span>
-          <span>FPV PILOT</span>
-          <span>UAV ALL-MODEL</span>
-          <span>PROGRAMMER</span>
+          <span v-for="item in homeCopy.sectorMap" :key="item.zh">{{ pickText(item, language) }}</span>
         </div>
         <figure class="hero-portrait">
           <img :src="profileImage" alt="姜睿 FPV 操控场景照片" />
           <figcaption>
-            <strong>FPV</strong>
-            <span>Field operation / control practice</span>
+            <strong>{{ pickText(homeCopy.portraitCaption.title, language) }}</strong>
+            <span>{{ pickText(homeCopy.portraitCaption.body, language) }}</span>
           </figcaption>
         </figure>
       </aside>
@@ -120,14 +119,8 @@ onUnmounted(() => {
 
   <section id="about" class="section section--mission">
     <div class="section-heading" data-reveal>
-      <h2>{{ language === 'zh' ? '任务不是展示简历，而是证明能力' : 'Mission, Not Template' }}</h2>
-      <p>
-        {{
-          language === 'zh'
-            ? '参考站点的交互逻辑被转译为飞行系统叙事：主视觉响应鼠标，章节沿航迹展开，资源用证据库持续补充。'
-            : 'The reference interaction is translated into a flight-system narrative: pointer-reactive visuals, route-like sections, and an expandable evidence archive.'
-        }}
-      </p>
+      <h2>{{ pickText(homeCopy.about.title, language) }}</h2>
+      <p>{{ pickText(homeCopy.about.body, language) }}</p>
     </div>
 
     <div class="mission-grid">
@@ -146,14 +139,8 @@ onUnmounted(() => {
 
   <section id="skills" class="section section--systems">
     <div class="section-heading" data-reveal>
-      <h2>{{ language === 'zh' ? '能力系统，而不是技能清单' : 'Mission Systems' }}</h2>
-      <p>
-        {{
-          language === 'zh'
-            ? '把证书、飞行、AI 工作流和代码能力组织成一个可验证的系统。点击节点切换当前能力读数。'
-            : 'Credentials, flight operation, AI workflow, and code are organized as a verifiable system. Click a node to switch the active readout.'
-        }}
-      </p>
+      <h2>{{ pickText(homeCopy.skills.title, language) }}</h2>
+      <p>{{ pickText(homeCopy.skills.body, language) }}</p>
     </div>
 
     <div class="systems-map" data-reveal>
@@ -173,13 +160,7 @@ onUnmounted(() => {
     <article class="system-readout" data-reveal>
       <span>ACTIVE SYSTEM / {{ String(activeSystem + 1).padStart(2, '0') }}</span>
       <h3>{{ pickText(currentSystem.label, language) }}</h3>
-      <p>
-        {{
-          language === 'zh'
-            ? '点击上方节点会切换当前能力系统。后续每个系统都可以继续挂接真实项目、视频、日志、证书或代码链接。'
-            : 'Click a node to switch the active capability system. Each system can later attach real projects, videos, logs, certificates, or code links.'
-        }}
-      </p>
+      <p>{{ pickText(homeCopy.skills.readout, language) }}</p>
     </article>
 
     <div class="systems-grid">
@@ -211,14 +192,8 @@ onUnmounted(() => {
 
   <section id="experience" class="section section--timeline">
     <div class="section-heading" data-reveal>
-      <h2>{{ language === 'zh' ? '航迹时间线' : 'Flight-System Timeline' }}</h2>
-      <p>
-        {{
-          language === 'zh'
-            ? '时间线保留真实依据，不虚构飞行时长或项目成果。每段经历可继续挂接视频、报告和图片证据。'
-            : 'The timeline stays evidence-based, without invented flight hours or project outcomes. Videos, reports, and images can be attached later.'
-        }}
-      </p>
+      <h2>{{ pickText(homeCopy.timeline.title, language) }}</h2>
+      <p>{{ pickText(homeCopy.timeline.body, language) }}</p>
     </div>
 
     <div class="mission-control" data-reveal>
@@ -252,14 +227,8 @@ onUnmounted(() => {
 
   <section id="contact" class="section section--contact">
     <div class="section-heading" data-reveal>
-      <h2>{{ language === 'zh' ? '联系与资料' : 'Contact & Materials' }}</h2>
-      <p>
-        {{
-          language === 'zh'
-            ? '当前优先展示微信二维码和简历 PDF。后续邮箱、项目链接、飞行日志和更多证书可以继续从资源包接入。'
-            : 'The current page prioritizes WeChat and the resume PDF. Email, project links, flight logs, and more certificates can be wired in later.'
-        }}
-      </p>
+      <h2>{{ pickText(homeCopy.contact.title, language) }}</h2>
+      <p>{{ pickText(homeCopy.contact.body, language) }}</p>
     </div>
 
     <div class="contact-grid">
@@ -268,7 +237,7 @@ onUnmounted(() => {
           <span>{{ pickText(item.label, language) }}</span>
           <strong>{{ pickText(item.value, language) }}</strong>
         </div>
-        <a class="button button--primary" :href="resumePdf" download>
+        <a class="button button--primary" :href="resumePdf" :download="resumeDownloadName">
           {{ t('cta.downloadResume') }}
         </a>
       </div>

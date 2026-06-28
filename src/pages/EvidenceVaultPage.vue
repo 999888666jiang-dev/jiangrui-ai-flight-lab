@@ -6,7 +6,7 @@ import VideoPreviewTile from '../components/media/VideoPreviewTile.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
 import { certificateGalleryItems } from '../data/certificatesManifest';
-import { certificate, contactItems, evidenceItems, type EvidenceItem } from '../data/siteContent';
+import { certificate, contactItems, evidenceItems, pageCopy, resumeProfile, type EvidenceItem } from '../data/siteContent';
 import { getShowcaseMedia, resolveShowcaseMediaSources, type ShowcaseMediaGroup } from '../data/showcaseMedia';
 import { uavGalleryImages } from '../data/uavGalleryManifest';
 import { publicAsset } from '../utils/publicAsset';
@@ -14,8 +14,10 @@ import { publicAsset } from '../utils/publicAsset';
 const { language, t } = useLanguage();
 const { profile } = useEnvironment();
 const router = useRouter();
-const resumePdf = publicAsset('documents/jiangrui-uav-tester-resume.pdf');
+const resumePdf = resumeProfile.resumePdf;
+const resumeDownloadName = resumeProfile.resumeDownloadName;
 const wechatQr = publicAsset('images/wechat-qr.jpg');
+const vaultCopy = pageCopy.evidenceVault;
 const vaultPreviewSeed = Math.floor(Math.random() * 1000);
 const mediaShowcaseGroups: Partial<Record<string, ShowcaseMediaGroup>> = {
   'fpv-flight-video': 'fpv-flight-video',
@@ -92,14 +94,8 @@ onUnmounted(() => {
   <section class="section section--evidence evidence-route-page">
     <div class="section-heading vault-heading" data-reveal>
       <p class="section-code">05 / EVIDENCE VAULT</p>
-      <h1>{{ language === 'zh' ? '证据库：真实能力档案' : 'Evidence Vault, No Fake Claims' }}</h1>
-      <p>
-        {{
-          language === 'zh'
-            ? '这里集中放置执照、二维码、简历 PDF 和后续真实素材位；能力只用证据点亮，不依赖过期临时链接。'
-            : 'This page stores the license, QR code, resume PDF, and future real assets. Every slot lights up only after real resources arrive.'
-        }}
-      </p>
+      <h1>{{ pickText(vaultCopy.title, language) }}</h1>
+      <p>{{ pickText(vaultCopy.intro, language) }}</p>
     </div>
 
     <div class="vault-feature-grid">
@@ -108,7 +104,7 @@ onUnmounted(() => {
           <img :src="certificate.image" :alt="pickText(certificate.title, language)" loading="lazy" />
         </div>
         <div class="cert-card__body">
-          <small>LICENSE / REDACTED</small>
+          <small>CAAC / VERIFIED PREVIEW</small>
           <h3>{{ pickText(certificate.title, language) }}</h3>
           <p>{{ pickText(certificate.meta, language) }}</p>
           <span>{{ pickText(certificate.note, language) }}</span>
@@ -125,7 +121,7 @@ onUnmounted(() => {
           <span>{{ pickText(item.label, language) }}</span>
           <strong>{{ pickText(item.value, language) }}</strong>
         </div>
-        <a class="button button--primary" :href="resumePdf" download>
+        <a class="button button--primary" :href="resumePdf" :download="resumeDownloadName">
           {{ t('cta.downloadResume') }}
         </a>
       </article>

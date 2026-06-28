@@ -8,10 +8,13 @@ import InstallPrompt from '../components/ui/InstallPrompt.vue';
 import MissionRail from '../components/ui/MissionRail.vue';
 import NavBar from '../components/ui/NavBar.vue';
 import { useEnvironment } from '../composables/useEnvironment';
+import { pickText, useLanguage } from '../composables/useLanguage';
 import { usePointerCssVars } from '../composables/useUiMotion';
+import { pageCopy } from '../data/siteContent';
 
 usePointerCssVars();
 const { runtime, deviceTier } = useEnvironment();
+const { language } = useLanguage();
 
 const route = useRoute();
 const particlePreset = computed(() => {
@@ -38,7 +41,7 @@ const particlePreset = computed(() => {
       <slot />
     </main>
     <footer class="footer">
-      <p>姜睿个人网站。Vue3 版本保留 AI Flight Lab 世界观，真实资源继续从本地资源包接入，并通过统一适配层覆盖桌面、移动端与微信环境。</p>
+      <p>{{ pickText(pageCopy.footer, language) }}</p>
       <RouterLink to="/">Back to top</RouterLink>
     </footer>
   </div>

@@ -1,16 +1,16 @@
 {
   "nav": {
-    "about": "Mission",
-    "skills": "Systems",
-    "experience": "Flight Path",
+    "about": "Profile",
+    "skills": "Capabilities",
+    "experience": "Experience",
     "videoBay": "Video Bay",
     "videos": "Evidence",
     "contact": "Contact"
   },
   "cta": {
-    "viewExperience": "View Flight Path",
+    "viewExperience": "View Experience",
     "contact": "Contact",
-    "downloadResume": "Download Resume PDF",
+    "downloadResume": "Download Updated Resume",
     "resumePending": "Resource pending",
     "wechat": "WeChat"
   },

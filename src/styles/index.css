@@ -21,6 +21,9 @@ body {
   font-family:
     Inter, 'HarmonyOS Sans SC', 'Microsoft YaHei', ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
   text-rendering: geometricPrecision;
 }
 
@@ -440,6 +443,8 @@ a {
   font-size: clamp(1.02rem, 2vw, 1.28rem);
   font-weight: 750;
   line-height: 1.55;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .hero-summary {
@@ -448,6 +453,7 @@ a {
   color: var(--color-text-soft);
   font-size: clamp(1rem, 1.4vw, 1.14rem);
   line-height: 1.85;
+  text-wrap: pretty;
 }
 
 .hero-actions,
@@ -704,14 +710,17 @@ a {
 .section-heading h2 {
   margin: 0;
   font-size: clamp(2.25rem, 5vw, 4.9rem);
-  line-height: 0.98;
+  line-height: 1.02;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .section-heading h1 {
   margin: 0;
   font-size: clamp(3rem, 7vw, 7rem);
-  line-height: 0.92;
+  line-height: 0.98;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .section-heading p {
@@ -719,6 +728,7 @@ a {
   color: var(--color-muted);
   font-size: 1.04rem;
   line-height: 1.85;
+  text-wrap: pretty;
 }
 
 .mission-grid,
@@ -2548,7 +2558,7 @@ body {
   margin: 0;
   font-size: clamp(3.8rem, 8.2vw, 8rem);
   font-weight: 950;
-  line-height: 0.86;
+  line-height: 0.94;
   word-break: keep-all;
   overflow-wrap: normal;
   text-wrap: balance;

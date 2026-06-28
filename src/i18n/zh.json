@@ -1,16 +1,16 @@
 {
   "nav": {
-    "about": "任务",
-    "skills": "系统",
-    "experience": "航迹",
+    "about": "定位",
+    "skills": "能力",
+    "experience": "经历",
     "videoBay": "视频舱",
     "videos": "证据库",
     "contact": "联系"
   },
   "cta": {
-    "viewExperience": "查看航迹",
+    "viewExperience": "查看经历",
     "contact": "联系我",
-    "downloadResume": "下载简历 PDF",
+    "downloadResume": "下载新版简历",
     "resumePending": "资源待补齐",
     "wechat": "微信联系"
   },

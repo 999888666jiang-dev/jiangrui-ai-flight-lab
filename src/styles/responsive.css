@@ -67,13 +67,14 @@
   .hero-copy h1,
   .section-heading h1 {
     font-size: clamp(2.85rem, 18vw, 5.2rem);
-    line-height: 0.92;
+    line-height: 1;
   }
 
   .hero-title,
   .hero-summary,
   .section-heading p {
     font-size: 0.98rem;
+    line-height: 1.72;
   }
 
   .hero-actions,
@@ -275,6 +276,7 @@
   .showcase-detail__hero h1,
   .media-reel-hero h1 {
     font-size: clamp(2.55rem, 20vw, 4.25rem);
+    line-height: 1.04;
   }
 
   .mission-status-strip {
