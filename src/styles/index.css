@@ -346,7 +346,7 @@ a {
 .hero-section {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: visible;
   padding: 130px clamp(20px, 5vw, 72px) 72px;
   isolation: isolate;
 }

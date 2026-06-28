@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { useEnvironment } from '../../composables/useEnvironment';
 
@@ -15,12 +15,14 @@ const rootRef = ref<HTMLElement>();
 const passRef = ref<HTMLElement>();
 const isDragging = ref(false);
 const isRevealed = ref(false);
+const hasFinePointer = ref(false);
 
 let pointerStart: { x: number; y: number } | undefined;
 let dragMoved = false;
 let suppressClick = false;
 let activeTween: gsap.core.Tween | gsap.core.Timeline | undefined;
 let entranceTween: gsap.core.Timeline | undefined;
+let tetherFrame: number | undefined;
 
 const canAnimate = computed(() => {
   const current = profile.value;
@@ -29,7 +31,7 @@ const canAnimate = computed(() => {
 
 const canDrag = computed(() => {
   const current = profile.value;
-  return canAnimate.value && current.runtime === 'desktop' && current.viewport.width >= 900 && !current.isWeChat;
+  return canAnimate.value && hasFinePointer.value && current.viewport.width >= 700 && !current.isWeChat;
 });
 
 const interactionLabel = computed(() =>
@@ -38,6 +40,39 @@ const interactionLabel = computed(() =>
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
+}
+
+function readPointerMode() {
+  hasFinePointer.value = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+}
+
+function updateTetherGeometry() {
+  if (!rootRef.value) return;
+
+  const current = profile.value;
+  const rect = rootRef.value.getBoundingClientRect();
+
+  if (current.viewport.width <= 680) {
+    rootRef.value.style.setProperty('--strap-top-offset', '-42px');
+    rootRef.value.style.setProperty('--strap-length', '132px');
+    return;
+  }
+
+  const topDistance = Math.max(0, rect.top);
+  const anchorDrop = current.viewport.width <= 1080 ? 104 : 118;
+  const strapLength = clamp(topDistance + anchorDrop, 178, 860);
+
+  rootRef.value.style.setProperty('--strap-top-offset', `${-topDistance}px`);
+  rootRef.value.style.setProperty('--strap-length', `${strapLength}px`);
+}
+
+function scheduleTetherUpdate() {
+  if (tetherFrame !== undefined) return;
+  tetherFrame = window.requestAnimationFrame(() => {
+    tetherFrame = undefined;
+    readPointerMode();
+    updateTetherGeometry();
+  });
 }
 
 function setVars(vars: Record<string, string | number>, duration = 0.18, ease = 'power3.out') {
@@ -225,10 +260,21 @@ function handleKeydown(event: KeyboardEvent) {
 }
 
 onMounted(() => {
-  playEntrance();
+  nextTick(() => {
+    readPointerMode();
+    updateTetherGeometry();
+    playEntrance();
+    window.addEventListener('resize', scheduleTetherUpdate);
+    window.addEventListener('scroll', scheduleTetherUpdate, { passive: true });
+  });
 });
 
 onUnmounted(() => {
+  if (tetherFrame !== undefined) {
+    window.cancelAnimationFrame(tetherFrame);
+  }
+  window.removeEventListener('resize', scheduleTetherUpdate);
+  window.removeEventListener('scroll', scheduleTetherUpdate);
   activeTween?.kill();
   entranceTween?.kill();
 });
@@ -249,7 +295,7 @@ onUnmounted(() => {
   >
     <div class="hero-lanyard__rig" aria-hidden="true">
       <span class="hero-lanyard__fabric">
-        <span v-for="index in 3" :key="index" class="hero-lanyard__fabric-mark">
+        <span v-for="index in 6" :key="index" class="hero-lanyard__fabric-mark">
           <span />
         </span>
       </span>
@@ -313,6 +359,8 @@ onUnmounted(() => {
   --chain-y: 0px;
   --chain-rot: 0deg;
   --chain-stretch: 1;
+  --strap-top-offset: -58px;
+  --strap-length: 178px;
   position: absolute;
   right: 102px;
   bottom: 0;
@@ -343,15 +391,16 @@ onUnmounted(() => {
 
 .hero-lanyard__fabric {
   position: absolute;
-  top: -58px;
+  top: var(--strap-top-offset);
   left: 50%;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   flex-direction: column;
   width: 36px;
-  height: 178px;
-  gap: 28px;
-  padding-top: 18px;
+  height: var(--strap-length);
+  gap: 0;
+  padding: 24px 0 34px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0 0 14px 14px;
   background:
@@ -425,7 +474,7 @@ onUnmounted(() => {
 .hero-lanyard__ring {
   position: absolute;
   left: 50%;
-  top: 91px;
+  top: calc(var(--strap-top-offset) + var(--strap-length) - 27px);
   width: 39px;
   height: 39px;
   border: 2px solid rgba(207, 222, 218, 0.36);
@@ -443,7 +492,7 @@ onUnmounted(() => {
 .hero-lanyard__cord {
   position: absolute;
   left: 50%;
-  top: 121px;
+  top: calc(var(--strap-top-offset) + var(--strap-length) + 3px);
   width: 8px;
   height: 45px;
   content: '';
@@ -472,7 +521,7 @@ onUnmounted(() => {
 
 .hero-lanyard__pin {
   position: absolute;
-  top: 160px;
+  top: calc(var(--strap-top-offset) + var(--strap-length) + 42px);
   left: 50%;
   width: 13px;
   height: 13px;
@@ -874,7 +923,10 @@ onUnmounted(() => {
 @media (max-width: 1080px) {
   .hero-lanyard {
     right: auto;
-    left: 0;
+    bottom: auto;
+    left: clamp(46px, 16vw, 150px);
+    top: -300px;
+    width: min(330px, 64vw);
   }
 }
 
@@ -893,11 +945,8 @@ onUnmounted(() => {
   }
 
   .hero-lanyard__fabric {
-    top: -42px;
     width: 31px;
-    height: 132px;
-    gap: 20px;
-    padding-top: 13px;
+    padding: 15px 0 24px;
   }
 
   .hero-lanyard__fabric-mark {
@@ -905,23 +954,17 @@ onUnmounted(() => {
     height: 15px;
   }
 
-  .hero-lanyard__fabric-mark:nth-child(3) {
+  .hero-lanyard__fabric-mark:nth-child(n + 4) {
     display: none;
   }
 
   .hero-lanyard__ring {
-    top: 72px;
     width: 34px;
     height: 34px;
   }
 
   .hero-lanyard__cord {
-    top: 100px;
     height: 34px;
-  }
-
-  .hero-lanyard__pin {
-    top: 128px;
   }
 
   .hero-lanyard__back-prop {
