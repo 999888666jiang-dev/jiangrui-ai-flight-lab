@@ -383,3 +383,11 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - 交互策略：桌面端允许拖拽移开卡片，织带和固定点跟随倾斜；桨叶跟随卡片空间运动并可慢速旋转。松手后弹性归位。
 - 降级策略：移动端、微信、低性能和 `prefers-reduced-motion` 下关闭自由拖拽和持续旋转，只保留静态织带、卡片和桨叶质感。
 - QA 策略：断言织带/圆环/连接绳/固定点存在，旧链条 DOM 不存在，三叶桨存在，拖拽和回弹变量正常，移动端无横向溢出，console 和 400+ 为 0。
+## Pattern: viewport-tethered lanyard card
+
+- Use this when a hero portrait, pass card, or physical object should feel suspended from the top of the page instead of merely decorated inside a card.
+- The strap/rope length should be computed from viewport geometry, not hard-coded inside the component. On mount, resize, and scroll, update CSS variables such as `--strap-top-offset` and `--strap-length` from the card root `getBoundingClientRect()`.
+- If a long tether must extend outside its section, audit parent `overflow`. Prefer letting the section expose vertical overflow while relying on a global `overflow-x: clip` guard for horizontal safety.
+- For desktop narrow windows, do not rely only on a broad runtime shell such as `desktop` vs `mobile-browser`. Use `(hover: hover) and (pointer: fine)` to decide whether drag interaction is safe.
+- Keep touch/mobile drag disabled by default when the same gesture conflicts with document scroll. If mobile movement is required later, design an explicit move-away or collapse affordance instead of free dragging.
+- QA should assert top-tether geometry, no horizontal overflow, fine-pointer drag variables changing during drag, elastic return to zero after release, and a static reduced-motion fallback.
