@@ -5,6 +5,7 @@ import VaultPortalOverlay from '../components/effects/VaultPortalOverlay.vue';
 import VideoPreviewTile from '../components/media/VideoPreviewTile.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
+import { aiDesignWorks } from '../data/aiDesignGalleryManifest';
 import { certificateGalleryItems } from '../data/certificatesManifest';
 import { certificate, contactItems, evidenceItems, pageCopy, resumeProfile, type EvidenceItem } from '../data/siteContent';
 import { getShowcaseMedia, resolveShowcaseMediaSources, type ShowcaseMediaGroup } from '../data/showcaseMedia';
@@ -56,6 +57,10 @@ const certificateVaultPreview = computed(() => {
 const uavVaultPreview = computed(() => {
   if (uavGalleryImages.length === 0) return undefined;
   return uavGalleryImages[(vaultPreviewSeed + 5) % uavGalleryImages.length];
+});
+const aiVaultPreview = computed(() => {
+  if (aiDesignWorks.length === 0) return [];
+  return [0, 1, 2].map((offset) => aiDesignWorks[(vaultPreviewSeed + offset * 3) % aiDesignWorks.length]).filter(Boolean);
 });
 
 function openShowcase(item: EvidenceItem, event: MouseEvent | KeyboardEvent) {
@@ -132,12 +137,12 @@ onUnmounted(() => {
         v-for="(item, index) in evidenceItems"
         :key="item.slug"
         class="video-card vault-slot vault-slot--entry"
-        :class="`vault-slot--${item.theme}`"
+        :class="[`vault-slot--${item.theme}`, { 'vault-slot--locked': item.confidentialNotice }]"
         :style="{ '--slot-index': index }"
         data-reveal
         role="link"
         tabindex="0"
-        :aria-label="`${pickText(item.title, language)} - ${language === 'zh' ? '进入展示网页' : 'Open showcase page'}`"
+        :aria-label="`${pickText(item.title, language)} - ${item.confidentialNotice ? pickText(item.confidentialNotice, language) : language === 'zh' ? '进入展示网页' : 'Open showcase page'}`"
         @click="openShowcase(item, $event)"
         @keydown.enter="openShowcase(item, $event)"
         @keydown.space.prevent="openShowcase(item, $event)"
@@ -158,14 +163,31 @@ onUnmounted(() => {
           <img :src="uavVaultPreview.displaySrc" :alt="pickText(uavVaultPreview.title, language)" loading="lazy" decoding="async" />
           <figcaption>{{ pickText(uavVaultPreview.title, language) }}</figcaption>
         </figure>
+        <figure v-else-if="item.slug === 'ai-design-works' && aiVaultPreview.length" class="video-card__poster ai-vault-preview" aria-hidden="true">
+          <img
+            v-for="(work, workIndex) in aiVaultPreview"
+            :key="work.id"
+            :src="work.thumbSrc"
+            :alt="pickText(work.title, language)"
+            :style="{ '--ai-preview-index': workIndex }"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>NEURAL STACK</figcaption>
+        </figure>
         <div v-else class="video-card__poster" aria-hidden="true">
+          <span />
+        </div>
+        <div v-if="item.confidentialNotice" class="vault-slot__lock" aria-hidden="true">
           <span />
         </div>
         <div class="video-card__body">
           <small>{{ pickText(item.status, language) }}</small>
           <h3>{{ pickText(item.title, language) }}</h3>
           <p>{{ pickText(item.description, language) }}</p>
-          <strong class="vault-slot__cta">{{ language === 'zh' ? '进入展示舱' : 'Enter showcase bay' }}</strong>
+          <strong class="vault-slot__cta">
+            {{ item.confidentialNotice ? (language === 'zh' ? '查看保密说明' : 'View notice') : (language === 'zh' ? '进入展示舱' : 'Enter showcase bay') }}
+          </strong>
         </div>
       </article>
     </div>

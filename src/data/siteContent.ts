@@ -14,6 +14,7 @@ export type EvidenceItem = {
   title: LocalizedText;
   description: LocalizedText;
   status: LocalizedText;
+  confidentialNotice?: LocalizedText;
   theme: EvidenceTheme;
   detailLayout: EvidenceDetailLayout;
   world: LocalizedText;
@@ -329,7 +330,7 @@ export const evidenceItems: EvidenceItem[] = [
       zh: '用于沉淀智能体工作流、AI 辅助设计、交互原型和前端落地过程，重点展示从想法到界面的转换能力。',
       en: 'For agent workflows, AI-assisted design, interaction prototypes, and front-end delivery, focused on turning ideas into interfaces.',
     },
-    status: { zh: '待补充作品', en: 'Works pending' },
+    status: { zh: 'AI 作品已接入', en: 'AI works connected' },
     theme: 'neural',
     detailLayout: 'atelier',
     world: { zh: 'Neural Atelier', en: 'Neural Atelier' },
@@ -342,25 +343,25 @@ export const evidenceItems: EvidenceItem[] = [
       en: 'Future AI prototypes, agent flows, interaction drafts, and visual systems will be organized by input, reasoning, interface, and output.',
     },
     metrics: [
-      { label: { zh: '接入类型', en: 'Asset types' }, value: { zh: '图片 / 短视频 / 链接', en: 'Images / clips / links' } },
-      { label: { zh: '展示结构', en: 'Structure' }, value: { zh: '输入到输出', en: 'Input to output' } },
+      { label: { zh: '接入资源', en: 'Assets' }, value: { zh: '14 张 AI 设计图', en: '14 AI design images' } },
+      { label: { zh: '展示结构', en: 'Structure' }, value: { zh: '堆叠 / 拖拽 / 聚光', en: 'Stack / drag / spotlight' } },
       { label: { zh: '资料原则', en: 'Rule' }, value: { zh: '只放真实作品', en: 'Real work only' } },
     ],
     assetSlots: [
       {
         label: { zh: 'AI 原型画面', en: 'AI prototype screen' },
-        status: { zh: '待补充作品', en: 'Work pending' },
-        hint: { zh: '适合放智能体、原型、流程节点或最终界面。', en: 'Use for agent screens, prototypes, flow nodes, or final UI.' },
+        status: { zh: '作品堆叠已接入', en: 'Stack connected' },
+        hint: { zh: '顶部作品可拖拽切换，也可点击进入聚光灯查看完整画面。', en: 'Drag the top work to cycle, or open it in a focused viewer.' },
       },
       {
         label: { zh: '工作流拆解', en: 'Workflow breakdown' },
-        status: { zh: '待补充流程', en: 'Flow pending' },
-        hint: { zh: '展示任务输入、工具调用、人工判断和输出结果。', en: 'Show inputs, tool calls, human decisions, and outputs.' },
+        status: { zh: '流程位已预留', en: 'Flow slots reserved' },
+        hint: { zh: '当前先展示设计结果，后续可继续补充输入、工具调用、人工判断和输出结果。', en: 'This pass shows design outputs first; inputs, tool calls, decisions, and outputs can be added later.' },
       },
       {
         label: { zh: '视觉方案对比', en: 'Visual variant review' },
-        status: { zh: '待补充图片', en: 'Images pending' },
-        hint: { zh: '可接多版方案、风格板和迭代说明。', en: 'Can hold variants, moodboards, and iteration notes.' },
+        status: { zh: '图片已接入', en: 'Images connected' },
+        hint: { zh: '14 张真实作品会以堆叠、缩略轨道和灯箱三种层级呈现。', en: 'The 14 real works appear as a stack, thumbnail rail, and lightbox.' },
       },
     ],
   },
@@ -458,7 +459,8 @@ export const evidenceItems: EvidenceItem[] = [
       zh: '承接极飞无人机实验经历：部件质量测试、飞行日志分析、固件烧录、维修记录和临时测试方案。',
       en: 'Tied to XAG UAV experimentation: component quality testing, flight-log analysis, firmware flashing, repair notes, and temporary test plans.',
     },
-    status: { zh: '测试档案待补充', en: 'Test archive pending' },
+    status: { zh: '内容涉及保密暂不展示', en: 'Confidential content, not displayed' },
+    confidentialNotice: { zh: '内容涉及保密暂不展示', en: 'Confidential content, not displayed' },
     theme: 'blackbox',
     detailLayout: 'recorder',
     world: { zh: 'Black Box Recorder', en: 'Black Box Recorder' },

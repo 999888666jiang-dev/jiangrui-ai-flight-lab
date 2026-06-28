@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import AiDesignStackGallery from '../components/media/AiDesignStackGallery.vue';
 import CertificateBookGallery from '../components/media/CertificateBookGallery.vue';
 import ShowcaseMediaStage from '../components/media/ShowcaseMediaStage.vue';
 import UavHangarDome from '../components/media/UavHangarDome.vue';
 import { pickText, useLanguage } from '../composables/useLanguage';
+import { aiDesignWorks } from '../data/aiDesignGalleryManifest';
 import { evidenceItems } from '../data/siteContent';
 import type { ShowcaseMediaGroup } from '../data/showcaseMedia';
 import { uavGalleryImages } from '../data/uavGalleryManifest';
@@ -62,6 +64,7 @@ const mediaGroup = computed<ShowcaseMediaGroup | undefined>(() => {
 });
 const isCertificateBook = computed(() => item.value?.slug === 'certificates-awards');
 const isUavGallery = computed(() => item.value?.slug === 'uav-platform-gallery');
+const isAiDesignGallery = computed(() => item.value?.slug === 'ai-design-works');
 const pageIndex = computed(() => (item.value ? evidenceItems.findIndex((entry) => entry.slug === item.value?.slug) : -1));
 const nextItem = computed(() => {
   if (pageIndex.value < 0) return evidenceItems[0];
@@ -163,6 +166,29 @@ onUnmounted(() => {
 
     <CertificateBookGallery v-if="isCertificateBook" />
     <UavHangarDome v-else-if="isUavGallery" :images="uavGalleryImages" />
+    <AiDesignStackGallery v-else-if="isAiDesignGallery" :items="aiDesignWorks" />
+    <section v-else-if="item.confidentialNotice" class="confidential-dossier" aria-labelledby="confidential-dossier-title">
+      <div class="confidential-dossier__seal" aria-hidden="true">
+        <span />
+      </div>
+      <article class="confidential-dossier__body">
+        <small>LOCKED / PRIVATE DOSSIER</small>
+        <h2 id="confidential-dossier-title">{{ pickText(item.confidentialNotice, language) }}</h2>
+        <p>
+          {{
+            language === 'zh'
+              ? '该展示舱对应真实测试、日志与现场复盘能力，但具体材料涉及保密要求，公开页面仅保留能力说明和锁定状态。'
+              : 'This bay maps to real testing, logging, and field-review capability, but the materials are confidential. The public page keeps only the capability note and locked state.'
+          }}
+        </p>
+        <RouterLink class="confidential-dossier__back" to="/evidence-vault">
+          {{ language === 'zh' ? '返回资料库' : 'Back to Resource Library' }}
+        </RouterLink>
+      </article>
+      <div class="confidential-dossier__redactions" aria-hidden="true">
+        <span v-for="line in 9" :key="line" />
+      </div>
+    </section>
 
     <template v-else>
     <div class="showcase-stage" :class="`showcase-stage--${item.detailLayout}`">
