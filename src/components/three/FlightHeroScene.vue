@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import {
   AdditiveBlending,
   AmbientLight,
@@ -29,7 +29,8 @@ import {
 import { useWebGLSupport } from '../../composables/useWebGLSupport';
 
 const hostRef = ref<HTMLDivElement | null>(null);
-const { shouldUseThree, webglPolicy } = useWebGLSupport();
+const { shouldUseThree, supportState, webglPolicy } = useWebGLSupport();
+const showFallbackPropeller = computed(() => supportState.value === 'blocked');
 let renderer: WebGLRenderer | undefined;
 let animationFrame = 0;
 let group: Group | undefined;
@@ -252,5 +253,166 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="hostRef" class="hero-canvas" aria-hidden="true" />
+  <div ref="hostRef" class="hero-canvas" :class="{ 'hero-canvas--fallback': showFallbackPropeller }" aria-hidden="true">
+    <div v-if="showFallbackPropeller" class="hero-fallback-propeller">
+      <span class="hero-fallback-propeller__blade" />
+      <span class="hero-fallback-propeller__blade" />
+      <span class="hero-fallback-propeller__blade" />
+      <span class="hero-fallback-propeller__blade" />
+      <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--outer" />
+      <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--inner" />
+      <span class="hero-fallback-propeller__hub" />
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.hero-canvas--fallback {
+  display: block;
+  overflow: hidden;
+}
+
+:global(html[data-runtime-shell='wechat']) .hero-canvas--fallback {
+  display: block;
+}
+
+.hero-fallback-propeller {
+  position: absolute;
+  right: clamp(-220px, -13vw, -92px);
+  bottom: clamp(34px, 8vh, 110px);
+  width: min(620px, 58vw);
+  aspect-ratio: 1;
+  opacity: 0.68;
+  pointer-events: none;
+  transform: rotateZ(-14deg);
+  transform-origin: 50% 50%;
+}
+
+.hero-fallback-propeller::before {
+  position: absolute;
+  inset: 17%;
+  content: '';
+  border: 1px dashed rgba(155, 255, 246, 0.22);
+  border-radius: 50%;
+  box-shadow:
+    0 0 64px rgba(85, 247, 231, 0.13),
+    inset 0 0 62px rgba(85, 247, 231, 0.08);
+}
+
+.hero-fallback-propeller__blade {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 43%;
+  height: 13.5%;
+  border: 1px solid rgba(205, 255, 250, 0.58);
+  border-radius: 78% 14% 78% 16%;
+  background:
+    linear-gradient(90deg, rgba(85, 247, 231, 0.34), rgba(188, 255, 249, 0.08) 48%, transparent 76%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 24px),
+    rgba(7, 36, 40, 0.34);
+  box-shadow:
+    inset 0 0 28px rgba(85, 247, 231, 0.15),
+    0 0 22px rgba(85, 247, 231, 0.2);
+  clip-path: polygon(0 44%, 14% 20%, 70% 0, 100% 46%, 74% 100%, 14% 78%, 0 58%);
+  transform-origin: 0 50%;
+}
+
+.hero-fallback-propeller__blade::after {
+  position: absolute;
+  inset: 19% 15% 19% 13%;
+  content: '';
+  border-top: 1px solid rgba(238, 255, 253, 0.36);
+  border-bottom: 1px solid rgba(85, 247, 231, 0.2);
+  border-radius: inherit;
+  transform: skewX(-16deg);
+}
+
+.hero-fallback-propeller__blade:nth-child(1) {
+  transform: rotate(0deg) translateX(4%);
+}
+
+.hero-fallback-propeller__blade:nth-child(2) {
+  transform: rotate(90deg) translateX(4%);
+}
+
+.hero-fallback-propeller__blade:nth-child(3) {
+  transform: rotate(180deg) translateX(4%);
+}
+
+.hero-fallback-propeller__blade:nth-child(4) {
+  transform: rotate(270deg) translateX(4%);
+}
+
+.hero-fallback-propeller__ring,
+.hero-fallback-propeller__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-fallback-propeller__ring--outer {
+  width: 31%;
+  height: 31%;
+  border: 1px solid rgba(220, 255, 251, 0.24);
+  box-shadow:
+    inset 0 0 34px rgba(85, 247, 231, 0.09),
+    0 0 28px rgba(85, 247, 231, 0.12);
+}
+
+.hero-fallback-propeller__ring--inner {
+  width: 18%;
+  height: 18%;
+  border: 1px solid rgba(220, 255, 251, 0.4);
+  background: rgba(5, 24, 26, 0.26);
+}
+
+.hero-fallback-propeller__hub {
+  width: 10%;
+  height: 10%;
+  border: 1px solid rgba(232, 255, 252, 0.46);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.3), transparent 28%),
+    rgba(4, 20, 23, 0.9);
+  box-shadow:
+    inset 0 0 14px rgba(85, 247, 231, 0.18),
+    0 0 28px rgba(85, 247, 231, 0.18);
+}
+
+@media (max-width: 680px) {
+  .hero-fallback-propeller {
+    right: clamp(-210px, -36vw, -132px);
+    bottom: clamp(72px, 15vh, 160px);
+    width: clamp(330px, 108vw, 430px);
+    opacity: 0.7;
+    transform: rotateZ(-18deg);
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-fallback-propeller {
+    right: clamp(-198px, -40vw, -126px);
+    bottom: clamp(64px, 13vh, 132px);
+    width: clamp(310px, 104vw, 400px);
+    opacity: 0.66;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-fallback-propeller {
+    animation: fallbackPropellerDrift 8s ease-in-out infinite;
+  }
+}
+
+@keyframes fallbackPropellerDrift {
+  0%,
+  100% {
+    transform: rotateZ(-18deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotateZ(-15deg) translate3d(6px, -8px, 0);
+  }
+}
+</style>

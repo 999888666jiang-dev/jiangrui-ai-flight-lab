@@ -34,8 +34,13 @@ const canDrag = computed(() => {
   return canAnimate.value && hasFinePointer.value && current.viewport.width >= 700 && !current.isWeChat;
 });
 
+const canTouchNudge = computed(() => {
+  const current = profile.value;
+  return canAnimate.value && current.isTouch && current.viewport.width <= 680 && current.deviceTier !== 'minimal' && !current.isWeChat;
+});
+
 const interactionLabel = computed(() =>
-  canDrag.value ? 'Drag or click to inspect flight pass' : 'Click to inspect flight pass',
+  canDrag.value || canTouchNudge.value ? 'Drag or click to inspect flight pass' : 'Click to inspect flight pass',
 );
 
 function clamp(value: number, min: number, max: number) {
@@ -53,8 +58,8 @@ function updateTetherGeometry() {
   const rect = rootRef.value.getBoundingClientRect();
 
   if (current.viewport.width <= 680) {
-    rootRef.value.style.setProperty('--strap-top-offset', '-42px');
-    rootRef.value.style.setProperty('--strap-length', '132px');
+    rootRef.value.style.setProperty('--strap-top-offset', '-34px');
+    rootRef.value.style.setProperty('--strap-length', current.viewport.width <= 390 ? '102px' : '106px');
     return;
   }
 
@@ -180,38 +185,47 @@ function playEntrance() {
 }
 
 function handlePointerDown(event: PointerEvent) {
-  if (!canDrag.value || event.pointerType === 'touch' || !passRef.value) return;
+  const canStartDrag = event.pointerType === 'touch' ? canTouchNudge.value : canDrag.value;
+  if (!canStartDrag || !passRef.value) return;
   pointerStart = { x: event.clientX, y: event.clientY };
   dragMoved = false;
   isDragging.value = true;
   activeTween?.kill();
-  passRef.value.setPointerCapture(event.pointerId);
+  try {
+    passRef.value.setPointerCapture(event.pointerId);
+  } catch {
+    // Synthetic mobile QA events may not create an active pointer capture target.
+  }
   event.preventDefault();
 }
 
 function handlePointerMove(event: PointerEvent) {
   if (!canAnimate.value || !rootRef.value || !passRef.value) return;
 
-  if (pointerStart && canDrag.value) {
+  if (pointerStart && (canDrag.value || canTouchNudge.value)) {
     const dx = event.clientX - pointerStart.x;
     const dy = event.clientY - pointerStart.y;
     const distance = Math.hypot(dx, dy);
-    const cardX = clamp(dx, -280, 280);
-    const cardY = clamp(dy, -210, 240);
-    const tension = cardY >= 0 ? 1 + clamp(cardY / 560, 0, 0.34) : 1 - clamp(Math.abs(cardY) / 980, 0, 0.12);
-    const chainX = clamp(cardX * 0.72, -210, 210);
-    const chainY = clamp(cardY * 0.16, -18, 54);
+    const compactDrag = profile.value.viewport.width <= 680;
+    const cardX = compactDrag ? clamp(dx, -44, 44) : clamp(dx, -280, 280);
+    const cardY = compactDrag ? clamp(dy, -58, 82) : clamp(dy, -210, 240);
+    const tension = compactDrag
+      ? cardY >= 0 ? 1 + clamp(cardY / 640, 0, 0.12) : 1 - clamp(Math.abs(cardY) / 980, 0, 0.06)
+      : cardY >= 0 ? 1 + clamp(cardY / 560, 0, 0.34) : 1 - clamp(Math.abs(cardY) / 980, 0, 0.12);
+    const chainX = compactDrag ? clamp(cardX * 0.38, -18, 18) : clamp(cardX * 0.72, -210, 210);
+    const chainY = compactDrag ? clamp(cardY * 0.1, -7, 12) : clamp(cardY * 0.16, -18, 54);
 
     if (distance > 5) dragMoved = true;
+    event.preventDefault();
     gsap.set(rootRef.value, {
       '--pass-x': `${cardX}px`,
       '--pass-y': `${cardY}px`,
-      '--pass-rot': `${clamp(cardX / 19 + cardY / 70, -16, 16)}deg`,
-      '--pass-tilt-x': `${clamp(-cardY / 24, -11, 11)}deg`,
-      '--pass-tilt-y': `${clamp(cardX / 38, -10, 10)}deg`,
+      '--pass-rot': `${compactDrag ? clamp(cardX / 26 + cardY / 120, -5, 5) : clamp(cardX / 19 + cardY / 70, -16, 16)}deg`,
+      '--pass-tilt-x': `${compactDrag ? clamp(-cardY / 38, -4, 4) : clamp(-cardY / 24, -11, 11)}deg`,
+      '--pass-tilt-y': `${compactDrag ? clamp(cardX / 46, -3, 3) : clamp(cardX / 38, -10, 10)}deg`,
       '--chain-x': `${chainX}px`,
       '--chain-y': `${chainY}px`,
-      '--chain-rot': `${clamp(cardX / 18 + cardY / 120, -14, 14)}deg`,
+      '--chain-rot': `${compactDrag ? clamp(cardX / 42 + cardY / 180, -3, 3) : clamp(cardX / 18 + cardY / 120, -14, 14)}deg`,
       '--chain-stretch': tension,
     });
     return;
@@ -233,7 +247,13 @@ function handlePointerMove(event: PointerEvent) {
 function finishDrag(event: PointerEvent) {
   if (!pointerStart) return;
   pointerStart = undefined;
-  passRef.value?.releasePointerCapture(event.pointerId);
+  try {
+    if (passRef.value?.hasPointerCapture(event.pointerId)) {
+      passRef.value.releasePointerCapture(event.pointerId);
+    }
+  } catch {
+    // Ignore stale pointer ids; the pose reset below is the important recovery path.
+  }
   isDragging.value = false;
   suppressClick = dragMoved;
   resetPose();
@@ -289,6 +309,7 @@ onUnmounted(() => {
       'hero-lanyard--dragging': isDragging,
       'hero-lanyard--revealed': isRevealed,
       'hero-lanyard--static': !canAnimate,
+      'hero-lanyard--touch-nudge': canTouchNudge,
     }"
     @pointermove="handlePointerMove"
     @pointerleave="handlePointerLeave"
@@ -316,13 +337,6 @@ onUnmounted(() => {
       @click="toggleReveal"
       @keydown="handleKeydown"
     >
-      <span class="hero-lanyard__back-prop" aria-hidden="true">
-        <span class="hero-lanyard__prop-blade" />
-        <span class="hero-lanyard__prop-blade" />
-        <span class="hero-lanyard__prop-blade" />
-        <span class="hero-lanyard__prop-ring" />
-        <span class="hero-lanyard__prop-hub" />
-      </span>
       <span class="hero-lanyard__back-panel" aria-hidden="true">
         <small>FLIGHT PASS</small>
         <strong>VIBE CODING</strong>
@@ -361,6 +375,9 @@ onUnmounted(() => {
   --chain-stretch: 1;
   --strap-top-offset: -58px;
   --strap-length: 178px;
+  --ring-rise: 27px;
+  --cord-drop: 3px;
+  --pin-drop: 42px;
   position: absolute;
   right: 102px;
   bottom: 0;
@@ -474,7 +491,7 @@ onUnmounted(() => {
 .hero-lanyard__ring {
   position: absolute;
   left: 50%;
-  top: calc(var(--strap-top-offset) + var(--strap-length) - 27px);
+  top: calc(var(--strap-top-offset) + var(--strap-length) - var(--ring-rise));
   width: 39px;
   height: 39px;
   border: 2px solid rgba(207, 222, 218, 0.36);
@@ -492,7 +509,7 @@ onUnmounted(() => {
 .hero-lanyard__cord {
   position: absolute;
   left: 50%;
-  top: calc(var(--strap-top-offset) + var(--strap-length) + 3px);
+  top: calc(var(--strap-top-offset) + var(--strap-length) + var(--cord-drop));
   width: 8px;
   height: 45px;
   content: '';
@@ -521,7 +538,7 @@ onUnmounted(() => {
 
 .hero-lanyard__pin {
   position: absolute;
-  top: calc(var(--strap-top-offset) + var(--strap-length) + 42px);
+  top: calc(var(--strap-top-offset) + var(--strap-length) + var(--pin-drop));
   left: 50%;
   width: 13px;
   height: 13px;
@@ -546,6 +563,7 @@ onUnmounted(() => {
   background: transparent;
   cursor: grab;
   outline: none;
+  touch-action: manipulation;
   transform:
     translate3d(var(--pass-x), var(--pass-y), 0)
     rotateZ(var(--pass-rot))
@@ -554,102 +572,6 @@ onUnmounted(() => {
   transform-style: preserve-3d;
   transform-origin: 50% 5%;
   will-change: transform;
-}
-
-.hero-lanyard__back-prop {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  width: 142%;
-  aspect-ratio: 1;
-  opacity: 0.72;
-  pointer-events: none;
-  transform: translate3d(-50%, -50%, -58px) rotateZ(-16deg);
-  transform-origin: 50% 50%;
-}
-
-.hero-lanyard__back-prop::before {
-  position: absolute;
-  inset: 21%;
-  content: '';
-  border: 1px dashed rgba(139, 255, 242, 0.2);
-  border-radius: 50%;
-  box-shadow:
-    0 0 36px rgba(85, 247, 231, 0.12),
-    inset 0 0 46px rgba(85, 247, 231, 0.08);
-}
-
-.hero-lanyard__prop-blade {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 45%;
-  height: 15%;
-  border: 1px solid rgba(185, 255, 248, 0.52);
-  border-radius: 78% 16% 78% 18%;
-  background:
-    linear-gradient(90deg, rgba(85, 247, 231, 0.32), rgba(180, 255, 249, 0.08) 44%, transparent 72%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 22px),
-    rgba(8, 39, 42, 0.32);
-  box-shadow:
-    inset 0 0 24px rgba(85, 247, 231, 0.14),
-    0 0 20px rgba(85, 247, 231, 0.18);
-  clip-path: polygon(0 42%, 16% 20%, 70% 0, 100% 48%, 73% 100%, 15% 78%, 0 58%);
-  transform-origin: 0 50%;
-}
-
-.hero-lanyard__prop-blade::before {
-  position: absolute;
-  inset: 18% 16% 20% 14%;
-  content: '';
-  border-top: 1px solid rgba(229, 255, 252, 0.34);
-  border-bottom: 1px solid rgba(85, 247, 231, 0.2);
-  border-radius: inherit;
-  transform: skewX(-18deg);
-}
-
-.hero-lanyard__prop-blade:nth-child(1) {
-  transform: rotate(0deg) translateX(4%);
-}
-
-.hero-lanyard__prop-blade:nth-child(2) {
-  transform: rotate(120deg) translateX(4%);
-}
-
-.hero-lanyard__prop-blade:nth-child(3) {
-  transform: rotate(240deg) translateX(4%);
-}
-
-.hero-lanyard__prop-ring,
-.hero-lanyard__prop-hub {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hero-lanyard__prop-ring {
-  width: 23%;
-  height: 23%;
-  border: 1px solid rgba(220, 255, 251, 0.34);
-  background: rgba(5, 24, 26, 0.3);
-  box-shadow:
-    inset 0 0 18px rgba(85, 247, 231, 0.14),
-    0 0 24px rgba(85, 247, 231, 0.16);
-}
-
-.hero-lanyard__prop-hub {
-  width: 13%;
-  height: 13%;
-  border: 1px solid rgba(219, 255, 251, 0.42);
-  background:
-    radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.28), transparent 26%),
-    rgba(2, 16, 18, 0.86);
-  box-shadow:
-    inset 0 0 16px rgba(85, 247, 231, 0.18),
-    0 0 26px rgba(85, 247, 231, 0.18);
 }
 
 .hero-lanyard--dragging .hero-lanyard__pass {
@@ -852,10 +774,6 @@ onUnmounted(() => {
   animation-delay: 90ms;
 }
 
-.hero-lanyard--motion:not(.hero-lanyard--dragging) .hero-lanyard__back-prop {
-  animation: lanyardPropSpin 13s linear infinite;
-}
-
 .hero-lanyard--static .hero-lanyard__pass {
   cursor: pointer;
 }
@@ -911,15 +829,6 @@ onUnmounted(() => {
   }
 }
 
-@keyframes lanyardPropSpin {
-  0% {
-    transform: translate3d(-50%, -50%, -58px) rotateZ(-16deg);
-  }
-  100% {
-    transform: translate3d(-50%, -50%, -58px) rotateZ(344deg);
-  }
-}
-
 @media (max-width: 1080px) {
   .hero-lanyard {
     right: auto;
@@ -932,21 +841,24 @@ onUnmounted(() => {
 
 @media (max-width: 680px) {
   .hero-lanyard {
+    --ring-rise: 24px;
+    --cord-drop: 0px;
+    --pin-drop: 30px;
     position: relative;
     right: auto;
     bottom: auto;
     left: auto;
-    width: min(360px, 100%);
-    margin-top: 10px;
+    width: clamp(250px, 78vw, 306px);
+    margin: 4px auto 0;
   }
 
   .hero-lanyard__rig {
-    height: 104px;
+    height: 96px;
   }
 
   .hero-lanyard__fabric {
-    width: 31px;
-    padding: 15px 0 24px;
+    width: 30px;
+    padding: 14px 0 22px;
   }
 
   .hero-lanyard__fabric-mark {
@@ -959,22 +871,29 @@ onUnmounted(() => {
   }
 
   .hero-lanyard__ring {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
   }
 
   .hero-lanyard__cord {
-    height: 34px;
-  }
-
-  .hero-lanyard__back-prop {
-    width: 132%;
-    opacity: 0.58;
+    height: 31px;
   }
 
   .hero-lanyard__identity {
-    min-height: 58px;
-    padding: 11px 12px;
+    min-height: 52px;
+    padding: 9px 11px;
+  }
+
+  .hero-lanyard__identity strong {
+    font-size: 1.08rem;
+  }
+
+  .hero-lanyard__identity span {
+    font-size: 0.68rem;
+  }
+
+  .hero-lanyard--touch-nudge .hero-lanyard__pass {
+    touch-action: none;
   }
 }
 
@@ -987,6 +906,18 @@ onUnmounted(() => {
 
   .hero-lanyard__identity span {
     text-align: left;
+  }
+
+  .hero-lanyard__topline {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    font-size: 0.58rem;
+  }
+
+  .hero-lanyard__topline span {
+    width: 30px;
+    height: 30px;
   }
 }
 
