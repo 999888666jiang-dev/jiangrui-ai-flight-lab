@@ -391,3 +391,14 @@ The FPV and deal-results upgrade verified this reusable pattern:
 - For desktop narrow windows, do not rely only on a broad runtime shell such as `desktop` vs `mobile-browser`. Use `(hover: hover) and (pointer: fine)` to decide whether drag interaction is safe.
 - Keep touch/mobile drag disabled by default when the same gesture conflicts with document scroll. If mobile movement is required later, design an explicit move-away or collapse affordance instead of free dragging.
 - QA should assert top-tether geometry, no horizontal overflow, fine-pointer drag variables changing during drag, elastic return to zero after release, and a static reduced-motion fallback.
+
+## Pattern: capability scroll stack
+
+- Use this when a homepage needs to show several core capability pillars without turning them into static dashboard tiles.
+- Keep the content short. The stack should carry concise facts, not long explanations; if a card needs proof, link it to a deeper resource page instead of adding a readout panel.
+- Desktop interaction can use sticky layering: each card enters, pins briefly, scales slightly, offsets, and then releases through normal page scroll.
+- Tablet and mobile should degrade to a lightweight layered list. Avoid scroll-jacking, inertia libraries, or touch drag when the page already relies on natural scrolling.
+- Visual language should be precise: one spine or rail, subtle scan lines, fine borders, and depth through scale and shadows. Do not add heavy HUD boxes just to fill space.
+- Particle and background systems should treat stack cards as protected content regions.
+- Reduced-motion mode should disable sticky transforms and present the same content in a static ordered stack.
+- QA should assert card count, absence of stale readout panels, desktop sticky behavior, mobile readability, no horizontal overflow, no console errors, and screenshot coverage around the skills anchor.

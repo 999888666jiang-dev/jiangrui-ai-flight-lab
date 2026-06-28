@@ -73,8 +73,8 @@ export const pageCopy = {
     skills: {
       title: { zh: '四条证据链，把想法落成作品', en: 'Four Proof Tracks, Built Into Work' },
       body: {
-        zh: '能力不按关键词堆叠，而按“开发、测试、现场、转化”组织。点击节点查看当前能力读数。',
-        en: 'The capability system is organized by building, testing, field execution, and conversion rather than keyword stacking. Click a node to inspect the active readout.',
+        zh: '能力不按关键词堆叠，而按“开发、测试、现场、转化”展开成卷轴堆栈，让四条事实链一层层进入视野。',
+        en: 'The capability system is organized as a scroll stack around building, testing, field execution, and conversion, so each proof track enters the scene with its own weight.',
       },
       readout: {
         zh: '当前节点对应一条简历事实链。后续可继续挂接真实项目、视频、日志、证书和代码链接，让能力从一句话变成可查看的证据。',

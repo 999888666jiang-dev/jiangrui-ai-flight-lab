@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FlightHeroScene from '../components/three/FlightHeroScene.vue';
+import CapabilityScrollStack from '../components/ui/CapabilityScrollStack.vue';
 import HeroLanyardCard from '../components/ui/HeroLanyardCard.vue';
 import { useEnvironment } from '../composables/useEnvironment';
 import { pickText, useLanguage } from '../composables/useLanguage';
@@ -24,7 +25,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const { language, t } = useLanguage();
 const { profile } = useEnvironment();
-const activeSystem = ref(0);
 const activeMission = ref(0);
 const resumePdf = resumeProfile.resumePdf;
 const resumeDownloadName = resumeProfile.resumeDownloadName;
@@ -32,7 +32,6 @@ const profileImage = publicAsset('images/profile-fpv.jpg');
 const wechatQr = publicAsset('images/wechat-qr.jpg');
 const homeCopy = pageCopy.home;
 
-const currentSystem = computed(() => systemNodes[activeSystem.value]);
 const currentMission = computed(() => experienceItems[activeMission.value]);
 const portraitAlt = computed(() =>
   language.value === 'zh' ? '姜睿 FPV 操控场景照片' : 'Jiang Rui FPV field operation portrait',
@@ -146,25 +145,7 @@ onUnmounted(() => {
       <p>{{ pickText(homeCopy.skills.body, language) }}</p>
     </div>
 
-    <div class="systems-map" data-reveal>
-      <button
-        v-for="(node, index) in systemNodes"
-        :key="node.label.zh"
-        :class="['system-node', { 'system-node--active': activeSystem === index }]"
-        type="button"
-        @click="activeSystem = index"
-      >
-        <span>{{ String(index + 1).padStart(2, '0') }}</span>
-        <h3>{{ pickText(node.label, language) }}</h3>
-        <p>{{ node.value }}</p>
-      </button>
-    </div>
-
-    <article class="system-readout" data-reveal>
-      <span>ACTIVE SYSTEM / {{ String(activeSystem + 1).padStart(2, '0') }}</span>
-      <h3>{{ pickText(currentSystem.label, language) }}</h3>
-      <p>{{ pickText(homeCopy.skills.readout, language) }}</p>
-    </article>
+    <CapabilityScrollStack :nodes="systemNodes" :language="language" data-reveal />
 
     <div class="systems-grid">
       <article class="cert-card" data-reveal>
