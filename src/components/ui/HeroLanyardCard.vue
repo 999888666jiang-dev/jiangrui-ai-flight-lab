@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { useEnvironment } from '../../composables/useEnvironment';
 
@@ -19,7 +19,8 @@ const isRevealed = ref(false);
 let pointerStart: { x: number; y: number } | undefined;
 let dragMoved = false;
 let suppressClick = false;
-let activeTween: gsap.core.Tween | undefined;
+let activeTween: gsap.core.Tween | gsap.core.Timeline | undefined;
+let entranceTween: gsap.core.Timeline | undefined;
 
 const canAnimate = computed(() => {
   const current = profile.value;
@@ -51,8 +52,27 @@ function setVars(vars: Record<string, string | number>, duration = 0.18, ease = 
 }
 
 function resetPose(duration = 0.68) {
-  setVars(
-    {
+  if (!rootRef.value) return;
+  activeTween?.kill();
+  const currentY = getComputedStyle(rootRef.value).getPropertyValue('--pass-y').trim();
+  const parsedY = Number.parseFloat(currentY || '0');
+  const recoilY = clamp(parsedY * -0.24, -28, 28);
+
+  activeTween = gsap
+    .timeline({ defaults: { overwrite: 'auto' } })
+    .to(rootRef.value, {
+      '--pass-y': `${recoilY}px`,
+      '--pass-x': '0px',
+      '--pass-rot': `${clamp(recoilY / -10, -2.4, 2.4)}deg`,
+      '--pass-tilt-x': `${clamp(recoilY / 7, -5, 5)}deg`,
+      '--pass-tilt-y': '0deg',
+      '--strap-x': '0px',
+      '--strap-y': `${clamp(Math.max(0, recoilY) * 0.12, 0, 5)}px`,
+      '--strap-stretch': recoilY < 0 ? 0.97 : 1.02,
+      duration: Math.min(0.18, duration * 0.42),
+      ease: 'power2.out',
+    })
+    .to(rootRef.value, {
       '--pass-x': '0px',
       '--pass-y': '0px',
       '--pass-rot': '0deg',
@@ -61,10 +81,63 @@ function resetPose(duration = 0.68) {
       '--strap-x': '0px',
       '--strap-y': '0px',
       '--strap-stretch': 1,
-    },
-    duration,
-    'elastic.out(1, 0.58)',
-  );
+      duration,
+      ease: 'elastic.out(1, 0.5)',
+    });
+}
+
+function playEntrance() {
+  if (!rootRef.value) return;
+  entranceTween?.kill();
+
+  if (!canAnimate.value) {
+    gsap.set(rootRef.value, {
+      '--drop-y': '0px',
+      '--drop-rot': '0deg',
+      '--drop-opacity': 1,
+      '--strap-stretch': 1,
+    });
+    return;
+  }
+
+  gsap.set(rootRef.value, {
+    '--drop-y': '-58vh',
+    '--drop-rot': '-7deg',
+    '--drop-opacity': 0,
+    '--pass-y': '0px',
+    '--pass-rot': '0deg',
+    '--strap-y': '0px',
+    '--strap-stretch': 1.18,
+  });
+
+  entranceTween = gsap
+    .timeline({ delay: 0.34 })
+    .to(rootRef.value, {
+      '--drop-opacity': 1,
+      duration: 0.18,
+      ease: 'power1.out',
+    }, 0)
+    .to(rootRef.value, {
+      '--drop-y': '18px',
+      '--drop-rot': '2.2deg',
+      '--strap-stretch': 1.2,
+      duration: 0.92,
+      ease: 'power2.in',
+    }, 0)
+    .to(rootRef.value, {
+      '--drop-y': '-8px',
+      '--drop-rot': '-1.2deg',
+      '--strap-stretch': 0.96,
+      duration: 0.28,
+      ease: 'power2.out',
+    })
+    .to(rootRef.value, {
+      '--drop-y': '0px',
+      '--drop-rot': '0deg',
+      '--strap-stretch': 1,
+      duration: 0.86,
+      ease: 'elastic.out(1, 0.52)',
+    });
 }
 
 function handlePointerDown(event: PointerEvent) {
@@ -84,17 +157,20 @@ function handlePointerMove(event: PointerEvent) {
     const dx = event.clientX - pointerStart.x;
     const dy = event.clientY - pointerStart.y;
     const distance = Math.hypot(dx, dy);
+    const verticalPull = clamp(dy, -132, 154);
+    const sidePull = clamp(dx * 0.26, -32, 32);
+    const tension = dy >= 0 ? 1 + clamp(dy / 430, 0, 0.32) : 1 - clamp(Math.abs(dy) / 760, 0, 0.1);
 
     if (distance > 5) dragMoved = true;
     gsap.set(rootRef.value, {
-      '--pass-x': `${clamp(dx, -86, 86)}px`,
-      '--pass-y': `${clamp(dy, -58, 82)}px`,
-      '--pass-rot': `${clamp(dx / 13, -7, 7)}deg`,
-      '--pass-tilt-x': `${clamp(-dy / 16, -7, 7)}deg`,
-      '--pass-tilt-y': `${clamp(dx / 14, -8, 8)}deg`,
-      '--strap-x': `${clamp(dx * 0.16, -14, 14)}px`,
-      '--strap-y': `${clamp(Math.max(0, dy) * 0.12, 0, 14)}px`,
-      '--strap-stretch': 1 + clamp(distance / 560, 0, 0.16),
+      '--pass-x': `${sidePull}px`,
+      '--pass-y': `${verticalPull}px`,
+      '--pass-rot': `${clamp(dx / 20 + verticalPull / 38, -8, 8)}deg`,
+      '--pass-tilt-x': `${clamp(-verticalPull / 17, -8, 8)}deg`,
+      '--pass-tilt-y': `${clamp(dx / 28, -5, 5)}deg`,
+      '--strap-x': `${clamp(dx * 0.1, -10, 10)}px`,
+      '--strap-y': `${clamp(Math.max(0, verticalPull) * 0.2, 0, 28)}px`,
+      '--strap-stretch': tension,
     });
     return;
   }
@@ -141,8 +217,13 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
+onMounted(() => {
+  playEntrance();
+});
+
 onUnmounted(() => {
   activeTween?.kill();
+  entranceTween?.kill();
 });
 </script>
 
@@ -213,6 +294,9 @@ onUnmounted(() => {
   --pass-rot: 0deg;
   --pass-tilt-x: 0deg;
   --pass-tilt-y: 0deg;
+  --drop-y: 0px;
+  --drop-rot: 0deg;
+  --drop-opacity: 1;
   --strap-x: 0px;
   --strap-y: 0px;
   --strap-stretch: 1;
@@ -224,6 +308,11 @@ onUnmounted(() => {
   overflow: visible;
   perspective: 960px;
   transform-style: preserve-3d;
+  opacity: var(--drop-opacity);
+  transform:
+    translate3d(0, var(--drop-y), 0)
+    rotateZ(var(--drop-rot));
+  transform-origin: 50% -18%;
   z-index: 3;
 }
 
