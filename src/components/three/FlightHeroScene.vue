@@ -255,13 +255,15 @@ onUnmounted(() => {
 <template>
   <div ref="hostRef" class="hero-canvas" :class="{ 'hero-canvas--fallback': showFallbackPropeller }" aria-hidden="true">
     <div v-if="showFallbackPropeller" class="hero-fallback-propeller">
-      <span class="hero-fallback-propeller__blade" />
-      <span class="hero-fallback-propeller__blade" />
-      <span class="hero-fallback-propeller__blade" />
-      <span class="hero-fallback-propeller__blade" />
-      <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--outer" />
-      <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--inner" />
-      <span class="hero-fallback-propeller__hub" />
+      <div class="hero-fallback-propeller__rotor">
+        <span class="hero-fallback-propeller__blade" />
+        <span class="hero-fallback-propeller__blade" />
+        <span class="hero-fallback-propeller__blade" />
+        <span class="hero-fallback-propeller__blade" />
+        <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--outer" />
+        <span class="hero-fallback-propeller__ring hero-fallback-propeller__ring--inner" />
+        <span class="hero-fallback-propeller__hub" />
+      </div>
     </div>
   </div>
 </template>
@@ -286,9 +288,17 @@ onUnmounted(() => {
   pointer-events: none;
   transform: rotateZ(-14deg);
   transform-origin: 50% 50%;
+  will-change: transform;
 }
 
-.hero-fallback-propeller::before {
+.hero-fallback-propeller__rotor {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.hero-fallback-propeller__rotor::before {
   position: absolute;
   inset: 17%;
   content: '';
@@ -297,6 +307,22 @@ onUnmounted(() => {
   box-shadow:
     0 0 64px rgba(85, 247, 231, 0.13),
     inset 0 0 62px rgba(85, 247, 231, 0.08);
+}
+
+.hero-fallback-propeller__rotor::after {
+  position: absolute;
+  top: 50%;
+  left: 51%;
+  width: 42%;
+  height: 3px;
+  content: '';
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(245, 255, 253, 0.92), rgba(85, 247, 231, 0.42), transparent 82%);
+  box-shadow:
+    0 0 18px rgba(85, 247, 231, 0.58),
+    0 0 34px rgba(245, 255, 253, 0.26);
+  opacity: 0.82;
+  transform: translate3d(0, -50%, 0);
 }
 
 .hero-fallback-propeller__blade {
@@ -330,6 +356,14 @@ onUnmounted(() => {
 
 .hero-fallback-propeller__blade:nth-child(1) {
   transform: rotate(0deg) translateX(4%);
+  border-color: rgba(245, 255, 253, 0.82);
+  background:
+    linear-gradient(90deg, rgba(226, 255, 252, 0.44), rgba(85, 247, 231, 0.16) 52%, transparent 78%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 24px),
+    rgba(7, 36, 40, 0.38);
+  box-shadow:
+    inset 0 0 32px rgba(226, 255, 252, 0.2),
+    0 0 30px rgba(85, 247, 231, 0.28);
 }
 
 .hero-fallback-propeller__blade:nth-child(2) {
@@ -383,9 +417,9 @@ onUnmounted(() => {
 
 @media (max-width: 680px) {
   .hero-fallback-propeller {
-    right: clamp(-210px, -36vw, -132px);
-    bottom: clamp(72px, 15vh, 160px);
-    width: clamp(330px, 108vw, 430px);
+    right: clamp(-198px, -32vw, -118px);
+    bottom: clamp(38px, 7.5vh, 112px);
+    width: clamp(306px, 94vw, 388px);
     opacity: 0.7;
     transform: rotateZ(-18deg);
   }
@@ -393,26 +427,60 @@ onUnmounted(() => {
 
 @media (max-width: 390px) {
   .hero-fallback-propeller {
-    right: clamp(-198px, -40vw, -126px);
-    bottom: clamp(64px, 13vh, 132px);
-    width: clamp(310px, 104vw, 400px);
+    right: clamp(-182px, -36vw, -112px);
+    bottom: clamp(30px, 6vh, 92px);
+    width: clamp(282px, 92vw, 352px);
     opacity: 0.66;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1024px) {
+  .hero-fallback-propeller {
+    right: clamp(-190px, -18vw, -96px);
+    bottom: clamp(6px, 3.5vh, 70px);
+    width: min(570px, 54vw);
+    opacity: 0.66;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-fallback-propeller {
+    right: clamp(-166px, -38vw, -106px);
+    bottom: clamp(18px, 4.5vh, 74px);
+    width: clamp(254px, 88vw, 318px);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-fallback-propeller {
-    animation: fallbackPropellerDrift 8s ease-in-out infinite;
+    animation: fallbackPropellerFloat 8.4s ease-in-out infinite;
+  }
+
+  .hero-fallback-propeller__rotor {
+    animation: fallbackPropellerSpin 4.8s linear infinite;
   }
 }
 
-@keyframes fallbackPropellerDrift {
+@keyframes fallbackPropellerFloat {
   0%,
   100% {
     transform: rotateZ(-18deg) translate3d(0, 0, 0);
   }
   50% {
-    transform: rotateZ(-15deg) translate3d(6px, -8px, 0);
+    transform: rotateZ(-15deg) translate3d(4px, -6px, 0);
+  }
+}
+
+@keyframes fallbackPropellerSpin {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fallback-propeller,
+  .hero-fallback-propeller__rotor {
+    animation: none;
   }
 }
 </style>

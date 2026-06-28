@@ -14,12 +14,9 @@ const { profile } = useEnvironment();
 const rootRef = ref<HTMLElement>();
 const passRef = ref<HTMLElement>();
 const isDragging = ref(false);
-const isRevealed = ref(false);
 const hasFinePointer = ref(false);
 
 let pointerStart: { x: number; y: number } | undefined;
-let dragMoved = false;
-let suppressClick = false;
 let activeTween: gsap.core.Tween | gsap.core.Timeline | undefined;
 let entranceTween: gsap.core.Timeline | undefined;
 let tetherFrame: number | undefined;
@@ -40,7 +37,7 @@ const canTouchNudge = computed(() => {
 });
 
 const interactionLabel = computed(() =>
-  canDrag.value || canTouchNudge.value ? 'Drag or click to inspect flight pass' : 'Click to inspect flight pass',
+  canDrag.value || canTouchNudge.value ? 'Draggable flight pass profile card' : 'Flight pass profile card',
 );
 
 function clamp(value: number, min: number, max: number) {
@@ -188,7 +185,6 @@ function handlePointerDown(event: PointerEvent) {
   const canStartDrag = event.pointerType === 'touch' ? canTouchNudge.value : canDrag.value;
   if (!canStartDrag || !passRef.value) return;
   pointerStart = { x: event.clientX, y: event.clientY };
-  dragMoved = false;
   isDragging.value = true;
   activeTween?.kill();
   try {
@@ -205,7 +201,6 @@ function handlePointerMove(event: PointerEvent) {
   if (pointerStart && (canDrag.value || canTouchNudge.value)) {
     const dx = event.clientX - pointerStart.x;
     const dy = event.clientY - pointerStart.y;
-    const distance = Math.hypot(dx, dy);
     const compactDrag = profile.value.viewport.width <= 680;
     const cardX = compactDrag ? clamp(dx, -44, 44) : clamp(dx, -280, 280);
     const cardY = compactDrag ? clamp(dy, -58, 82) : clamp(dy, -210, 240);
@@ -215,7 +210,6 @@ function handlePointerMove(event: PointerEvent) {
     const chainX = compactDrag ? clamp(cardX * 0.38, -18, 18) : clamp(cardX * 0.72, -210, 210);
     const chainY = compactDrag ? clamp(cardY * 0.1, -7, 12) : clamp(cardY * 0.16, -18, 54);
 
-    if (distance > 5) dragMoved = true;
     event.preventDefault();
     gsap.set(rootRef.value, {
       '--pass-x': `${cardX}px`,
@@ -255,28 +249,12 @@ function finishDrag(event: PointerEvent) {
     // Ignore stale pointer ids; the pose reset below is the important recovery path.
   }
   isDragging.value = false;
-  suppressClick = dragMoved;
   resetPose();
 }
 
 function handlePointerLeave() {
   if (pointerStart || !canAnimate.value) return;
   resetPose(0.42);
-}
-
-function toggleReveal(event?: Event) {
-  if (suppressClick) {
-    suppressClick = false;
-    event?.preventDefault();
-    return;
-  }
-  isRevealed.value = !isRevealed.value;
-}
-
-function handleKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape' && isRevealed.value) {
-    isRevealed.value = false;
-  }
 }
 
 onMounted(() => {
@@ -307,7 +285,6 @@ onUnmounted(() => {
     :class="{
       'hero-lanyard--motion': canAnimate,
       'hero-lanyard--dragging': isDragging,
-      'hero-lanyard--revealed': isRevealed,
       'hero-lanyard--static': !canAnimate,
       'hero-lanyard--touch-nudge': canTouchNudge,
     }"
@@ -325,24 +302,15 @@ onUnmounted(() => {
       <span class="hero-lanyard__pin" />
     </div>
 
-    <button
+    <div
       ref="passRef"
       class="hero-lanyard__pass"
-      type="button"
+      role="group"
       :aria-label="interactionLabel"
-      :aria-pressed="isRevealed"
       @pointerdown="handlePointerDown"
       @pointerup="finishDrag"
       @pointercancel="finishDrag"
-      @click="toggleReveal"
-      @keydown="handleKeydown"
     >
-      <span class="hero-lanyard__back-panel" aria-hidden="true">
-        <small>FLIGHT PASS</small>
-        <strong>VIBE CODING</strong>
-        <span>VUE3 / GSAP / UAV-FPV</span>
-      </span>
-
       <span class="hero-lanyard__shell">
         <span class="hero-lanyard__topline">
           <span>JR</span>
@@ -355,7 +323,7 @@ onUnmounted(() => {
           <span>{{ props.body }}</span>
         </span>
       </span>
-    </button>
+    </div>
   </figure>
 </template>
 
@@ -578,8 +546,7 @@ onUnmounted(() => {
   cursor: grabbing;
 }
 
-.hero-lanyard__shell,
-.hero-lanyard__back-panel {
+.hero-lanyard__shell {
   position: relative;
   display: block;
   overflow: hidden;
@@ -605,45 +572,6 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-.hero-lanyard__back-panel {
-  position: absolute;
-  inset: 18px 0 auto;
-  z-index: 1;
-  display: grid;
-  min-height: 78%;
-  place-items: center;
-  padding: 28px;
-  color: rgba(237, 255, 252, 0.82);
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(85, 247, 231, 0.2), transparent 46%),
-    linear-gradient(135deg, rgba(85, 247, 231, 0.1), rgba(255, 198, 92, 0.06)),
-    rgba(4, 12, 13, 0.94);
-  opacity: 0;
-  transform: translate3d(0, 0, -28px) rotateY(-10deg) scale(0.95);
-  transition:
-    opacity 280ms ease,
-    transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.hero-lanyard--revealed .hero-lanyard__back-panel {
-  opacity: 1;
-  transform: translate3d(24px, -14px, -24px) rotateY(-14deg) rotateZ(1.4deg) scale(0.98);
-}
-
-.hero-lanyard__back-panel small,
-.hero-lanyard__back-panel span {
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.16em;
-}
-
-.hero-lanyard__back-panel strong {
-  color: var(--color-accent);
-  font-size: clamp(1.6rem, 5vw, 2.25rem);
-  letter-spacing: 0.08em;
-}
-
 .hero-lanyard__shell {
   z-index: 2;
   transition:
@@ -659,10 +587,6 @@ onUnmounted(() => {
     0 34px 110px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(255, 255, 255, 0.07) inset,
     0 0 52px rgba(85, 247, 231, 0.18);
-}
-
-.hero-lanyard--revealed .hero-lanyard__shell {
-  transform: translate3d(-6px, 3px, 12px) rotateY(7deg);
 }
 
 .hero-lanyard__topline {
@@ -769,13 +693,13 @@ onUnmounted(() => {
   animation: lanyardRigBreath 4.8s ease-in-out infinite;
 }
 
-.hero-lanyard--motion:not(.hero-lanyard--dragging):not(.hero-lanyard--revealed) .hero-lanyard__shell {
+.hero-lanyard--motion:not(.hero-lanyard--dragging) .hero-lanyard__shell {
   animation: lanyardShellFloat 4.8s ease-in-out infinite;
   animation-delay: 90ms;
 }
 
 .hero-lanyard--static .hero-lanyard__pass {
-  cursor: pointer;
+  cursor: default;
 }
 
 .hero-lanyard__pass:focus-visible {
