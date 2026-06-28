@@ -66,9 +66,10 @@ function resetPose(duration = 0.68) {
       '--pass-rot': `${clamp(recoilY / -10, -2.4, 2.4)}deg`,
       '--pass-tilt-x': `${clamp(recoilY / 7, -5, 5)}deg`,
       '--pass-tilt-y': '0deg',
-      '--strap-x': '0px',
-      '--strap-y': `${clamp(Math.max(0, recoilY) * 0.12, 0, 5)}px`,
-      '--strap-stretch': recoilY < 0 ? 0.97 : 1.02,
+      '--chain-x': '0px',
+      '--chain-y': `${clamp(Math.max(0, recoilY) * 0.12, 0, 5)}px`,
+      '--chain-rot': '0deg',
+      '--chain-stretch': recoilY < 0 ? 0.97 : 1.02,
       duration: Math.min(0.18, duration * 0.42),
       ease: 'power2.out',
     })
@@ -78,9 +79,10 @@ function resetPose(duration = 0.68) {
       '--pass-rot': '0deg',
       '--pass-tilt-x': '0deg',
       '--pass-tilt-y': '0deg',
-      '--strap-x': '0px',
-      '--strap-y': '0px',
-      '--strap-stretch': 1,
+      '--chain-x': '0px',
+      '--chain-y': '0px',
+      '--chain-rot': '0deg',
+      '--chain-stretch': 1,
       duration,
       ease: 'elastic.out(1, 0.5)',
     });
@@ -95,7 +97,7 @@ function playEntrance() {
       '--drop-y': '0px',
       '--drop-rot': '0deg',
       '--drop-opacity': 1,
-      '--strap-stretch': 1,
+      '--chain-stretch': 1,
     });
     return;
   }
@@ -106,8 +108,9 @@ function playEntrance() {
     '--drop-opacity': 0,
     '--pass-y': '0px',
     '--pass-rot': '0deg',
-    '--strap-y': '0px',
-    '--strap-stretch': 1.18,
+    '--chain-y': '0px',
+    '--chain-rot': '-1deg',
+    '--chain-stretch': 1.22,
   });
 
   entranceTween = gsap
@@ -120,21 +123,22 @@ function playEntrance() {
     .to(rootRef.value, {
       '--drop-y': '18px',
       '--drop-rot': '2.2deg',
-      '--strap-stretch': 1.2,
+      '--chain-stretch': 1.26,
       duration: 0.92,
       ease: 'power2.in',
     }, 0)
     .to(rootRef.value, {
       '--drop-y': '-8px',
       '--drop-rot': '-1.2deg',
-      '--strap-stretch': 0.96,
+      '--chain-stretch': 0.96,
       duration: 0.28,
       ease: 'power2.out',
     })
     .to(rootRef.value, {
       '--drop-y': '0px',
       '--drop-rot': '0deg',
-      '--strap-stretch': 1,
+      '--chain-rot': '0deg',
+      '--chain-stretch': 1,
       duration: 0.86,
       ease: 'elastic.out(1, 0.52)',
     });
@@ -157,20 +161,23 @@ function handlePointerMove(event: PointerEvent) {
     const dx = event.clientX - pointerStart.x;
     const dy = event.clientY - pointerStart.y;
     const distance = Math.hypot(dx, dy);
-    const verticalPull = clamp(dy, -132, 154);
-    const sidePull = clamp(dx * 0.26, -32, 32);
-    const tension = dy >= 0 ? 1 + clamp(dy / 430, 0, 0.32) : 1 - clamp(Math.abs(dy) / 760, 0, 0.1);
+    const cardX = clamp(dx, -280, 280);
+    const cardY = clamp(dy, -210, 240);
+    const tension = cardY >= 0 ? 1 + clamp(cardY / 560, 0, 0.34) : 1 - clamp(Math.abs(cardY) / 980, 0, 0.12);
+    const chainX = clamp(cardX * 0.72, -210, 210);
+    const chainY = clamp(cardY * 0.16, -18, 54);
 
     if (distance > 5) dragMoved = true;
     gsap.set(rootRef.value, {
-      '--pass-x': `${sidePull}px`,
-      '--pass-y': `${verticalPull}px`,
-      '--pass-rot': `${clamp(dx / 20 + verticalPull / 38, -8, 8)}deg`,
-      '--pass-tilt-x': `${clamp(-verticalPull / 17, -8, 8)}deg`,
-      '--pass-tilt-y': `${clamp(dx / 28, -5, 5)}deg`,
-      '--strap-x': `${clamp(dx * 0.1, -10, 10)}px`,
-      '--strap-y': `${clamp(Math.max(0, verticalPull) * 0.2, 0, 28)}px`,
-      '--strap-stretch': tension,
+      '--pass-x': `${cardX}px`,
+      '--pass-y': `${cardY}px`,
+      '--pass-rot': `${clamp(cardX / 19 + cardY / 70, -16, 16)}deg`,
+      '--pass-tilt-x': `${clamp(-cardY / 24, -11, 11)}deg`,
+      '--pass-tilt-y': `${clamp(cardX / 38, -10, 10)}deg`,
+      '--chain-x': `${chainX}px`,
+      '--chain-y': `${chainY}px`,
+      '--chain-rot': `${clamp(cardX / 18 + cardY / 120, -14, 14)}deg`,
+      '--chain-stretch': tension,
     });
     return;
   }
@@ -241,14 +248,11 @@ onUnmounted(() => {
     @pointerleave="handlePointerLeave"
   >
     <div class="hero-lanyard__rig" aria-hidden="true">
-      <span class="hero-lanyard__anchor hero-lanyard__anchor--left" />
-      <span class="hero-lanyard__anchor hero-lanyard__anchor--right" />
-      <svg class="hero-lanyard__strap" viewBox="0 0 320 138" focusable="false">
-        <path class="hero-lanyard__strap-shadow" d="M112 10 C119 48 137 76 160 103 C183 76 201 48 208 10" />
-        <path class="hero-lanyard__strap-edge" d="M96 10 C110 58 134 88 160 116 C186 88 210 58 224 10" />
-        <path class="hero-lanyard__strap-core" d="M116 10 C123 47 140 74 160 98 C180 74 197 47 204 10" />
-      </svg>
-      <span class="hero-lanyard__clip">
+      <span class="hero-lanyard__ceiling" />
+      <span class="hero-lanyard__chain">
+        <span v-for="index in 13" :key="index" />
+      </span>
+      <span class="hero-lanyard__hook">
         <span />
       </span>
     </div>
@@ -297,9 +301,10 @@ onUnmounted(() => {
   --drop-y: 0px;
   --drop-rot: 0deg;
   --drop-opacity: 1;
-  --strap-x: 0px;
-  --strap-y: 0px;
-  --strap-stretch: 1;
+  --chain-x: 0px;
+  --chain-y: 0px;
+  --chain-rot: 0deg;
+  --chain-stretch: 1;
   position: absolute;
   right: 102px;
   bottom: 0;
@@ -318,79 +323,105 @@ onUnmounted(() => {
 
 .hero-lanyard__rig {
   position: relative;
-  height: 94px;
+  height: 116px;
   transform:
-    translate3d(var(--strap-x), var(--strap-y), 0)
-    scaleY(var(--strap-stretch));
+    translate3d(var(--chain-x), var(--chain-y), 0)
+    rotateZ(var(--chain-rot))
+    scaleY(var(--chain-stretch));
   transform-origin: 50% 0;
   transition: opacity 180ms ease;
   pointer-events: none;
 }
 
-.hero-lanyard__anchor {
+.hero-lanyard__ceiling {
   position: absolute;
   top: 0;
-  width: 42px;
-  height: 12px;
+  left: 50%;
+  width: 184px;
+  height: 14px;
   border: 1px solid rgba(202, 226, 224, 0.34);
   border-radius: 999px;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.28), rgba(85, 247, 231, 0.08), rgba(255, 255, 255, 0.2)),
-    rgba(5, 15, 16, 0.84);
-  box-shadow: 0 0 24px rgba(85, 247, 231, 0.1);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.26), rgba(83, 101, 101, 0.08), rgba(255, 255, 255, 0.18)),
+    linear-gradient(180deg, rgba(30, 43, 43, 0.96), rgba(5, 12, 13, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(85, 247, 231, 0.08);
+  transform: translateX(-50%);
 }
 
-.hero-lanyard__anchor--left {
-  left: 74px;
-}
-
-.hero-lanyard__anchor--right {
-  right: 74px;
-}
-
-.hero-lanyard__strap {
+.hero-lanyard__ceiling::before,
+.hero-lanyard__ceiling::after {
   position: absolute;
-  inset: 0 0 auto;
-  width: 100%;
-  height: 136px;
-  overflow: visible;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  content: '';
+  border: 1px solid rgba(219, 242, 238, 0.22);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.46);
 }
 
-.hero-lanyard__strap path {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.hero-lanyard__ceiling::before {
+  left: 16px;
 }
 
-.hero-lanyard__strap-shadow {
-  stroke: rgba(0, 0, 0, 0.62);
-  stroke-width: 20;
-  filter: blur(1px);
+.hero-lanyard__ceiling::after {
+  right: 16px;
 }
 
-.hero-lanyard__strap-edge {
-  stroke: rgba(207, 227, 225, 0.24);
-  stroke-width: 15;
+.hero-lanyard__chain {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  display: grid;
+  width: 32px;
+  height: 96px;
+  grid-template-rows: repeat(13, 1fr);
+  justify-items: center;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.36));
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
 }
 
-.hero-lanyard__strap-core {
-  stroke: rgba(13, 22, 22, 0.96);
-  stroke-width: 11;
-  stroke-dasharray: 10 6;
+.hero-lanyard__chain span {
+  display: block;
+  width: 13px;
+  height: 8px;
+  margin-top: -1px;
+  border: 1px solid rgba(218, 244, 240, 0.48);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(92, 255, 239, 0.05) 54%, rgba(0, 0, 0, 0.28)),
+    rgba(11, 20, 21, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 12px rgba(85, 247, 231, 0.08);
 }
 
-.hero-lanyard__clip {
+.hero-lanyard__chain span:nth-child(odd) {
+  width: 10px;
+  height: 14px;
+  transform: rotate(0deg);
+}
+
+.hero-lanyard__chain span:nth-child(even) {
+  transform: rotate(90deg);
+}
+
+.hero-lanyard__hook {
   position: absolute;
   left: 50%;
-  bottom: -8px;
+  bottom: -4px;
   display: grid;
-  width: 72px;
-  height: 30px;
+  width: 58px;
+  height: 34px;
   place-items: center;
   border: 1px solid rgba(218, 238, 235, 0.42);
-  border-radius: 8px 8px 14px 14px;
+  border-radius: 17px 17px 12px 12px;
   background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.36), rgba(92, 106, 106, 0.18) 46%, rgba(255, 255, 255, 0.16)),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.34), rgba(92, 106, 106, 0.16) 48%, rgba(255, 255, 255, 0.12)),
     rgba(20, 28, 29, 0.86);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -398,8 +429,24 @@ onUnmounted(() => {
   transform: translateX(-50%);
 }
 
-.hero-lanyard__clip span {
-  width: 42px;
+.hero-lanyard__hook::before {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  content: '';
+  border: 2px solid rgba(214, 238, 235, 0.44);
+  border-radius: 50%;
+  background: rgba(4, 10, 10, 0.48);
+  box-shadow:
+    inset 0 0 0 4px rgba(6, 14, 15, 0.76),
+    0 0 14px rgba(85, 247, 231, 0.1);
+  transform: translateX(-50%);
+}
+
+.hero-lanyard__hook span {
+  width: 34px;
   height: 9px;
   border: 1px solid rgba(5, 11, 12, 0.64);
   border-radius: 999px;
@@ -650,15 +697,15 @@ onUnmounted(() => {
   0%,
   100% {
     transform:
-      translate3d(var(--strap-x), var(--strap-y), 0)
-      scaleY(var(--strap-stretch))
-      rotateZ(-0.35deg);
+      translate3d(var(--chain-x), var(--chain-y), 0)
+      rotateZ(calc(var(--chain-rot) - 0.35deg))
+      scaleY(var(--chain-stretch));
   }
   50% {
     transform:
-      translate3d(var(--strap-x), var(--strap-y), 0)
-      scaleY(var(--strap-stretch))
-      rotateZ(0.35deg);
+      translate3d(var(--chain-x), var(--chain-y), 0)
+      rotateZ(calc(var(--chain-rot) + 0.35deg))
+      scaleY(var(--chain-stretch));
   }
 }
 
@@ -700,24 +747,27 @@ onUnmounted(() => {
   }
 
   .hero-lanyard__rig {
-    height: 76px;
+    height: 88px;
   }
 
-  .hero-lanyard__anchor--left {
-    left: 68px;
+  .hero-lanyard__ceiling {
+    width: 138px;
+    height: 12px;
   }
 
-  .hero-lanyard__anchor--right {
-    right: 68px;
+  .hero-lanyard__chain {
+    width: 28px;
+    height: 70px;
+    grid-template-rows: repeat(10, 1fr);
   }
 
-  .hero-lanyard__strap {
-    height: 112px;
+  .hero-lanyard__chain span:nth-child(n + 11) {
+    display: none;
   }
 
-  .hero-lanyard__clip {
-    width: 64px;
-    height: 26px;
+  .hero-lanyard__hook {
+    width: 52px;
+    height: 28px;
   }
 
   .hero-lanyard__identity {
