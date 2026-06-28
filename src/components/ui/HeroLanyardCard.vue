@@ -248,13 +248,14 @@ onUnmounted(() => {
     @pointerleave="handlePointerLeave"
   >
     <div class="hero-lanyard__rig" aria-hidden="true">
-      <span class="hero-lanyard__ceiling" />
-      <span class="hero-lanyard__chain">
-        <span v-for="index in 13" :key="index" />
+      <span class="hero-lanyard__fabric">
+        <span v-for="index in 3" :key="index" class="hero-lanyard__fabric-mark">
+          <span />
+        </span>
       </span>
-      <span class="hero-lanyard__hook">
-        <span />
-      </span>
+      <span class="hero-lanyard__ring" />
+      <span class="hero-lanyard__cord" />
+      <span class="hero-lanyard__pin" />
     </div>
 
     <button
@@ -269,6 +270,13 @@ onUnmounted(() => {
       @click="toggleReveal"
       @keydown="handleKeydown"
     >
+      <span class="hero-lanyard__back-prop" aria-hidden="true">
+        <span class="hero-lanyard__prop-blade" />
+        <span class="hero-lanyard__prop-blade" />
+        <span class="hero-lanyard__prop-blade" />
+        <span class="hero-lanyard__prop-ring" />
+        <span class="hero-lanyard__prop-hub" />
+      </span>
       <span class="hero-lanyard__back-panel" aria-hidden="true">
         <small>FLIGHT PASS</small>
         <strong>VIBE CODING</strong>
@@ -323,7 +331,7 @@ onUnmounted(() => {
 
 .hero-lanyard__rig {
   position: relative;
-  height: 116px;
+  height: 142px;
   transform:
     translate3d(var(--chain-x), var(--chain-y), 0)
     rotateZ(var(--chain-rot))
@@ -333,128 +341,153 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-.hero-lanyard__ceiling {
+.hero-lanyard__fabric {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 36px;
+  height: 178px;
+  gap: 28px;
+  padding-top: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0 0 14px 14px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.05)),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 21px),
+    linear-gradient(180deg, #020303, #060708 44%, #010101);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset -1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 18px rgba(0, 0, 0, 0.76),
+    0 18px 28px rgba(0, 0, 0, 0.38);
+  transform: translateX(-50%);
+}
+
+.hero-lanyard__fabric::before,
+.hero-lanyard__fabric::after {
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 184px;
-  height: 14px;
-  border: 1px solid rgba(202, 226, 224, 0.34);
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.26), rgba(83, 101, 101, 0.08), rgba(255, 255, 255, 0.18)),
-    linear-gradient(180deg, rgba(30, 43, 43, 0.96), rgba(5, 12, 13, 0.92));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 10px 30px rgba(0, 0, 0, 0.34),
-    0 0 22px rgba(85, 247, 231, 0.08);
-  transform: translateX(-50%);
-}
-
-.hero-lanyard__ceiling::before,
-.hero-lanyard__ceiling::after {
-  position: absolute;
-  top: 3px;
-  width: 8px;
-  height: 8px;
+  bottom: 0;
   content: '';
-  border: 1px solid rgba(219, 242, 238, 0.22);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.46);
+  pointer-events: none;
 }
 
-.hero-lanyard__ceiling::before {
-  left: 16px;
+.hero-lanyard__fabric::before {
+  left: 7px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.16), transparent);
 }
 
-.hero-lanyard__ceiling::after {
-  right: 16px;
+.hero-lanyard__fabric::after {
+  right: 7px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(85, 247, 231, 0.12), transparent);
 }
 
-.hero-lanyard__chain {
-  position: absolute;
-  top: 11px;
-  left: 50%;
-  display: grid;
-  width: 32px;
-  height: 96px;
-  grid-template-rows: repeat(13, 1fr);
-  justify-items: center;
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.36));
-  transform: translateX(-50%);
-  transform-origin: 50% 0;
-}
-
-.hero-lanyard__chain span {
+.hero-lanyard__fabric-mark {
+  position: relative;
   display: block;
-  width: 13px;
-  height: 8px;
-  margin-top: -1px;
-  border: 1px solid rgba(218, 244, 240, 0.48);
-  border-radius: 999px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(92, 255, 239, 0.05) 54%, rgba(0, 0, 0, 0.28)),
-    rgba(11, 20, 21, 0.92);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    0 0 12px rgba(85, 247, 231, 0.08);
+  width: 18px;
+  height: 18px;
+  opacity: 0.86;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.16));
 }
 
-.hero-lanyard__chain span:nth-child(odd) {
-  width: 10px;
-  height: 14px;
-  transform: rotate(0deg);
-}
-
-.hero-lanyard__chain span:nth-child(even) {
-  transform: rotate(90deg);
-}
-
-.hero-lanyard__hook {
+.hero-lanyard__fabric-mark span,
+.hero-lanyard__fabric-mark::before,
+.hero-lanyard__fabric-mark::after {
   position: absolute;
+  top: 50%;
   left: 50%;
-  bottom: -4px;
-  display: grid;
-  width: 58px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid rgba(218, 238, 235, 0.42);
-  border-radius: 17px 17px 12px 12px;
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.34), rgba(92, 106, 106, 0.16) 48%, rgba(255, 255, 255, 0.12)),
-    rgba(20, 28, 29, 0.86);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 14px 28px rgba(0, 0, 0, 0.34);
-  transform: translateX(-50%);
-}
-
-.hero-lanyard__hook::before {
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  width: 22px;
-  height: 22px;
+  width: 17px;
+  height: 5px;
   content: '';
-  border: 2px solid rgba(214, 238, 235, 0.44);
+  border-radius: 999px 55% 999px 55%;
+  background: rgba(236, 244, 242, 0.92);
+  transform-origin: 12% 50%;
+}
+
+.hero-lanyard__fabric-mark span {
+  transform: translate(-12%, -50%) rotate(0deg);
+}
+
+.hero-lanyard__fabric-mark::before {
+  transform: translate(-12%, -50%) rotate(120deg);
+}
+
+.hero-lanyard__fabric-mark::after {
+  transform: translate(-12%, -50%) rotate(240deg);
+}
+
+.hero-lanyard__ring {
+  position: absolute;
+  left: 50%;
+  top: 91px;
+  width: 39px;
+  height: 39px;
+  border: 2px solid rgba(207, 222, 218, 0.36);
   border-radius: 50%;
-  background: rgba(4, 10, 10, 0.48);
+  background:
+    radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.34), transparent 18%),
+    rgba(2, 4, 4, 0.62);
   box-shadow:
-    inset 0 0 0 4px rgba(6, 14, 15, 0.76),
+    inset 0 0 0 5px rgba(0, 0, 0, 0.62),
+    0 10px 22px rgba(0, 0, 0, 0.42),
     0 0 14px rgba(85, 247, 231, 0.1);
   transform: translateX(-50%);
 }
 
-.hero-lanyard__hook span {
-  width: 34px;
-  height: 9px;
-  border: 1px solid rgba(5, 11, 12, 0.64);
+.hero-lanyard__cord {
+  position: absolute;
+  left: 50%;
+  top: 121px;
+  width: 8px;
+  height: 45px;
+  content: '';
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  background: rgba(5, 12, 13, 0.54);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 35%, rgba(0, 0, 0, 0.64)),
+    #050505;
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.72),
+    0 9px 16px rgba(0, 0, 0, 0.36);
+  transform: translateX(-50%) rotate(5deg);
+}
+
+.hero-lanyard__cord::after {
+  position: absolute;
+  right: -3px;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  content: '';
+  border: 2px solid rgba(4, 6, 6, 0.92);
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+.hero-lanyard__pin {
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(214, 238, 235, 0.22);
+  border-radius: 50%;
+  background: #020303;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.18),
+    0 0 12px rgba(0, 0, 0, 0.52);
+  transform: translateX(-50%);
 }
 
 .hero-lanyard__pass {
   position: relative;
+  z-index: 2;
   display: block;
   width: 100%;
   margin: -4px 0 0;
@@ -472,6 +505,102 @@ onUnmounted(() => {
   transform-style: preserve-3d;
   transform-origin: 50% 5%;
   will-change: transform;
+}
+
+.hero-lanyard__back-prop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 142%;
+  aspect-ratio: 1;
+  opacity: 0.72;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, -58px) rotateZ(-16deg);
+  transform-origin: 50% 50%;
+}
+
+.hero-lanyard__back-prop::before {
+  position: absolute;
+  inset: 21%;
+  content: '';
+  border: 1px dashed rgba(139, 255, 242, 0.2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 36px rgba(85, 247, 231, 0.12),
+    inset 0 0 46px rgba(85, 247, 231, 0.08);
+}
+
+.hero-lanyard__prop-blade {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 15%;
+  border: 1px solid rgba(185, 255, 248, 0.52);
+  border-radius: 78% 16% 78% 18%;
+  background:
+    linear-gradient(90deg, rgba(85, 247, 231, 0.32), rgba(180, 255, 249, 0.08) 44%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 22px),
+    rgba(8, 39, 42, 0.32);
+  box-shadow:
+    inset 0 0 24px rgba(85, 247, 231, 0.14),
+    0 0 20px rgba(85, 247, 231, 0.18);
+  clip-path: polygon(0 42%, 16% 20%, 70% 0, 100% 48%, 73% 100%, 15% 78%, 0 58%);
+  transform-origin: 0 50%;
+}
+
+.hero-lanyard__prop-blade::before {
+  position: absolute;
+  inset: 18% 16% 20% 14%;
+  content: '';
+  border-top: 1px solid rgba(229, 255, 252, 0.34);
+  border-bottom: 1px solid rgba(85, 247, 231, 0.2);
+  border-radius: inherit;
+  transform: skewX(-18deg);
+}
+
+.hero-lanyard__prop-blade:nth-child(1) {
+  transform: rotate(0deg) translateX(4%);
+}
+
+.hero-lanyard__prop-blade:nth-child(2) {
+  transform: rotate(120deg) translateX(4%);
+}
+
+.hero-lanyard__prop-blade:nth-child(3) {
+  transform: rotate(240deg) translateX(4%);
+}
+
+.hero-lanyard__prop-ring,
+.hero-lanyard__prop-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-lanyard__prop-ring {
+  width: 23%;
+  height: 23%;
+  border: 1px solid rgba(220, 255, 251, 0.34);
+  background: rgba(5, 24, 26, 0.3);
+  box-shadow:
+    inset 0 0 18px rgba(85, 247, 231, 0.14),
+    0 0 24px rgba(85, 247, 231, 0.16);
+}
+
+.hero-lanyard__prop-hub {
+  width: 13%;
+  height: 13%;
+  border: 1px solid rgba(219, 255, 251, 0.42);
+  background:
+    radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.28), transparent 26%),
+    rgba(2, 16, 18, 0.86);
+  box-shadow:
+    inset 0 0 16px rgba(85, 247, 231, 0.18),
+    0 0 26px rgba(85, 247, 231, 0.18);
 }
 
 .hero-lanyard--dragging .hero-lanyard__pass {
@@ -508,7 +637,7 @@ onUnmounted(() => {
 .hero-lanyard__back-panel {
   position: absolute;
   inset: 18px 0 auto;
-  z-index: 0;
+  z-index: 1;
   display: grid;
   min-height: 78%;
   place-items: center;
@@ -545,7 +674,7 @@ onUnmounted(() => {
 }
 
 .hero-lanyard__shell {
-  z-index: 1;
+  z-index: 2;
   transition:
     transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
     border-color 240ms ease,
@@ -674,6 +803,10 @@ onUnmounted(() => {
   animation-delay: 90ms;
 }
 
+.hero-lanyard--motion:not(.hero-lanyard--dragging) .hero-lanyard__back-prop {
+  animation: lanyardPropSpin 13s linear infinite;
+}
+
 .hero-lanyard--static .hero-lanyard__pass {
   cursor: pointer;
 }
@@ -729,6 +862,15 @@ onUnmounted(() => {
   }
 }
 
+@keyframes lanyardPropSpin {
+  0% {
+    transform: translate3d(-50%, -50%, -58px) rotateZ(-16deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, -58px) rotateZ(344deg);
+  }
+}
+
 @media (max-width: 1080px) {
   .hero-lanyard {
     right: auto;
@@ -747,27 +889,44 @@ onUnmounted(() => {
   }
 
   .hero-lanyard__rig {
-    height: 88px;
+    height: 104px;
   }
 
-  .hero-lanyard__ceiling {
-    width: 138px;
-    height: 12px;
+  .hero-lanyard__fabric {
+    top: -42px;
+    width: 31px;
+    height: 132px;
+    gap: 20px;
+    padding-top: 13px;
   }
 
-  .hero-lanyard__chain {
-    width: 28px;
-    height: 70px;
-    grid-template-rows: repeat(10, 1fr);
+  .hero-lanyard__fabric-mark {
+    width: 15px;
+    height: 15px;
   }
 
-  .hero-lanyard__chain span:nth-child(n + 11) {
+  .hero-lanyard__fabric-mark:nth-child(3) {
     display: none;
   }
 
-  .hero-lanyard__hook {
-    width: 52px;
-    height: 28px;
+  .hero-lanyard__ring {
+    top: 72px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero-lanyard__cord {
+    top: 100px;
+    height: 34px;
+  }
+
+  .hero-lanyard__pin {
+    top: 128px;
+  }
+
+  .hero-lanyard__back-prop {
+    width: 132%;
+    opacity: 0.58;
   }
 
   .hero-lanyard__identity {
